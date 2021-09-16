@@ -1,0 +1,685 @@
+[INFO] [1631828655.790345]: [/henry_mir_bridge] trying to connect to 192.168.50.201:9090...
+### ROS bridge connected ###
+[INFO] [1631828655.892028]: [/henry_mir_bridge] ... connected.
+Publishers:
+ * /MC/encoders [mirMsgs/StampedEncoders]
+ * /MissionController/CheckArea/visualization_marker [visualization_msgs/Marker]
+ * /MissionController/prompt_user [mirMsgs/UserPrompt]
+ * /PB/bms_status [mirMsgs/BMSData]
+ * /PB/charging_status [mirMsgs/ChargingState]
+ * /PB/gpio/input [mirMsgs/Gpio]
+ * /PB/gpio/output [mirMsgs/Gpio]
+ * /PB/gpio/output/feedback [mirMsgs/Gpio]
+ * /PB/motor_status [mirMsgs/PowerBoardMotorStatus]
+ * /PB/pallet_lifter_status [mirMsgs/PalletLifterStatus]
+ * /PB/pendant [mirMsgs/Pendant]
+ * /PB/proximity [mirMsgs/proximity]
+ * /active_mapping_guid [std_msgs/String]
+ * /amcl_pose [geometry_msgs/PoseWithCovarianceStamped]
+ * /b_raw_scan [sensor_msgs/LaserScan]
+ * /b_scan [sensor_msgs/LaserScan]
+ * /b_scan_footpr_filter [sensor_msgs/LaserScan]
+ * /camera_floor_left/background [sensor_msgs/PointCloud2]
+ * /camera_floor_left/depth/camera_info [sensor_msgs/CameraInfo]
+ * /camera_floor_left/depth/image_rect_raw [sensor_msgs/Image]
+ * /camera_floor_left/depth/image_rect_raw/compressed [sensor_msgs/CompressedImage]
+ * /camera_floor_left/depth/image_rect_raw/compressed/parameter_descriptions [dynamic_reconfigure/ConfigDescription]
+ * /camera_floor_left/depth/image_rect_raw/compressed/parameter_updates [dynamic_reconfigure/Config]
+ * /camera_floor_left/depth/points [sensor_msgs/PointCloud2]
+ * /camera_floor_left/driver/detect_pallet_obstacles [sensor_msgs/PointCloud2]
+ * /camera_floor_left/driver/detect_rack_obstacles [sensor_msgs/PointCloud2]
+ * /camera_floor_left/driver/visualization_marker [visualization_msgs/MarkerArray]
+ * /camera_floor_left/extrinsics/depth_to_infra1 [realsense2_camera/Extrinsics]
+ * /camera_floor_left/extrinsics/depth_to_infra2 [realsense2_camera/Extrinsics]
+ * /camera_floor_left/filter/visualization_marker [visualization_msgs/Marker]
+ * /camera_floor_left/floor [sensor_msgs/PointCloud2]
+ * /camera_floor_left/infra1/camera_info [sensor_msgs/CameraInfo]
+ * /camera_floor_left/infra1/image_rect_raw [sensor_msgs/Image]
+ * /camera_floor_left/infra1/image_rect_raw/compressed [sensor_msgs/CompressedImage]
+ * /camera_floor_left/infra1/image_rect_raw/compressed/parameter_descriptions [dynamic_reconfigure/ConfigDescription]
+ * /camera_floor_left/infra1/image_rect_raw/compressed/parameter_updates [dynamic_reconfigure/Config]
+ * /camera_floor_left/infra2/camera_info [sensor_msgs/CameraInfo]
+ * /camera_floor_left/infra2/image_rect_raw [sensor_msgs/Image]
+ * /camera_floor_left/infra2/image_rect_raw/compressed [sensor_msgs/CompressedImage]
+ * /camera_floor_left/infra2/image_rect_raw/compressed/parameter_descriptions [dynamic_reconfigure/ConfigDescription]
+ * /camera_floor_left/infra2/image_rect_raw/compressed/parameter_updates [dynamic_reconfigure/Config]
+ * /camera_floor_left/obstacles [sensor_msgs/PointCloud2]
+ * /camera_floor_right/background [sensor_msgs/PointCloud2]
+ * /camera_floor_right/depth/camera_info [sensor_msgs/CameraInfo]
+ * /camera_floor_right/depth/image_rect_raw [sensor_msgs/Image]
+ * /camera_floor_right/depth/image_rect_raw/compressed [sensor_msgs/CompressedImage]
+ * /camera_floor_right/depth/image_rect_raw/compressed/parameter_descriptions [dynamic_reconfigure/ConfigDescription]
+ * /camera_floor_right/depth/image_rect_raw/compressed/parameter_updates [dynamic_reconfigure/Config]
+ * /camera_floor_right/depth/points [sensor_msgs/PointCloud2]
+ * /camera_floor_right/driver/detect_pallet_obstacles [sensor_msgs/PointCloud2]
+ * /camera_floor_right/driver/detect_rack_obstacles [sensor_msgs/PointCloud2]
+ * /camera_floor_right/driver/visualization_marker [visualization_msgs/MarkerArray]
+ * /camera_floor_right/extrinsics/depth_to_infra1 [realsense2_camera/Extrinsics]
+ * /camera_floor_right/extrinsics/depth_to_infra2 [realsense2_camera/Extrinsics]
+ * /camera_floor_right/filter/visualization_marker [visualization_msgs/Marker]
+ * /camera_floor_right/floor [sensor_msgs/PointCloud2]
+ * /camera_floor_right/infra1/camera_info [sensor_msgs/CameraInfo]
+ * /camera_floor_right/infra1/image_rect_raw [sensor_msgs/Image]
+ * /camera_floor_right/infra1/image_rect_raw/compressed [sensor_msgs/CompressedImage]
+ * /camera_floor_right/infra1/image_rect_raw/compressed/parameter_descriptions [dynamic_reconfigure/ConfigDescription]
+ * /camera_floor_right/infra1/image_rect_raw/compressed/parameter_updates [dynamic_reconfigure/Config]
+ * /camera_floor_right/infra2/camera_info [sensor_msgs/CameraInfo]
+ * /camera_floor_right/infra2/image_rect_raw [sensor_msgs/Image]
+ * /camera_floor_right/infra2/image_rect_raw/compressed [sensor_msgs/CompressedImage]
+ * /camera_floor_right/infra2/image_rect_raw/compressed/parameter_descriptions [dynamic_reconfigure/ConfigDescription]
+ * /camera_floor_right/infra2/image_rect_raw/compressed/parameter_updates [dynamic_reconfigure/Config]
+ * /camera_floor_right/obstacles [sensor_msgs/PointCloud2]
+ * /check_area/polygon [geometry_msgs/PolygonStamped]
+ * /check_pose_area/polygon [geometry_msgs/PolygonStamped]
+ * /cmd_vel [geometry_msgs/TwistStamped]
+ * /data_events/area_events [mir_data_msgs/AreaEventEvent]
+ * /data_events/docking_offsets [mir_data_msgs/DockingOffsetEvent]
+ * /data_events/elevator_floors [mir_data_msgs/ElevatorFloorEvent]
+ * /data_events/elevators [mir_data_msgs/ElevatorEvent]
+ * /data_events/footprints [mir_data_msgs/FootprintEvent]
+ * /data_events/maps [mir_data_msgs/MapEvent]
+ * /data_events/mission_groups [mir_data_msgs/MissionGroupEvent]
+ * /data_events/positions [mir_data_msgs/PositionEvent]
+ * /data_events/registers [mir_data_msgs/PLCRegisterEvent]
+ * /data_events/sessions [mir_data_msgs/SessionEvent]
+ * /data_events/sounds [mir_data_msgs/SoundEvent]
+ * /data_events/user_groups [mir_data_msgs/UserGroupEvent]
+ * /data_events/users [mir_data_msgs/UserEvent]
+ * /diagnostics [diagnostic_msgs/DiagnosticArray]
+ * /diagnostics_agg [diagnostic_msgs/DiagnosticArray]
+ * /diagnostics_toplevel_state [diagnostic_msgs/DiagnosticStatus]
+ * /f_raw_scan [sensor_msgs/LaserScan]
+ * /f_scan [sensor_msgs/LaserScan]
+ * /f_scan_footpr_filter [sensor_msgs/LaserScan]
+ * /global_regulated_cmd_vel [geometry_msgs/TwistStamped]
+ * /imu1_debug_data [sensor_msgs/Imu]
+ * /imu2_debug_data [sensor_msgs/Imu]
+ * /imu_data [sensor_msgs/Imu]
+ * /initialpose [geometry_msgs/PoseWithCovarianceStamped]
+ * /internal_ios/status [mirMsgs/IOs]
+ * /light_cmd [std_msgs/String]
+ * /localization_score [std_msgs/Float64]
+ * /map [nav_msgs/OccupancyGrid]
+ * /map_metadata [nav_msgs/MapMetaData]
+ * /marker_tracking_node/feedback [mir_marker_tracking/MarkerTrackingActionFeedback]
+ * /marker_tracking_node/laser_line_extract/parameter_descriptions [dynamic_reconfigure/ConfigDescription]
+ * /marker_tracking_node/laser_line_extract/parameter_updates [dynamic_reconfigure/Config]
+ * /marker_tracking_node/laser_line_extract/visualization_marker [visualization_msgs/MarkerArray]
+ * /marker_tracking_node/result [mir_marker_tracking/MarkerTrackingActionResult]
+ * /marker_tracking_node/status [actionlib_msgs/GoalStatusArray]
+ * /mirEventTrigger/events [mirMsgs/Events]
+ * /mir_amcl/selected_points [sensor_msgs/PointCloud2]
+ * /mir_cmd [std_msgs/String]
+ * /mir_log [rosgraph_msgs/Log]
+ * /mir_sound/sound_event [mirMsgs/SoundEvent]
+ * /mir_status_msg [std_msgs/String]
+ * /mirspawn/node_events [mirSpawn/LaunchItem]
+ * /mirwebapp/grid_map_metadata [mirMsgs/LocalMapStat]
+ * /mirwebapp/laser_map_metadata [mirMsgs/LocalMapStat]
+ * /mirwebapp/web_path [mirMsgs/WebPath]
+ * /move_base/cancel [actionlib_msgs/GoalID]
+ * /move_base/feedback [mir_actions/MirMoveBaseActionFeedback]
+ * /move_base/goal [mir_actions/MirMoveBaseActionGoal]
+ * /move_base/result [mir_actions/MirMoveBaseActionResult]
+ * /move_base/status [actionlib_msgs/GoalStatusArray]
+ * /move_base_node/MIRPlannerROS/cost_cloud [sensor_msgs/PointCloud2]
+ * /move_base_node/MIRPlannerROS/global_plan [nav_msgs/Path]
+ * /move_base_node/MIRPlannerROS/len_to_goal [std_msgs/Float64]
+ * /move_base_node/MIRPlannerROS/local_plan [nav_msgs/Path]
+ * /move_base_node/MIRPlannerROS/parameter_descriptions [dynamic_reconfigure/ConfigDescription]
+ * /move_base_node/MIRPlannerROS/parameter_updates [dynamic_reconfigure/Config]
+ * /move_base_node/MIRPlannerROS/visualization_marker [visualization_msgs/MarkerArray]
+ * /move_base_node/SBPLLatticePlanner/plan [nav_msgs/Path]
+ * /move_base_node/SBPLLatticePlanner/sbpl_lattice_planner_stats [sbpl_lattice_planner/SBPLLatticePlannerStats]
+ * /move_base_node/SBPLLatticePlanner/visualization_marker [visualization_msgs/MarkerArray]
+ * /move_base_node/current_goal [geometry_msgs/PoseStamped]
+ * /move_base_node/global_costmap/inflated_obstacles [nav_msgs/GridCells]
+ * /move_base_node/global_costmap/obstacles [nav_msgs/GridCells]
+ * /move_base_node/global_costmap/parameter_descriptions [dynamic_reconfigure/ConfigDescription]
+ * /move_base_node/global_costmap/parameter_updates [dynamic_reconfigure/Config]
+ * /move_base_node/global_costmap/robot_footprint [geometry_msgs/PolygonStamped]
+ * /move_base_node/global_costmap/unknown_space [nav_msgs/GridCells]
+ * /move_base_node/global_plan [nav_msgs/Path]
+ * /move_base_node/local_costmap/inflated_obstacles [nav_msgs/GridCells]
+ * /move_base_node/local_costmap/obstacles [nav_msgs/GridCells]
+ * /move_base_node/local_costmap/parameter_descriptions [dynamic_reconfigure/ConfigDescription]
+ * /move_base_node/local_costmap/parameter_updates [dynamic_reconfigure/Config]
+ * /move_base_node/local_costmap/robot_footprint [geometry_msgs/PolygonStamped]
+ * /move_base_node/local_costmap/safety_zone [geometry_msgs/PolygonStamped]
+ * /move_base_node/local_costmap/unknown_space [nav_msgs/GridCells]
+ * /move_base_node/mir_escape_recovery/visualization_marker [visualization_msgs/Marker]
+ * /move_base_node/parameter_descriptions [dynamic_reconfigure/ConfigDescription]
+ * /move_base_node/parameter_updates [dynamic_reconfigure/Config]
+ * /move_base_node/time_to_coll [std_msgs/Float64]
+ * /move_base_node/traffic_costmap/inflated_obstacles [nav_msgs/GridCells]
+ * /move_base_node/traffic_costmap/obstacles [nav_msgs/GridCells]
+ * /move_base_node/traffic_costmap/parameter_descriptions [dynamic_reconfigure/ConfigDescription]
+ * /move_base_node/traffic_costmap/parameter_updates [dynamic_reconfigure/Config]
+ * /move_base_node/traffic_costmap/robot_footprint [geometry_msgs/PolygonStamped]
+ * /move_base_node/traffic_costmap/unknown_space [nav_msgs/GridCells]
+ * /move_base_node/visualization_marker [visualization_msgs/Marker]
+ * /move_base_simple/visualization_marker [visualization_msgs/Marker]
+ * /moving_state [mirMsgs/MovingState]
+ * /odom [nav_msgs/Odometry]
+ * /odom_enc [nav_msgs/Odometry]
+ * /odom_imu1 [nav_msgs/Odometry]
+ * /odom_imu2 [nav_msgs/Odometry]
+ * /one_way_map [nav_msgs/OccupancyGrid]
+ * /param_manager_update [mir_param_interface/RosParamListUpdate]
+ * /param_update [std_msgs/String]
+ * /particlevizmarker [visualization_msgs/MarkerArray]
+ * /resource_tracker/acquisition [mirMsgs/ResourcesAcquisition]
+ * /resource_tracker/needed_resources [mirMsgs/ResourcesState]
+ * /robot_mode [mirMsgs/RobotMode]
+ * /robot_pose [geometry_msgs/Pose]
+ * /robot_state [mirMsgs/RobotState]
+ * /robot_status [mirMsgs/RobotStatus]
+ * /rosout [rosgraph_msgs/Log]
+ * /rosout_agg [rosgraph_msgs/Log]
+ * /safety_status [mirMsgs/SafetyStatus]
+ * /scan [sensor_msgs/LaserScan]
+ * /scan_filter/visualization_marker [visualization_msgs/Marker]
+ * /scan_footpr_filter [sensor_msgs/LaserScan]
+ * /session_importer_node/info [mirSessionImporter/SessionImportInfo]
+ * /set_mc_PID [std_msgs/Float64MultiArray]
+ * /skid_detection_cusum [mirMsgs/SkidDetectionStampedFloat]
+ * /skid_detection_likelihood [mirMsgs/SkidDetectionStampedFloat]
+ * /skid_detection_measurments [mirMsgs/SkidDetectionDiff]
+ * /stall_detection [std_msgs/Bool]
+ * /tf [tf2_msgs/TFMessage]
+ * /tf_static [tf2_msgs/TFMessage]
+ * /traffic_map [nav_msgs/OccupancyGrid]
+ * /wifi_diagnostics [diagnostic_msgs/DiagnosticArray]
+ * /wifi_diagnostics/cur_ap [mir_wifi_msgs/APInfo]
+ * /wifi_diagnostics/roam_events [mir_wifi_msgs/WifiRoamEvent]
+ * /wifi_diagnostics/wifi_ap_interface_stats [mir_wifi_msgs/WifiInterfaceStats]
+ * /wifi_diagnostics/wifi_ap_rssi [mir_wifi_msgs/APRssiStats]
+ * /wifi_diagnostics/wifi_ap_time_stats [mir_wifi_msgs/APTimeStats]
+ * /wifi_watchdog/ping [mir_wifi_msgs/APPingStats]
+
+Subscribers:
+ * /MC/encoders [mirMsgs/StampedEncoders]
+ * /MissionController/CheckArea/visualization_marker [visualization_msgs/Marker]
+ * /MissionController/prompt_user [mirMsgs/UserPrompt]
+ * /PB/audio [std_msgs/Bool]
+ * /PB/bms_status [mirMsgs/BMSData]
+ * /PB/charging_status [mirMsgs/ChargingState]
+ * /PB/gpio/input [mirMsgs/Gpio]
+ * /PB/gpio/output [mirMsgs/Gpio]
+ * /PB/gpio/output/feedback [mirMsgs/Gpio]
+ * /PB/motor_status [mirMsgs/PowerBoardMotorStatus]
+ * /PB/pallet_lifter_status [mirMsgs/PalletLifterStatus]
+ * /PB/pendant [mirMsgs/Pendant]
+ * /PB/proximity [mirMsgs/proximity]
+ * /active_mapping_guid [std_msgs/String]
+ * /amcl_pose [geometry_msgs/PoseWithCovarianceStamped]
+ * /b_raw_scan [sensor_msgs/LaserScan]
+ * /b_scan [sensor_msgs/LaserScan]
+ * /b_scan_footpr_filter [sensor_msgs/LaserScan]
+ * /camera_floor/background [sensor_msgs/PointCloud2]
+ * /camera_floor/obstacles [sensor_msgs/PointCloud2]
+ * /camera_floor_left/background [sensor_msgs/PointCloud2]
+ * /camera_floor_left/driver/detect_pallet_obstacles [sensor_msgs/PointCloud2]
+ * /camera_floor_left/driver/detect_rack_obstacles [sensor_msgs/PointCloud2]
+ * /camera_floor_left/driver/visualization_marker [visualization_msgs/MarkerArray]
+ * /camera_floor_left/obstacles [sensor_msgs/PointCloud2]
+ * /camera_floor_right/background [sensor_msgs/PointCloud2]
+ * /camera_floor_right/driver/detect_pallet_obstacles [sensor_msgs/PointCloud2]
+ * /camera_floor_right/driver/detect_rack_obstacles [sensor_msgs/PointCloud2]
+ * /camera_floor_right/driver/visualization_marker [visualization_msgs/MarkerArray]
+ * /camera_floor_right/obstacles [sensor_msgs/PointCloud2]
+ * /camera_top/background [sensor_msgs/PointCloud2]
+ * /camera_top/obstacles [sensor_msgs/PointCloud2]
+ * /check_area/polygon [geometry_msgs/PolygonStamped]
+ * /check_pose_area/polygon [geometry_msgs/PolygonStamped]
+ * /cmd_vel [geometry_msgs/TwistStamped]
+ * /data_events/area_events [mir_data_msgs/AreaEventEvent]
+ * /data_events/docking_offsets [mir_data_msgs/DockingOffsetEvent]
+ * /data_events/elevator_floors [mir_data_msgs/ElevatorFloorEvent]
+ * /data_events/elevators [mir_data_msgs/ElevatorEvent]
+ * /data_events/footprints [mir_data_msgs/FootprintEvent]
+ * /data_events/maps [mir_data_msgs/MapEvent]
+ * /data_events/mission_groups [mir_data_msgs/MissionGroupEvent]
+ * /data_events/positions [mir_data_msgs/PositionEvent]
+ * /data_events/registers [mir_data_msgs/PLCRegisterEvent]
+ * /data_events/sessions [mir_data_msgs/SessionEvent]
+ * /data_events/sounds [mir_data_msgs/SoundEvent]
+ * /data_events/user_groups [mir_data_msgs/UserGroupEvent]
+ * /data_events/users [mir_data_msgs/UserEvent]
+ * /diagnostics [diagnostic_msgs/DiagnosticArray]
+ * /diagnostics_agg [diagnostic_msgs/DiagnosticArray]
+ * /diagnostics_toplevel_state [diagnostic_msgs/DiagnosticStatus]
+ * /f_raw_scan [sensor_msgs/LaserScan]
+ * /f_scan [sensor_msgs/LaserScan]
+ * /f_scan_footpr_filter [sensor_msgs/LaserScan]
+ * /global_regulated_cmd_vel [geometry_msgs/TwistStamped]
+ * /hook/data [mir_hook_shared_interface/HookData]
+ * /imu1_debug_data [sensor_msgs/Imu]
+ * /imu2_debug_data [sensor_msgs/Imu]
+ * /imu_data [sensor_msgs/Imu]
+ * /initialpose [geometry_msgs/PoseWithCovarianceStamped]
+ * /internal_ios/status [mirMsgs/IOs]
+ * /joystick_vel [mirMsgs/JoystickVel]
+ * /light_cmd [std_msgs/String]
+ * /localization_score [std_msgs/Float64]
+ * /map [nav_msgs/OccupancyGrid]
+ * /map_metadata [nav_msgs/MapMetaData]
+ * /marker_tracking_node/cancel [actionlib_msgs/GoalID]
+ * /marker_tracking_node/feedback [mir_marker_tracking/MarkerTrackingActionFeedback]
+ * /marker_tracking_node/goal [mir_marker_tracking/MarkerTrackingActionGoal]
+ * /marker_tracking_node/laser_line_extract/visualization_marker [visualization_msgs/MarkerArray]
+ * /marker_tracking_node/result [mir_marker_tracking/MarkerTrackingActionResult]
+ * /marker_tracking_node/status [actionlib_msgs/GoalStatusArray]
+ * /mirEventTrigger/events [mirMsgs/Events]
+ * /mir_amcl/selected_points [sensor_msgs/PointCloud2]
+ * /mir_cmd [std_msgs/String]
+ * /mir_sound/sound_event [mirMsgs/SoundEvent]
+ * /mir_status_msg [std_msgs/String]
+ * /mirspawn/node_events [mirSpawn/LaunchItem]
+ * /mirwebapp/grid_map_metadata [mirMsgs/LocalMapStat]
+ * /mirwebapp/laser_map_metadata [mirMsgs/LocalMapStat]
+ * /mirwebapp/web_path [mirMsgs/WebPath]
+ * /move_base/cancel [actionlib_msgs/GoalID]
+ * /move_base/feedback [mir_actions/MirMoveBaseActionFeedback]
+ * /move_base/goal [mir_actions/MirMoveBaseActionGoal]
+ * /move_base/result [mir_actions/MirMoveBaseActionResult]
+ * /move_base/status [actionlib_msgs/GoalStatusArray]
+ * /move_base_node/MIRPlannerROS/cost_cloud [sensor_msgs/PointCloud2]
+ * /move_base_node/MIRPlannerROS/global_plan [nav_msgs/Path]
+ * /move_base_node/MIRPlannerROS/len_to_goal [std_msgs/Float64]
+ * /move_base_node/MIRPlannerROS/local_plan [nav_msgs/Path]
+ * /move_base_node/MIRPlannerROS/visualization_marker [visualization_msgs/MarkerArray]
+ * /move_base_node/SBPLLatticePlanner/plan [nav_msgs/Path]
+ * /move_base_node/SBPLLatticePlanner/sbpl_lattice_planner_stats [sbpl_lattice_planner/SBPLLatticePlannerStats]
+ * /move_base_node/SBPLLatticePlanner/visualization_marker [visualization_msgs/MarkerArray]
+ * /move_base_node/current_goal [geometry_msgs/PoseStamped]
+ * /move_base_node/global_costmap/inflated_obstacles [nav_msgs/GridCells]
+ * /move_base_node/global_costmap/obstacles [nav_msgs/GridCells]
+ * /move_base_node/global_costmap/robot_footprint [geometry_msgs/PolygonStamped]
+ * /move_base_node/global_costmap/unknown_space [nav_msgs/GridCells]
+ * /move_base_node/global_plan [nav_msgs/Path]
+ * /move_base_node/local_costmap/inflated_obstacles [nav_msgs/GridCells]
+ * /move_base_node/local_costmap/obstacles [nav_msgs/GridCells]
+ * /move_base_node/local_costmap/robot_footprint [geometry_msgs/PolygonStamped]
+ * /move_base_node/local_costmap/safety_zone [geometry_msgs/PolygonStamped]
+ * /move_base_node/local_costmap/unknown_space [nav_msgs/GridCells]
+ * /move_base_node/mir_escape_recovery/visualization_marker [visualization_msgs/Marker]
+ * /move_base_node/time_to_coll [std_msgs/Float64]
+ * /move_base_node/traffic_costmap/inflated_obstacles [nav_msgs/GridCells]
+ * /move_base_node/traffic_costmap/obstacles [nav_msgs/GridCells]
+ * /move_base_node/traffic_costmap/robot_footprint [geometry_msgs/PolygonStamped]
+ * /move_base_node/traffic_costmap/unknown_space [nav_msgs/GridCells]
+ * /move_base_node/visualization_marker [visualization_msgs/Marker]
+ * /move_base_simple/goal [geometry_msgs/PoseStamped]
+ * /move_base_simple/visualization_marker [visualization_msgs/Marker]
+ * /moving_state [mirMsgs/MovingState]
+ * /odom [nav_msgs/Odometry]
+ * /odom_enc [nav_msgs/Odometry]
+ * /odom_imu1 [nav_msgs/Odometry]
+ * /odom_imu2 [nav_msgs/Odometry]
+ * /one_way_map [nav_msgs/OccupancyGrid]
+ * /param_manager_update [mir_param_interface/RosParamListUpdate]
+ * /param_update [std_msgs/String]
+ * /particlevizmarker [visualization_msgs/MarkerArray]
+ * /proximity/point_cloud [sensor_msgs/PointCloud]
+ * /resource_tracker/acquisition [mirMsgs/ResourcesAcquisition]
+ * /resource_tracker/needed_resources [mirMsgs/ResourcesState]
+ * /resource_tracker/world_model [mirMsgs/WorldModel]
+ * /robot_mode [mirMsgs/RobotMode]
+ * /robot_pose [geometry_msgs/Pose]
+ * /robot_state [mirMsgs/RobotState]
+ * /robot_status [mirMsgs/RobotStatus]
+ * /robot_tracker/external_robots [mirMsgs/ExternalRobots]
+ * /robot_tracker/robots_pointcloud [sensor_msgs/PointCloud2]
+ * /robot_tracker/tracked_robots [mirMsgs/ExternalRobots]
+ * /rosout [rosgraph_msgs/Log]
+ * /rosout_agg [rosgraph_msgs/Log]
+ * /safety_status [mirMsgs/SafetyStatus]
+ * /scan [sensor_msgs/LaserScan]
+ * /scan_filter/visualization_marker [visualization_msgs/Marker]
+ * /scan_footpr_filter [sensor_msgs/LaserScan]
+ * /session_importer_node/info [mirSessionImporter/SessionImportInfo]
+ * /set_mc_PID [std_msgs/Float64MultiArray]
+ * /skid_detection_cusum [mirMsgs/SkidDetectionStampedFloat]
+ * /skid_detection_likelihood [mirMsgs/SkidDetectionStampedFloat]
+ * /skid_detection_measurments [mirMsgs/SkidDetectionDiff]
+ * /stall_detection [std_msgs/Bool]
+ * /tag_detections_left [apriltags2_ros/AprilTagDetectionArray]
+ * /tag_detections_right [apriltags2_ros/AprilTagDetectionArray]
+ * /tf [tf2_msgs/TFMessage]
+ * /tf_static [tf2_msgs/TFMessage]
+ * /traffic_map [nav_msgs/OccupancyGrid]
+ * /ultrasonic_sensors/pointcloud_combined [sensor_msgs/PointCloud]
+ * /wifi_diagnostics [diagnostic_msgs/DiagnosticArray]
+ * /wifi_diagnostics/cur_ap [mir_wifi_msgs/APInfo]
+ * /wifi_diagnostics/roam_events [mir_wifi_msgs/WifiRoamEvent]
+ * /wifi_diagnostics/wifi_ap_interface_stats [mir_wifi_msgs/WifiInterfaceStats]
+ * /wifi_diagnostics/wifi_ap_rssi [mir_wifi_msgs/APRssiStats]
+ * /wifi_diagnostics/wifi_ap_time_stats [mir_wifi_msgs/APTimeStats]
+ * /wifi_watchdog/ping [mir_wifi_msgs/APPingStats]
+[INFO] [1631828683.931826]: [/henry_mir_bridge] publishing topic 'LightCtrl/us_list' [sensor_msgs/Range]
+[INFO] [1631828683.936417]: [/henry_mir_bridge] publishing topic 'MC/currents' [sdc21x0/MotorCurrents]
+[INFO] [1631828683.941585]: [/henry_mir_bridge] publishing topic 'MissionController/CheckArea/visualization_marker' [visualization_msgs/Marker]
+[INFO] [1631828683.944517]: [/henry_mir_bridge] publishing topic 'SickPLC/parameter_descriptions' [dynamic_reconfigure/ConfigDescription]
+[INFO] [1631828683.952726]: [/henry_mir_bridge] publishing topic 'SickPLC/parameter_updates' [dynamic_reconfigure/Config]
+[INFO] [1631828683.956975]: [/henry_mir_bridge] publishing topic 'amcl_pose' [geometry_msgs/PoseWithCovarianceStamped]
+[INFO] [1631828683.959417]: [/henry_mir_bridge] publishing topic 'b_raw_scan' [sensor_msgs/LaserScan]
+[INFO] [1631828683.963114]: [/henry_mir_bridge] publishing topic 'b_scan' [sensor_msgs/LaserScan]
+[INFO] [1631828683.965724]: [/henry_mir_bridge] publishing topic 'camera_floor/background' [sensor_msgs/PointCloud2]
+[INFO] [1631828683.971275]: [/henry_mir_bridge] publishing topic 'camera_floor/depth/parameter_descriptions' [dynamic_reconfigure/ConfigDescription]
+[INFO] [1631828683.977894]: [/henry_mir_bridge] publishing topic 'camera_floor/depth/parameter_updates' [dynamic_reconfigure/Config]
+[INFO] [1631828683.982570]: [/henry_mir_bridge] publishing topic 'camera_floor/depth/points' [sensor_msgs/PointCloud2]
+[INFO] [1631828683.986252]: [/henry_mir_bridge] publishing topic 'camera_floor/filter/visualization_marker' [visualization_msgs/Marker]
+[INFO] [1631828683.991300]: [/henry_mir_bridge] publishing topic 'camera_floor/floor' [sensor_msgs/PointCloud2]
+[INFO] [1631828683.997389]: [/henry_mir_bridge] publishing topic 'camera_floor/obstacles' [sensor_msgs/PointCloud2]
+[INFO] [1631828684.002412]: [/henry_mir_bridge] publishing topic 'check_area/polygon' [geometry_msgs/PolygonStamped]
+[INFO] [1631828684.005311]: [/henry_mir_bridge] publishing topic 'diagnostics' [diagnostic_msgs/DiagnosticArray]
+[INFO] [1631828684.007724]: [/henry_mir_bridge] publishing topic 'diagnostics_agg' [diagnostic_msgs/DiagnosticArray]
+[INFO] [1631828684.011032]: [/henry_mir_bridge] publishing topic 'diagnostics_toplevel_state' [diagnostic_msgs/DiagnosticStatus]
+[INFO] [1631828684.013059]: [/henry_mir_bridge] publishing topic 'f_raw_scan' [sensor_msgs/LaserScan]
+[INFO] [1631828684.014560]: [/henry_mir_bridge] publishing topic 'f_scan' [sensor_msgs/LaserScan]
+[INFO] [1631828684.016334]: [/henry_mir_bridge] publishing topic 'imu_data' [sensor_msgs/Imu]
+[INFO] [1631828684.020099]: [/henry_mir_bridge] publishing topic 'laser_back/driver/parameter_descriptions' [dynamic_reconfigure/ConfigDescription]
+[INFO] [1631828684.027494]: [/henry_mir_bridge] starting to stream messages on topic 'b_scan'
+[INFO] [1631828684.032025]: [/henry_mir_bridge] publishing topic 'laser_back/driver/parameter_updates' [dynamic_reconfigure/Config]
+[INFO] [1631828684.032482]: [/henry_mir_bridge] starting to stream messages on topic 'f_scan'
+[INFO] [1631828684.037419]: [/henry_mir_bridge] publishing topic 'laser_front/driver/parameter_descriptions' [dynamic_reconfigure/ConfigDescription]
+[INFO] [1631828684.042294]: [/henry_mir_bridge] publishing topic 'laser_front/driver/parameter_updates' [dynamic_reconfigure/Config]
+[INFO] [1631828684.045817]: [/henry_mir_bridge] publishing topic '/map' [nav_msgs/OccupancyGrid]
+[INFO] [1631828684.046672]: [/henry_mir_bridge] starting to stream messages on topic '/map'
+[INFO] [1631828684.048273]: [/henry_mir_bridge] publishing topic '/map_metadata' [nav_msgs/MapMetaData]
+[INFO] [1631828684.049842]: [/henry_mir_bridge] publishing topic 'mir_amcl/parameter_descriptions' [dynamic_reconfigure/ConfigDescription]
+[INFO] [1631828684.052208]: [/henry_mir_bridge] publishing topic 'mir_amcl/parameter_updates' [dynamic_reconfigure/Config]
+[INFO] [1631828684.055036]: [/henry_mir_bridge] publishing topic 'mir_amcl/selected_points' [sensor_msgs/PointCloud2]
+[INFO] [1631828684.056960]: [/henry_mir_bridge] publishing topic 'mir_log' [rosgraph_msgs/Log]
+[INFO] [1631828684.059160]: [/henry_mir_bridge] publishing topic 'mir_status_msg' [std_msgs/String]
+[INFO] [1631828684.061550]: [/henry_mir_bridge] publishing topic 'mirwebapp/grid_map_metadata' [mir_msgs/LocalMapStat]
+[INFO] [1631828684.064013]: [/henry_mir_bridge] publishing topic 'mirwebapp/laser_map_metadata' [mir_msgs/LocalMapStat]
+[INFO] [1631828684.066754]: [/henry_mir_bridge] publishing topic 'move_base/feedback' [move_base_msgs/MoveBaseActionFeedback]
+[INFO] [1631828684.069631]: [/henry_mir_bridge] publishing topic 'move_base/result' [move_base_msgs/MoveBaseActionResult]
+[INFO] [1631828684.074924]: [/henry_mir_bridge] publishing topic 'move_base/status' [actionlib_msgs/GoalStatusArray]
+[INFO] [1631828684.076701]: [/henry_mir_bridge] publishing topic 'move_base_node/MIRPlannerROS/local_plan' [nav_msgs/Path]
+[INFO] [1631828684.078237]: [/henry_mir_bridge] publishing topic 'move_base_node/MIRPlannerROS/updated_global_plan' [mir_msgs/PlanSegments]
+[INFO] [1631828684.080981]: [/henry_mir_bridge] publishing topic 'move_base_node/SBPLLatticePlanner/plan' [nav_msgs/Path]
+[INFO] [1631828684.082693]: [/henry_mir_bridge] publishing topic 'move_base_node/current_goal' [geometry_msgs/PoseStamped]
+[INFO] [1631828684.084173]: [/henry_mir_bridge] publishing topic 'move_base_node/local_costmap/inflated_obstacles' [nav_msgs/GridCells]
+[INFO] [1631828684.085675]: [/henry_mir_bridge] publishing topic 'move_base_node/local_costmap/obstacles' [nav_msgs/GridCells]
+[INFO] [1631828684.088043]: [/henry_mir_bridge] publishing topic 'move_base_node/local_costmap/robot_footprint' [geometry_msgs/PolygonStamped]
+[INFO] [1631828684.092903]: [/henry_mir_bridge] publishing topic 'move_base_node/time_to_coll' [std_msgs/Float64]
+[INFO] [1631828684.098590]: [/henry_mir_bridge] publishing topic 'move_base_node/traffic_costmap/inflated_obstacles' [nav_msgs/GridCells]
+[INFO] [1631828684.100852]: [/henry_mir_bridge] publishing topic 'move_base_node/traffic_costmap/obstacles' [nav_msgs/GridCells]
+[INFO] [1631828684.102611]: [/henry_mir_bridge] publishing topic 'move_base_node/traffic_costmap/parameter_descriptions' [dynamic_reconfigure/ConfigDescription]
+[INFO] [1631828684.104905]: [/henry_mir_bridge] publishing topic 'move_base_node/traffic_costmap/parameter_updates' [dynamic_reconfigure/Config]
+[INFO] [1631828684.121825]: [/henry_mir_bridge] publishing topic 'move_base_node/traffic_costmap/robot_footprint' [geometry_msgs/PolygonStamped]
+[INFO] [1631828684.123820]: [/henry_mir_bridge] publishing topic 'move_base_node/traffic_costmap/unknown_space' [nav_msgs/GridCells]
+[INFO] [1631828684.126670]: [/henry_mir_bridge] publishing topic 'move_base_node/visualization_marker' [visualization_msgs/Marker]
+[INFO] [1631828684.128581]: [/henry_mir_bridge] publishing topic 'move_base_simple/visualization_marker' [visualization_msgs/Marker]
+[INFO] [1631828684.130760]: [/henry_mir_bridge] publishing topic 'odom' [nav_msgs/Odometry]
+[INFO] [1631828684.133445]: [/henry_mir_bridge] publishing topic 'odom_enc' [nav_msgs/Odometry]
+[INFO] [1631828684.136812]: [/henry_mir_bridge] publishing topic 'robot_mode' [mir_msgs/RobotMode]
+[INFO] [1631828684.139172]: [/henry_mir_bridge] publishing topic 'robot_pose' [geometry_msgs/Pose]
+[INFO] [1631828684.140854]: [/henry_mir_bridge] publishing topic 'robot_state' [mir_msgs/RobotState]
+[INFO] [1631828684.141771]: [/henry_mir_bridge] publishing topic '/rosout' [rosgraph_msgs/Log]
+[INFO] [1631828684.143355]: [/henry_mir_bridge] publishing topic '/rosout_agg' [rosgraph_msgs/Log]
+[INFO] [1631828684.144959]: [/henry_mir_bridge] publishing topic 'scan' [sensor_msgs/LaserScan]
+[INFO] [1631828684.146420]: [/henry_mir_bridge] publishing topic 'scan_filter/visualization_marker' [visualization_msgs/Marker]
+[INFO] [1631828684.147777]: [/henry_mir_bridge] publishing topic '/tf' [tf2_msgs/TFMessage]
+[INFO] [1631828684.149173]: [/henry_mir_bridge] publishing topic '/tf_static' [tf2_msgs/TFMessage]
+[INFO] [1631828684.149985]: [/henry_mir_bridge] starting to stream messages on topic '/tf_static'
+[INFO] [1631828684.151923]: [/henry_mir_bridge] subscribing to topic 'cmd_vel' [geometry_msgs/Twist]
+[INFO] [1631828684.153875]: [/henry_mir_bridge] subscribing to topic 'initialpose' [geometry_msgs/PoseWithCovarianceStamped]
+[INFO] [1631828684.157551]: [/henry_mir_bridge] subscribing to topic 'light_cmd' [std_msgs/String]
+[INFO] [1631828684.159520]: [/henry_mir_bridge] subscribing to topic 'mir_cmd' [std_msgs/String]
+[INFO] [1631828684.161858]: [/henry_mir_bridge] subscribing to topic 'move_base/cancel' [actionlib_msgs/GoalID]
+[INFO] [1631828684.165118]: [/henry_mir_bridge] subscribing to topic 'move_base/goal' [move_base_msgs/MoveBaseActionGoal]
+[INFO] [1631828684.179516]: [/henry_mir_bridge] starting to stream messages on topic 'move_base/status'
+[INFO] [1631828684.183078]: [/henry_mir_bridge] starting to stream messages on topic 'move_base/result'
+[INFO] [1631828684.186766]: [/henry_mir_bridge] starting to stream messages on topic 'move_base/feedback'
+[INFO] [1631828684.330134]: [/henry_mir_bridge] starting to stream messages on topic 'move_base_node/MIRPlannerROS/local_plan'
+[INFO] [1631828684.331697]: [/henry_mir_bridge] starting to stream messages on topic 'move_base_node/SBPLLatticePlanner/plan'
+[INFO] [1631828684.333905]: [/henry_mir_bridge] starting to stream messages on topic 'move_base_node/local_costmap/obstacles'
+[INFO] [1631828684.430869]: [/henry_mir_bridge] starting to stream messages on topic 'scan'
+[INFO] [1631828684.432854]: [/henry_mir_bridge] starting to stream messages on topic '/tf'
+[INFO] [1631828684.941411]: [/henry_mir_bridge] tf_static: updated transform camera_floor_left_link->/camera_floor_left_depth_optical_frame.
+[INFO] [1631828684.942580]: [/henry_mir_bridge] tf_static: sent 1 transforms: odict_keys(['/camera_floor_left_depth_optical_frame'])
+[INFO] [1631828684.945507]: [/henry_mir_bridge] tf_static: updated transform camera_floor_left_link->/camera_floor_left_color_optical_frame.
+[INFO] [1631828684.946845]: [/henry_mir_bridge] tf_static: sent 2 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame'])
+[INFO] [1631828684.948371]: [/henry_mir_bridge] tf_static: updated transform camera_floor_right_link->/camera_floor_right_depth_optical_frame.
+[INFO] [1631828684.949683]: [/henry_mir_bridge] tf_static: sent 3 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame'])
+[INFO] [1631828684.952560]: [/henry_mir_bridge] tf_static: updated transform base_footprint->/base_link.
+[INFO] [1631828684.953791]: [/henry_mir_bridge] tf_static: sent 4 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link'])
+[INFO] [1631828684.955448]: [/henry_mir_bridge] tf_static: updated transform camera_floor_right_link->/camera_floor_right_color_optical_frame.
+[INFO] [1631828684.956554]: [/henry_mir_bridge] tf_static: sent 5 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame'])
+[INFO] [1631828684.959681]: [/henry_mir_bridge] tf_static: updated transform base_link->/camera_floor_left_link.
+[INFO] [1631828684.961232]: [/henry_mir_bridge] tf_static: sent 6 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link'])
+[INFO] [1631828684.963756]: [/henry_mir_bridge] tf_static: updated transform base_link->/camera_floor_right_link.
+[INFO] [1631828684.965243]: [/henry_mir_bridge] tf_static: sent 7 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link'])
+[INFO] [1631828684.967958]: [/henry_mir_bridge] tf_static: updated transform camera_floor_right_link->/camera_floor_right_infra1_frame.
+[INFO] [1631828684.970385]: [/henry_mir_bridge] tf_static: updated transform camera_floor_right_infra1_frame->/camera_floor_right_infra1_optical_frame.
+[INFO] [1631828684.971782]: [/henry_mir_bridge] tf_static: updated transform camera_floor_right_link->/camera_floor_right_infra2_frame.
+[INFO] [1631828684.972847]: [/henry_mir_bridge] tf_static: updated transform camera_floor_right_infra2_frame->/camera_floor_right_infra2_optical_frame.
+[INFO] [1631828684.973959]: [/henry_mir_bridge] tf_static: sent 11 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame'])
+[INFO] [1631828684.976385]: [/henry_mir_bridge] tf_static: updated transform camera_floor_left_link->/camera_floor_left_infra1_frame.
+[INFO] [1631828684.977553]: [/henry_mir_bridge] tf_static: updated transform camera_floor_left_infra1_frame->/camera_floor_left_infra1_optical_frame.
+[INFO] [1631828684.978659]: [/henry_mir_bridge] tf_static: updated transform camera_floor_left_link->/camera_floor_left_infra2_frame.
+[INFO] [1631828684.979620]: [/henry_mir_bridge] tf_static: updated transform camera_floor_left_infra2_frame->/camera_floor_left_infra2_optical_frame.
+[INFO] [1631828684.980585]: [/henry_mir_bridge] tf_static: sent 15 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame'])
+[INFO] [1631828684.987488]: [/henry_mir_bridge] tf_static: updated transform base_link->/front_laser_link.
+[INFO] [1631828684.988612]: [/henry_mir_bridge] tf_static: sent 16 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link'])
+[INFO] [1631828684.992266]: [/henry_mir_bridge] tf_static: updated transform base_link->/back_laser_link.
+[INFO] [1631828684.993830]: [/henry_mir_bridge] tf_static: sent 17 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link'])
+[INFO] [1631828684.997034]: [/henry_mir_bridge] tf_static: updated transform base_link->/imu_link.
+[INFO] [1631828684.998237]: [/henry_mir_bridge] tf_static: sent 18 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link'])
+[INFO] [1631828685.001313]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828685.002372]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828705.181140]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828705.182517]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828711.197016]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828711.198438]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828717.632099]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828717.633295]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828724.757785]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828724.758911]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828737.747120]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828737.748946]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828738.048053]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828738.049472]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828738.381279]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828738.383728]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828738.715670]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828738.717279]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828739.104452]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828739.106042]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828739.432940]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828739.435790]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828740.033153]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828740.034928]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828740.828294]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828740.829720]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828741.676170]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828741.678121]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828746.676243]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828746.677658]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828747.546211]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828747.547991]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828749.181559]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828749.183061]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828749.754599]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828749.756209]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828751.121631]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828751.123469]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828752.598638]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828752.600244]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828753.546936]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828753.558802]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828759.470515]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828759.471940]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828761.624840]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828761.626695]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828763.810682]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828763.812906]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828765.632773]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828765.634484]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828765.963302]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828765.965507]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828767.163800]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828767.165816]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828767.952832]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828767.954586]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828768.536817]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828768.538286]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828769.254454]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828769.256475]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828770.049480]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828770.051119]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828770.749304]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828770.775074]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828771.340881]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828771.342900]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828771.897254]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828771.899028]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828772.549721]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828772.551930]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828773.206625]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828773.207982]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828773.881964]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828773.883343]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828774.420985]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828774.423115]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828775.036761]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828775.038172]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828775.914414]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828775.941125]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828776.622088]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828776.624451]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828777.146259]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828777.147887]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828778.494304]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828778.495580]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828778.995252]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828778.996699]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828779.793463]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828779.795197]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828780.661736]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828780.663112]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828781.704237]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828781.718576]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828782.708930]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828782.710707]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828783.535614]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828783.537344]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828784.022847]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828784.023950]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631828784.430063]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631828784.432261]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829007.401032]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829007.406106]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829007.758390]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829007.761397]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829008.161792]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829008.163435]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829008.813931]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829008.817342]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829009.477443]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829009.480048]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829009.757755]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829009.762002]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829010.044639]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829010.046166]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829010.338259]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829010.340106]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829010.633372]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829010.659793]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829010.931543]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829010.932884]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829011.207592]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829011.209138]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829011.511385]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829011.513261]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829011.816538]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829011.818440]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829012.107006]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829012.109304]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829012.417162]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829012.419852]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829012.693054]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829012.694810]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829012.971711]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829012.974619]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829013.273546]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829013.275154]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829013.611046]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829013.615603]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829013.939216]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829013.941022]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829014.356537]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829014.359939]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829019.592986]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829019.594748]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829021.089730]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829021.093009]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829021.754601]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829021.756887]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829022.769966]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829022.772125]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829023.328261]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829023.331316]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829024.379085]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829024.381686]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+[INFO] [1631829025.308484]: [/henry_mir_bridge] tf_static: updated transform map->/odom.
+[INFO] [1631829025.311208]: [/henry_mir_bridge] tf_static: sent 19 transforms: odict_keys(['/camera_floor_left_depth_optical_frame', '/camera_floor_left_color_optical_frame', '/camera_floor_right_depth_optical_frame', '/base_link', '/camera_floor_right_color_optical_frame', '/camera_floor_left_link', '/camera_floor_right_link', '/camera_floor_right_infra1_frame', '/camera_floor_right_infra1_optical_frame', '/camera_floor_right_infra2_frame', '/camera_floor_right_infra2_optical_frame', '/camera_floor_left_infra1_frame', '/camera_floor_left_infra1_optical_frame', '/camera_floor_left_infra2_frame', '/camera_floor_left_infra2_optical_frame', '/front_laser_link', '/back_laser_link', '/imu_link', '/odom'])
+... logging to /home/maestro/.ros/log/3bdfd88e-1737-11ec-b111-0b5a9a23edd9/roslaunch-maestro-101558.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/home/maestro/maestro_ws/src/sdl_maestro/henrybot/henrybot_driver/launch/henry.launch
+[1mstarted roslaunch server http://maestro:45159/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /henry_mir_bridge/hostname: 192.168.50.201
+ * /henry_mir_bridge/tf_prefix: 
+ * /robot_description: <?xml version="1....
+ * /rosdistro: noetic
+ * /rosversion: 1.15.11
+ * /tf_prefix: 
+ * /tf_remove_state_publisher_frames/remove_frames: ['base_link', 'fr...
+
+NODES
+  /
+    b_rep117_laser_filter (mir_driver/rep117_filter.py)
+    f_rep117_laser_filter (mir_driver/rep117_filter.py)
+    fake_mir_joint_publisher (mir_driver/fake_mir_joint_publisher.py)
+    henry_mir_bridge (henrybot_driver/mir_250_bridge.py)
+    robot_state_publisher (robot_state_publisher/robot_state_publisher)
+    rviz (rviz/rviz)
+    tf_remove_state_publisher_frames (mir_driver/tf_remove_child_frames.py)
+
+auto-starting new master
+[1mprocess[master]: started with pid [101574][0m
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;/home/maestro/maestro_ws/src/sdl_maestro/henrybot/henrybot_driver/launch/henry.launch http://localhost:11311
+[1msetting /run_id to 3bdfd88e-1737-11ec-b111-0b5a9a23edd9[0m
+[1mprocess[rosout-1]: started with pid [101587][0m
+started core service [/rosout]
+[1mprocess[robot_state_publisher-2]: started with pid [101594][0m
+[1mprocess[tf_remove_state_publisher_frames-3]: started with pid [101595][0m
+[1mprocess[henry_mir_bridge-4]: started with pid [101596][0m
+[1mprocess[b_rep117_laser_filter-5]: started with pid [101597][0m
+[1mprocess[f_rep117_laser_filter-6]: started with pid [101599][0m
+[1mprocess[fake_mir_joint_publisher-7]: started with pid [101605][0m
+[1mprocess[rviz-8]: started with pid [101606][0m
+[rviz-8] killing on exit
+[fake_mir_joint_publisher-7] killing on exit
+[henry_mir_bridge-4] killing on exit
+[b_rep117_laser_filter-5] killing on exit
+[tf_remove_state_publisher_frames-3] killing on exit
+[f_rep117_laser_filter-6] killing on exit
+[robot_state_publisher-2] killing on exit
+[rosout-1] killing on exit
+[master] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m
