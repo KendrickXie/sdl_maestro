@@ -23,6 +23,7 @@ import sensor_msgs.msg
 import std_msgs.msg
 import tf2_msgs.msg
 import visualization_msgs.msg
+import realsense2_camera.msg
 
 from collections import OrderedDict
 
@@ -174,73 +175,150 @@ def _remove_tf_prefix_dict_filter(msg_dict):
 
 # topics we want to publish to ROS (and subscribe to from the MiR)
 PUB_TOPICS = [
-    # TopicConfig('LightCtrl/bms_data', mir_msgs.msg.BMSData),
-    # TopicConfig('LightCtrl/charging_state', mir_msgs.msg.ChargingState),
-        ##  TopicConfig('LightCtrl/us_list', sensor_msgs.msg.Range),
-    # TopicConfig('MC/battery_currents', mir_msgs.msg.BatteryCurrents),
-    # TopicConfig('MC/battery_voltage', std_msgs.msg.Float64),
-        ##  TopicConfig('MC/currents', sdc21x0.msg.MotorCurrents),
+    ##MC
+    #/MC/encoders [mirMsgs/StampedEncoders]
     # TopicConfig('MC/encoders', sdc21x0.msg.StampedEncoders),
     TopicConfig('MissionController/CheckArea/visualization_marker', visualization_msgs.msg.Marker),
-    # TopicConfig('MissionController/goal_position_guid', std_msgs.msg.String),
     # TopicConfig('MissionController/prompt_user', mir_msgs.msg.UserPrompt),
-        ##  TopicConfig('SickPLC/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
-        ##  TopicConfig('SickPLC/parameter_updates', dynamic_reconfigure.msg.Config),
-    # TopicConfig('active_mapping_guid', std_msgs.msg.String),
+    ##PB
+    #/PB/bms_status [mirMsgs/BMSData]
+    #/PB/charging_status [mirMsgs/ChargingState]
+    #/PB/gpio/input [mirMsgs/Gpio]
+    #/PB/gpio/output [mirMsgs/Gpio]
+    #/PB/gpio/output/feedback [mirMsgs/Gpio]
+    #/PB/motor_status [mirMsgs/PowerBoardMotorStatus]
+    #/PB/pallet_lifter_status [mirMsgs/PalletLifterStatus]
+    #/PB/pendant [mirMsgs/Pendant]
+    #/PB/proximity [mirMsgs/proximity]
+    ##old topics
+    # # TopicConfig('LightCtrl/bms_data', mir_msgs.msg.BMSData),
+    # # TopicConfig('LightCtrl/charging_state', mir_msgs.msg.ChargingState),
+    # # >>>>TopicConfig('LightCtrl/us_list', sensor_msgs.msg.Range),
+    # # TopicConfig('MC/battery_currents', mir_msgs.msg.BatteryCurrents),
+    # # TopicConfig('MC/battery_voltage', std_msgs.msg.Float64),
+    # # >>>>TopicConfig('MC/currents', sdc21x0.msg.MotorCurrents),
+    # # TopicConfig('MissionController/goal_position_guid', std_msgs.msg.String),
+    # # >>>>TopicConfig('SickPLC/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
+    # # >>>>TopicConfig('SickPLC/parameter_updates', dynamic_reconfigure.msg.Config),
+    ##
+    # # TopicConfig('active_mapping_guid', std_msgs.msg.String),
     TopicConfig('amcl_pose', geometry_msgs.msg.PoseWithCovarianceStamped),
     TopicConfig('b_raw_scan', sensor_msgs.msg.LaserScan),
     TopicConfig('b_scan', sensor_msgs.msg.LaserScan),
-        ##  TopicConfig('camera_floor/background', sensor_msgs.msg.PointCloud2),
-        ##  TopicConfig('camera_floor/depth/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
-        ##  TopicConfig('camera_floor/depth/parameter_updates', dynamic_reconfigure.msg.Config),
-        ##  TopicConfig('camera_floor/depth/points', sensor_msgs.msg.PointCloud2),
-        ##  TopicConfig('camera_floor/filter/visualization_marker', visualization_msgs.msg.Marker),
-        ##  TopicConfig('camera_floor/floor', sensor_msgs.msg.PointCloud2),
-        ##  TopicConfig('camera_floor/obstacles', sensor_msgs.msg.PointCloud2),
+    TopicConfig('b_scan_footpr_filter', sensor_msgs.msg.LaserScan),
+
+    TopicConfig('camera_floor_left/background', sensor_msgs.msg.PointCloud2),
+    #TopicConfig('camera_floor_left/depth/camera_info', sensor_msgs.msg.CameraInfo),
+    #TopicConfig('camera_floor_left/depth/image_rect_raw', sensor_msgs.msg.Image),
+    #TopicConfig('camera_floor_left/depth/image_rect_raw/compressed', sensor_msgs.msg.CompressedImage),
+    TopicConfig('camera_floor_left/depth/image_rect_raw/compressed/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
+    TopicConfig('camera_floor_left/depth/image_rect_raw/compressed/parameter_updates', dynamic_reconfigure.msg.Config),
+    TopicConfig('camera_floor_left/depth/points', sensor_msgs.msg.PointCloud2),
+    TopicConfig('camera_floor_left/driver/detect_pallet_obstacles', sensor_msgs.msg.PointCloud2),
+    TopicConfig('camera_floor_left/driver/detect_rack_obstacles', sensor_msgs.msg.PointCloud2),
+    #TopicConfig('camera_floor_left/driver/visualization_marker, visualization_msgs.msg.MarkerArray),
+    #TopicConfig('camera_floor_left/extrinsics/depth_to_infra1,  realsense2_camera.msg.Extrinsics),
+    #TopicConfig('camera_floor_left/extrinsics/depth_to_infra2,  realsense2_camera.msg.Extrinsics),
+    TopicConfig('camera_floor_left/filter/visualization_marker', visualization_msgs.msg.Marker),
+    TopicConfig('camera_floor_left/floor', sensor_msgs.msg.PointCloud2),
+    #TopicConfig('camera_floor_left/infra1/camera_info', sensor_msgs.msg.CameraInfo),
+    #TopicConfig('camera_floor_left/infra1/image_rect_raw', sensor_msgs.msg.Image),
+    #TopicConfig('camera_floor_left/infra1/image_rect_raw/compressed', sensor_msgs.msg.CompressedImage),
+    TopicConfig('camera_floor_left/infra1/image_rect_raw/compressed/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
+    TopicConfig('camera_floor_left/infra1/image_rect_raw/compressed/parameter_updates', dynamic_reconfigure.msg.Config),
+    #TopicConfig('camera_floor_left/infra2/camera_info', sensor_msgs.msg.CameraInfo),
+    #TopicConfig('camera_floor_left/infra2/image_rect_raw', sensor_msgs.msg.Image),
+    #TopicConfig('camera_floor_left/infra2/image_rect_raw/compressed', sensor_msgs.msg.CompressedImage),
+    TopicConfig('camera_floor_left/infra2/image_rect_raw/compressed/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
+    TopicConfig('camera_floor_left/infra2/image_rect_raw/compressed/parameter_updates', dynamic_reconfigure.msg.Config),
+    TopicConfig('camera_floor_left/obstacles', sensor_msgs.msg.PointCloud2),
+    ##camera floor right #TODO
+    TopicConfig('camera_floor_right/background', sensor_msgs.msg.PointCloud2),
+    #TopicConfig('camera_floor_right/depth/camera_info', sensor_msgs.msg.CameraInfo),
+    #TopicConfig('camera_floor_right/depth/image_rect_raw', sensor_msgs.msg.Image),
+    #TopicConfig('camera_floor_right/depth/image_rect_raw/compressed', sensor_msgs.msg.CompressedImage),
+    TopicConfig('camera_floor_right/depth/image_rect_raw/compressed/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
+    TopicConfig('camera_floor_right/depth/image_rect_raw/compressed/parameter_updates', dynamic_reconfigure.msg.Config),
+    TopicConfig('camera_floor_right/depth/points', sensor_msgs.msg.PointCloud2),
+    TopicConfig('camera_floor_right/driver/detect_pallet_obstacles', sensor_msgs.msg.PointCloud2),
+    TopicConfig('camera_floor_right/driver/detect_rack_obstacles', sensor_msgs.msg.PointCloud2),
+    #TopicConfig('camera_floor_right/driver/visualization_marker, visualization_msgs.msg.MarkerArray),
+    #TopicConfig('camera_floor_right/extrinsics/depth_to_infra1,  realsense2_camera.msg.Extrinsics),
+    #TopicConfig('camera_floor_right/extrinsics/depth_to_infra2,  realsense2_camera.msg.Extrinsics),
+    TopicConfig('camera_floor_right/filter/visualization_marker', visualization_msgs.msg.Marker),
+    TopicConfig('camera_floor_right/floor', sensor_msgs.msg.PointCloud2),
+    #TopicConfig('camera_floor_right/infra1/camera_info', sensor_msgs.msg.CameraInfo),
+    #TopicConfig('camera_floor_right/infra1/image_rect_raw', sensor_msgs.msg.Image),
+    #TopicConfig('camera_floor_right/infra1/image_rect_raw/compressed', sensor_msgs.msg.CompressedImage),
+    TopicConfig('camera_floor_right/infra1/image_rect_raw/compressed/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
+    TopicConfig('camera_floor_right/infra1/image_rect_raw/compressed/parameter_updates', dynamic_reconfigure.msg.Config),
+    #TopicConfig('camera_floor_right/infra2/camera_info', sensor_msgs.msg.CameraInfo),
+    #TopicConfig('camera_floor_right/infra2/image_rect_raw', sensor_msgs.msg.Image),
+    #TopicConfig('camera_floor_right/infra2/image_rect_raw/compressed', sensor_msgs.msg.CompressedImage),
+    TopicConfig('camera_floor_right/infra2/image_rect_raw/compressed/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
+    TopicConfig('camera_floor_right/infra2/image_rect_raw/compressed/parameter_updates', dynamic_reconfigure.msg.Config),
+    TopicConfig('camera_floor_right/obstacles', sensor_msgs.msg.PointCloud2),  
+
     TopicConfig('check_area/polygon', geometry_msgs.msg.PolygonStamped),
     # TopicConfig('check_pose_area/polygon', geometry_msgs.msg.PolygonStamped),
+    #/cmd_vel [geometry_msgs/TwistStamped]
+
     # TopicConfig('data_events/area_events', mir_data_msgs.msg.AreaEventEvent),
+    #/data_events/docking_offsets [mir_data_msgs/DockingOffsetEvent]
+    #/data_events/elevator_floors [mir_data_msgs/ElevatorFloorEvent]
+    #/data_events/elevators [mir_data_msgs/ElevatorEvent]
+    #/data_events/footprints [mir_data_msgs/FootprintEvent]
     # TopicConfig('data_events/maps', mir_data_msgs.msg.MapEvent),
+    #/data_events/mission_groups [mir_data_msgs/MissionGroupEvent]
     # TopicConfig('data_events/positions', mir_data_msgs.msg.PositionEvent),
     # TopicConfig('data_events/registers', mir_data_msgs.msg.PLCRegisterEvent),
+    #/data_events/sessions [mir_data_msgs/SessionEvent]
     # TopicConfig('data_events/sounds', mir_data_msgs.msg.SoundEvent),
+    #/data_events/user_groups [mir_data_msgs/UserGroupEvent]
+    #/data_events/users [mir_data_msgs/UserEvent]
     TopicConfig('diagnostics', diagnostic_msgs.msg.DiagnosticArray),
     TopicConfig('diagnostics_agg', diagnostic_msgs.msg.DiagnosticArray),
     TopicConfig('diagnostics_toplevel_state', diagnostic_msgs.msg.DiagnosticStatus),
     TopicConfig('f_raw_scan', sensor_msgs.msg.LaserScan),
     TopicConfig('f_scan', sensor_msgs.msg.LaserScan),
-    TopicConfig('imu_data', sensor_msgs.msg.Imu),
-        ##  TopicConfig('laser_back/driver/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
-        ##  TopicConfig('laser_back/driver/parameter_updates', dynamic_reconfigure.msg.Config),
-        ##  TopicConfig('laser_front/driver/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
-        ##  TopicConfig('laser_front/driver/parameter_updates', dynamic_reconfigure.msg.Config),
+    TopicConfig('f_scan_footpr_filter', sensor_msgs.msg.LaserScan),
+    #/global_regulated_cmd_vel [geometry_msgs/TwistStamped]
+    # TopicConfig('imu1_debug_data', sensor_msgs.msg.Imu),
+    # TopicConfig('imu2_debug_data', sensor_msgs.msg.Imu),
+    # TopicConfig('imu_data', sensor_msgs.msg.Imu),
+    #/initialpose [geometry_msgs/PoseWithCovarianceStamped]
+    #/internal_ios/status [mirMsgs/IOs]
+    #/light_cmd [std_msgs/String]
+    # # >>>>TopicConfig('laser_back/driver/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
+    # # >>>>TopicConfig('laser_back/driver/parameter_updates', dynamic_reconfigure.msg.Config),
+    # # >>>>TopicConfig('laser_front/driver/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
+    # # >>>>TopicConfig('laser_front/driver/parameter_updates', dynamic_reconfigure.msg.Config),
     # TopicConfig('localization_score', std_msgs.msg.Float64),
     TopicConfig('/map', nav_msgs.msg.OccupancyGrid, latch=True),
     TopicConfig('/map_metadata', nav_msgs.msg.MapMetaData),
     # TopicConfig('marker_tracking_node/feedback', mir_marker_tracking.msg.MarkerTrackingActionFeedback),
-    # TopicConfig(
-    #     'marker_tracking_node/laser_line_extract/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription
-    # ),
+    # TopicConfig('marker_tracking_node/laser_line_extract/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
     # TopicConfig('marker_tracking_node/laser_line_extract/parameter_updates', dynamic_reconfigure.msg.Config),
     # TopicConfig('marker_tracking_node/laser_line_extract/visualization_marker', visualization_msgs.msg.Marker),
     # TopicConfig('marker_tracking_node/result', mir_marker_tracking.msg.MarkerTrackingActionResult),
     # TopicConfig('marker_tracking_node/status', actionlib_msgs.msg.GoalStatusArray),
     # TopicConfig('mirEventTrigger/events', mir_msgs.msg.Events),
-        ##  TopicConfig('mir_amcl/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
-        ##  TopicConfig('mir_amcl/parameter_updates', dynamic_reconfigure.msg.Config),
+    # # >>>>TopicConfig('mir_amcl/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
+    # # >>>>TopicConfig('mir_amcl/parameter_updates', dynamic_reconfigure.msg.Config),
     TopicConfig('mir_amcl/selected_points', sensor_msgs.msg.PointCloud2),
+    #/mir_cmd [std_msgs/String]
     TopicConfig('mir_log', rosgraph_msgs.msg.Log),
     # TopicConfig('mir_sound/sound_event', mir_msgs.msg.SoundEvent),
     TopicConfig('mir_status_msg', std_msgs.msg.String),
     # TopicConfig('mirspawn/node_events', mirSpawn.msg.LaunchItem),
     TopicConfig('mirwebapp/grid_map_metadata', mir_msgs.msg.LocalMapStat),
     TopicConfig('mirwebapp/laser_map_metadata', mir_msgs.msg.LocalMapStat),
-    # TopicConfig('mirwebapp/web_path', mir_msgs.msg.WebPath),
-    # really mir_actions/MirMoveBaseActionFeedback:
-    TopicConfig(
-        'move_base/feedback', move_base_msgs.msg.MoveBaseActionFeedback, dict_filter=_move_base_feedback_dict_filter
-    ),
-    # really mir_actions/MirMoveBaseActionResult:
+    TopicConfig('mirwebapp/web_path', mir_msgs.msg.WebPath),
+    #/move_base/cancel [actionlib_msgs/GoalID]
+    # # really mir_actions/MirMoveBaseActionFeedback:
+    TopicConfig('move_base/feedback', move_base_msgs.msg.MoveBaseActionFeedback, dict_filter=_move_base_feedback_dict_filter),
+    #/move_base/goal [mir_actions/MirMoveBaseActionGoal]
+    # # # really mir_actions/MirMoveBaseActionResult:
     TopicConfig('move_base/result', move_base_msgs.msg.MoveBaseActionResult, dict_filter=_move_base_result_dict_filter),
     TopicConfig('move_base/status', actionlib_msgs.msg.GoalStatusArray),
     # TopicConfig('move_base_node/MIRPlannerROS/cost_cloud', sensor_msgs.msg.PointCloud2),
@@ -249,12 +327,10 @@ PUB_TOPICS = [
     TopicConfig('move_base_node/MIRPlannerROS/local_plan', nav_msgs.msg.Path),
     # TopicConfig('move_base_node/MIRPlannerROS/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
     # TopicConfig('move_base_node/MIRPlannerROS/parameter_updates', dynamic_reconfigure.msg.Config),
-        ##  TopicConfig('move_base_node/MIRPlannerROS/updated_global_plan', mir_msgs.msg.PlanSegments),
-    # TopicConfig('move_base_node/MIRPlannerROS/visualization_marker', visualization_msgs.msg.MarkerArray),
-    TopicConfig('move_base_node/SBPLLatticePlanner/plan', nav_msgs.msg.Path),
-    # TopicConfig(
-    #     'move_base_node/SBPLLatticePlanner/sbpl_lattice_planner_stats', sbpl_lattice_planner.msg.SBPLLatticePlannerStats
-    # ),
+    # # >>>>TopicConfig('move_base_node/MIRPlannerROS/updated_global_plan', mir_msgs.msg.PlanSegments),
+    # # TopicConfig('move_base_node/MIRPlannerROS/visualization_marker', visualization_msgs.msg.MarkerArray),
+    # TopicConfig('move_base_node/SBPLLatticePlanner/plan', nav_msgs.msg.Path),
+    # TopicConfig('move_base_node/SBPLLatticePlanner/sbpl_lattice_planner_stats', sbpl_lattice_planner.msg.SBPLLatticePlannerStats),
     # TopicConfig('move_base_node/SBPLLatticePlanner/visualization_marker', visualization_msgs.msg.MarkerArray),
     TopicConfig('move_base_node/current_goal', geometry_msgs.msg.PoseStamped),
     # TopicConfig('move_base_node/global_costmap/inflated_obstacles', nav_msgs.msg.GridCells),
@@ -283,11 +359,17 @@ PUB_TOPICS = [
     TopicConfig('move_base_node/traffic_costmap/unknown_space', nav_msgs.msg.GridCells),
     TopicConfig('move_base_node/visualization_marker', visualization_msgs.msg.Marker),
     TopicConfig('move_base_simple/visualization_marker', visualization_msgs.msg.Marker),
+    TopicConfig('moving_state',  mir_msgs.msg.MovingState),
     TopicConfig('odom', nav_msgs.msg.Odometry),
     TopicConfig('odom_enc', nav_msgs.msg.Odometry),
+    TopicConfig('odom_imu1', nav_msgs.msg.Odometry),
+    TopicConfig('odom_imu2', nav_msgs.msg.Odometry),
+
     # TopicConfig('one_way_map', nav_msgs.msg.OccupancyGrid),
+    #/param_manager_update [mir_param_interface/RosParamListUpdate),
     # TopicConfig('param_update', std_msgs.msg.String),
     # TopicConfig('particlevizmarker', visualization_msgs.msg.MarkerArray),
+    #/resource_tracker/acquisition mir_msgs.msg.ResourcesAcquisition),
     # TopicConfig('resource_tracker/needed_resources', mir_msgs.msg.ResourcesState),
     TopicConfig('robot_mode', mir_msgs.msg.RobotMode),
     TopicConfig('robot_pose', geometry_msgs.msg.Pose),
@@ -295,12 +377,19 @@ PUB_TOPICS = [
     # TopicConfig('robot_status', mir_msgs.msg.RobotStatus),
     TopicConfig('/rosout', rosgraph_msgs.msg.Log),
     TopicConfig('/rosout_agg', rosgraph_msgs.msg.Log),
+    # TopicConfig('safety_status', mir_msgs.msg.SafetyStatus),
+
     TopicConfig('scan', sensor_msgs.msg.LaserScan),
-    # TopicConfig('scan_filter/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
-    # TopicConfig('scan_filter/parameter_updates', dynamic_reconfigure.msg.Config),
-    TopicConfig('scan_filter/visualization_marker', visualization_msgs.msg.Marker),
+    # # TopicConfig('scan_filter/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
+    # # TopicConfig('scan_filter/parameter_updates', dynamic_reconfigure.msg.Config),
+    # TopicConfig('scan_filter/visualization_marker', visualization_msgs.msg.Marker),
+    # TopicConfig('scan_footpr_filter', sensor_msgs.msg.LaserScan),
     # TopicConfig('session_importer_node/info', mirSessionImporter.msg.SessionImportInfo),
     # TopicConfig('set_mc_PID', std_msgs.msg.Float64MultiArray),
+    #/skid_detection_cusum', mir_msgs.msg.SkidDetectionStampedFloat)
+    #/skid_detection_likelihood', mir_msgs.msg.SkidDetectionStampedFloat)
+    #/skid_detection_measurments', mir_msgs.msg.SkidDetectionDiff)
+    #/stall_detection [std_msgs/Bool]
     TopicConfig('/tf', tf2_msgs.msg.TFMessage, dict_filter=_tf_dict_filter),
     TopicConfig('/tf_static', tf2_msgs.msg.TFMessage, dict_filter=_tf_static_dict_filter, latch=True),
     # TopicConfig('traffic_map', nav_msgs.msg.OccupancyGrid),

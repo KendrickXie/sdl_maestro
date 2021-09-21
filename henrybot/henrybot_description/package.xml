@@ -4,6 +4,9 @@
   <version>0.0.1</version>
   <description>URDF description of the MiR100 robot</description>
   <license>BSD</license>
+  <maintainer email="ravescovi@anl.gov">Rafael Vescovi</maintainer>
+
+
   <buildtool_depend>catkin</buildtool_depend>
 
   <build_depend>roslaunch</build_depend>

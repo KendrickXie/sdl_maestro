@@ -5,7 +5,7 @@
     <visual>
       <origin xyz="0.1 0 -0.1" rpy="1.57 0 1.57"/>
       <geometry>
-        <mesh filename="$(find henrybot_description)/meshes/table.stl"/>
+        <mesh filename="package://henrybot_description/meshes/table.stl"/>
       </geometry>
       <material name="LightGrey">
         <color rgba="0.7 0.7 0.7 1.0"/>
@@ -14,7 +14,7 @@
     <collision>
       <origin xyz="0.1 0 -0.1" rpy="1.57 0 1.57"/>
       <geometry>
-        <mesh filename="$(find henrybot_description)/meshes/table.stl"/>
+        <mesh filename="package://henrybot_description/meshes/table.stl"/>
       </geometry>
     </collision>
     <inertial>

@@ -3,6 +3,7 @@
   <name>henrybot_driver</name>
   <version>0.0.1</version>
   <description>A reverse ROS bridge for the MiR250 robot</description>
+  <maintainer email="ravescovi@anl.gov">Rafael Vescovi</maintainer>
 
   <license>BSD</license>
   <license>Apache 2.0</license>

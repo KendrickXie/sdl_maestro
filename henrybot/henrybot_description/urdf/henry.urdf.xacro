@@ -22,10 +22,22 @@
   <xacro:include filename="$(find henrybot_description)/urdf/table.urdf.xacro" />
   <xacro:table prefix="" />
 
+  <joint name="${prefix}table_to_mir" type="fixed">
+    <parent link="${prefix}base_footprint"/>
+    <child link="${prefix}table_mir"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+  </joint>
+
   <!-- UR5e -->
   <xacro:include filename="$(find ur_description)/urdf/inc/ur5e_macro.xacro"/>
-  <xacro:ur5e_robot prefix="" />
+  <xacro:ur5e_robot prefix="${prefix}ur5e_" />
   
+  <joint name="${prefix}ur_to_table" type="fixed">
+    <parent link="${prefix}table_mir"/>
+    <child link="${prefix}ur5e_base_link"/>
+    <origin xyz="0.325 0.0 0.85" rpy="0.0 0.0 0.0"/>
+  </joint>
+
   <!-- ROS-Industrial 'base' frame: base_link to UR 'Base' Coordinates transform -->
   <link name="${prefix}base"/>
     <joint name="${prefix}base_link-base_fixed_joint" type="fixed">
@@ -43,13 +55,6 @@
   <xacro:include filename="$(find robotiq_2f_85_gripper_visualization)/urdf/robotiq_arg2f_85_model_macro.xacro" />
   <xacro:robotiq_arg2f_85 prefix=""/>
 
-  <link name="${prefix}tool0"/>
-    <joint name="${prefix}flange-tool0" type="fixed">
-      <!-- default toolframe: X+ left, Y+ up, Z+ front -->
-      <origin xyz="0 0 0" rpy="${pi/2.0} 0 ${pi/2.0}"/>
-      <parent link="${prefix}flange"/>
-      <child link="${prefix}tool0"/>
-    </joint>
 
   <joint name="${prefix}gripper_to_ur" type="fixed" >
     <parent link="${prefix}ur5e_tool0" />
