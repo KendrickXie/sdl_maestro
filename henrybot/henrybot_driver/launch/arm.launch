@@ -39,17 +39,14 @@
   <arg name="safety_k_position" default="20" doc="Used to set k position in the safety controller" />
 
   <!-- <param name="robot_description" command="$(find xacro)/xacro '$(find ur_description)/urdf/ur5e.xacro' -->
-  <param name="robot_description" command="$(find xacro)/xacro '$(find henrybot_description)/urdf/henry.xacro'
-    joint_limit_params:=$(arg joint_limit_params)
-    kinematics_params:=$(arg kinematics_params)
-    physical_params:=$(arg physical_params)
-    visual_params:=$(arg visual_params)
-    transmission_hw_interface:=$(arg transmission_hw_interface)
-    safety_limits:=$(arg safety_limits)
-    safety_pos_margin:=$(arg safety_pos_margin)
-    safety_k_position:=$(arg safety_k_position)
+  <param name="robot_description" command="$(find xacro)/xacro '$(find henrybot_description)/urdf/henry.urdf.xacro'
     tf_prefix:=$(arg tf_prefix)"
     />
+
+<arg name="gui" default="true" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="$(arg gui)"/>
+  </node>
 
   <!-- Convert joint states to /tf tranforms -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
@@ -127,4 +124,11 @@
   <node ns="ur_hardware_interface" name="ur_robot_state_helper" pkg="ur_robot_driver" type="robot_state_helper" respawn="false" output="screen">
   </node>
 
+
 </launch>
+
+
+
+
+  
+

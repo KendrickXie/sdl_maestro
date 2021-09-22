@@ -8,7 +8,7 @@
         <mesh filename="package://henrybot_description/meshes/table.stl"/>
       </geometry>
       <material name="LightGrey">
-        <color rgba="0.7 0.7 0.7 1.0"/>
+        <color rgba="0.0 0.0 0.8 0.8"/>
       </material>
     </visual>
     <collision>

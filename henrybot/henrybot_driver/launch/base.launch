@@ -5,9 +5,10 @@
 
   <param name="tf_prefix" type="string" value="$(arg tf_prefix)"/>
 
-   <!-- URDF -->
-  <include file="$(find mir_description)/launch/upload_mir_urdf.launch" />
-
+  <!-- URDF -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find henrybot_description)/urdf/henry.urdf.xacro'
+    tf_prefix:=$(arg tf_prefix)"
+    />
   <!-- Robot state publisher -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
     <remap from="/tf"        to="tf_rss" />
@@ -24,14 +25,9 @@
       - base_link
       - front_laser_link
       - back_laser_link
-      - camera_top_link
-      - camera_top_depth_optical_frame
-      - camera_floor_link
-      - camera_floor_depth_optical_frame
       - imu_link
     </rosparam>
   </node>
-
 
   <!-- MiR base -->
   <group>
@@ -57,6 +53,6 @@
   </node>
 
   <node name="fake_mir_joint_publisher" pkg="mir_driver" type="fake_mir_joint_publisher.py" output="screen" />
-  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find henrybot_description)/rviz/henry.rviz" required="true" /> -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find henrybot_description)/rviz/henry.rviz" required="true" />
   
   </launch>

@@ -2,12 +2,6 @@
 <robot name="henry" xmlns:xacro="http://ros.org/wiki/xacro">
 
 
-
-
-  <!-- MiR100 base -->
-  <xacro:include filename="$(find mir_description)/urdf/include/mir_100_v1.urdf.xacro" />
-  <xacro:include filename="$(find mir_description)/urdf/include/common.gazebo.xacro" />
-
   <xacro:arg name="tf_prefix" default="" />
   <xacro:property name="tf_prefix_" value="$(arg tf_prefix)" />
   <xacro:if value="${tf_prefix_ == ''}">
@@ -17,11 +11,12 @@
     <xacro:property name="prefix" value="${tf_prefix_}/" />
   </xacro:unless>
 
-  <xacro:mir_250 prefix="${prefix}"/>
-  <xacro:controller_plugin_gazebo robot_namespace=""/>
+  <!-- MiR250 base -->
+  <xacro:include filename="$(find mir_description)/urdf/include/mir_100_v1.urdf.xacro" />
+  <xacro:mir_100 prefix="${prefix}"/>
 
 
-  <!-- table from sdl-application.. need to fix it for our real table -->
+  <!-- table -->
   <xacro:include filename="$(find henrybot_description)/urdf/table.urdf.xacro" />
   <xacro:table prefix="" />
 
@@ -31,37 +26,36 @@
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
   </joint>
 
-
-
   <!-- UR5e -->
-
-  <xacro:macro name="ur5e_robot" params="
-   prefix
-   joint_limits_parameters_file:='$(find ur_description)/config/ur5e/joint_limits.yaml'
-   kinematics_parameters_file:='$(find ur_description)/config/ur5e/default_kinematics.yaml'
-   physical_parameters_file:='$(find ur_description)/config/ur5e/physical_parameters.yaml'
-   visual_parameters_file:='$(find ur_description)/config/ur5e/visual_parameters.yaml'
-   transmission_hw_interface:=hardware_interface/PositionJointInterface
-   safety_limits:=false
-   safety_pos_margin:=0.15
-   safety_k_position:=20"
-  >
-
   <xacro:include filename="$(find ur_description)/urdf/inc/ur5e_macro.xacro"/>
-  <xacro:ur5e_robot
-    prefix="${prefix}ur5e_"
-    joint_limits_parameters_file="${joint_limits_parameters_file}"
-    kinematics_parameters_file="${kinematics_parameters_file}"
-    physical_parameters_file="${physical_parameters_file}"
-    visual_parameters_file="${visual_parameters_file}"
-    transmission_hw_interface="${transmission_hw_interface}"
-    safety_limits="${safety_limits}"
-    safety_pos_margin="${safety_pos_margin}"
-    safety_k_position="${safety_k_position}"
-  />
-  </xacro:macro>
-    <xacro:ur5e_robot prefix="" />
   
+   <!-- parameters -->
+   <xacro:arg name="joint_limit_params" default="$(find ur_description)/config/ur5e/joint_limits.yaml"/>
+   <xacro:arg name="kinematics_params" default="$(find ur_description)/config/ur5e/default_kinematics.yaml"/>
+   <xacro:arg name="physical_params" default="$(find ur_description)/config/ur5e/physical_parameters.yaml"/>
+   <xacro:arg name="visual_params" default="$(find ur_description)/config/ur5e/visual_parameters.yaml"/>
+   <!-- legal values:
+         - hardware_interface/PositionJointInterface
+         - hardware_interface/VelocityJointInterface
+         - hardware_interface/EffortJointInterface
+   -->
+   <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
+   <xacro:arg name="safety_limits" default="false"/>
+   <xacro:arg name="safety_pos_margin" default="0.15"/>
+   <xacro:arg name="safety_k_position" default="20"/>
+
+   <xacro:ur5e_robot
+    prefix="${prefix}ur5e_"
+     joint_limits_parameters_file="$(arg joint_limit_params)"
+     kinematics_parameters_file="$(arg kinematics_params)"
+     physical_parameters_file="$(arg physical_params)"
+     visual_parameters_file="$(arg visual_params)"
+     transmission_hw_interface="$(arg transmission_hw_interface)"
+     safety_limits="$(arg safety_limits)"
+     safety_pos_margin="$(arg safety_pos_margin)"
+     safety_k_position="$(arg safety_k_position)"/>
+
+
   <joint name="${prefix}ur_to_table" type="fixed">
     <parent link="${prefix}table_mir"/>
     <child link="${prefix}ur5e_base_link"/>
