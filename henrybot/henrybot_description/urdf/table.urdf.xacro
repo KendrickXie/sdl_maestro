@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:macro name="table" params="prefix">
-  <link name="${prefix}table_mir" >
+  <link name="${prefix}table" >
     <visual>
       <origin xyz="0.1 0 -0.1" rpy="1.57 0 1.57"/>
       <geometry>

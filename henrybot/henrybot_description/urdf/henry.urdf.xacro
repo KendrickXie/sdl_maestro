@@ -13,76 +13,54 @@
 
   <!-- MiR250 base -->
   <xacro:include filename="$(find mir_description)/urdf/include/mir_100_v1.urdf.xacro" />
-  <xacro:mir_100 prefix="${prefix}"/>
+  <xacro:mir_100 prefix="${prefix}mir_"/>
 
 
   <!-- table -->
   <xacro:include filename="$(find henrybot_description)/urdf/table.urdf.xacro" />
-  <xacro:table prefix="" />
-
-  <joint name="${prefix}table_to_mir" type="fixed">
-    <parent link="${prefix}base_footprint"/>
-    <child link="${prefix}table_mir"/>
-    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-  </joint>
+  <xacro:table prefix="${prefix}"/>
 
   <!-- UR5e -->
   <xacro:include filename="$(find ur_description)/urdf/inc/ur5e_macro.xacro"/>
-  
-   <!-- parameters -->
-   <xacro:arg name="joint_limit_params" default="$(find ur_description)/config/ur5e/joint_limits.yaml"/>
-   <xacro:arg name="kinematics_params" default="$(find ur_description)/config/ur5e/default_kinematics.yaml"/>
-   <xacro:arg name="physical_params" default="$(find ur_description)/config/ur5e/physical_parameters.yaml"/>
-   <xacro:arg name="visual_params" default="$(find ur_description)/config/ur5e/visual_parameters.yaml"/>
-   <!-- legal values:
-         - hardware_interface/PositionJointInterface
-         - hardware_interface/VelocityJointInterface
-         - hardware_interface/EffortJointInterface
-   -->
-   <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
-   <xacro:arg name="safety_limits" default="false"/>
-   <xacro:arg name="safety_pos_margin" default="0.15"/>
-   <xacro:arg name="safety_k_position" default="20"/>
-
-   <xacro:ur5e_robot
-    prefix="${prefix}ur5e_"
-     joint_limits_parameters_file="$(arg joint_limit_params)"
-     kinematics_parameters_file="$(arg kinematics_params)"
-     physical_parameters_file="$(arg physical_params)"
-     visual_parameters_file="$(arg visual_params)"
-     transmission_hw_interface="$(arg transmission_hw_interface)"
-     safety_limits="$(arg safety_limits)"
-     safety_pos_margin="$(arg safety_pos_margin)"
-     safety_k_position="$(arg safety_k_position)"/>
-
-
-  <joint name="${prefix}ur_to_table" type="fixed">
-    <parent link="${prefix}table_mir"/>
-    <child link="${prefix}ur5e_base_link"/>
-    <origin xyz="0.325 0.0 0.85" rpy="0.0 0.0 0.0"/>
-  </joint>
-
-  <!-- ROS-Industrial 'base' frame: base_link to UR 'Base' Coordinates transform -->
-  <link name="${prefix}base"/>
-    <joint name="${prefix}base_link-base_fixed_joint" type="fixed">
-      <!-- Note the rotation over Z of pi radians: as base_link is REP-103
-           aligned (ie: has X+ forward, Y+ left and Z+ up), this is needed
-           to correctly align 'base' with the 'Base' coordinate system of
-           the UR controller.
-      -->
-      <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
-      <parent link="${prefix}base_link"/>
-      <child link="${prefix}base"/>
-    </joint>
+  <xacro:ur5e_robot
+    prefix="${prefix}ur_"
+    joint_limits_parameters_file="$(find ur_description)/config/ur5e/joint_limits.yaml"
+    kinematics_parameters_file="$(find ur_description)/config/ur5e/default_kinematics.yaml"
+    physical_parameters_file="$(find ur_description)/config/ur5e/physical_parameters.yaml"
+    visual_parameters_file="$(find ur_description)/config/ur5e/visual_parameters.yaml"
+    transmission_hw_interface="hardware_interface/PositionJointInterface"
+    safety_limits="false"
+    safety_pos_margin="0.15"
+    safety_k_position="20"/>
 
   <!-- Gripper -->
   <xacro:include filename="$(find robotiq_2f_85_gripper_visualization)/urdf/robotiq_arg2f_85_model_macro.xacro" />
-  <xacro:robotiq_arg2f_85 prefix=""/>
+  <xacro:robotiq_arg2f_85 prefix="${prefix}"/>
 
+  <!-- Montage Links -->
+  <joint name="${prefix}table_to_mir" type="fixed">
+    <parent link="${prefix}mir_base_link"/>
+    <child link="${prefix}table"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+  </joint>
+
+  <joint name="${prefix}ur_to_table" type="fixed">
+    <parent link="${prefix}table"/>
+    <child link="${prefix}ur_base_link"/>
+    <origin xyz="0.325 0.0 0.85" rpy="0.0 0.0 0.0"/>
+  </joint>
 
   <joint name="${prefix}gripper_to_ur" type="fixed" >
-    <parent link="${prefix}ur5e_tool0" />
+    <parent link="${prefix}ur_tool0" />
     <child link="${prefix}robotiq_arg2f_base_link" />
   </joint>
+
+  <!-- ROS-Industrial 'base' frame: base_link to UR 'Base' Coordinates transform -->
+  <!-- <link name="${prefix}ur_base"/>
+    <joint name="${prefix}ur_base_link-base_fixed_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
+      <parent link="${prefix}ur_base_link"/>
+      <child link="${prefix}ur_base"/>
+    </joint> -->
 
 </robot>
