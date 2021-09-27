@@ -7,7 +7,6 @@ Panels:
         - /Global Options1
         - /Grid1
         - /Grid1/Offset1
-        - /RobotModel1/Status1
         - /TF1/Frames1
         - /TF1/Tree1
         - /Local Map1/DWB Markers1/Namespaces1
@@ -67,210 +66,151 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        back_laser_link:
+        mir/back_laser_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        base:
+        mir/base_footprint:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        base_footprint:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        base_link:
+        mir/base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bl_caster_rotation_link:
+        mir/bl_caster_rotation_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bl_caster_wheel_link:
+        mir/bl_caster_wheel_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        br_caster_rotation_link:
+        mir/br_caster_rotation_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        br_caster_wheel_link:
+        mir/br_caster_wheel_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        fl_caster_rotation_link:
+        mir/fl_caster_rotation_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        fl_caster_wheel_link:
+        mir/fl_caster_wheel_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        fr_caster_rotation_link:
+        mir/fr_caster_rotation_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        fr_caster_wheel_link:
+        mir/fr_caster_wheel_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        front_laser_link:
+        mir/front_laser_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        imu_frame:
+        mir/imu_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        imu_link:
+        mir/imu_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        left_inner_finger:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left_inner_finger_pad:
+        mir/left_wheel_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        left_inner_knuckle:
+        mir/right_wheel_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        left_outer_finger:
+        mir/surface:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        mir/us_1_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        mir/us_2_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        table:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        left_outer_knuckle:
+        ur/base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        ur/base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        ur/base_link_inertia:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        left_wheel_link:
+        ur/flange:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        ur/forearm_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_inner_finger:
+        ur/shoulder_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_inner_finger_pad:
+        ur/tool0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        ur/upper_arm_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_inner_knuckle:
+        ur/wrist_1_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_outer_finger:
+        ur/wrist_2_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_outer_knuckle:
+        ur/wrist_3_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        robotiq_arg2f_base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        surface:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        table_mir:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        ur5e_base:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        ur5e_base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        ur5e_base_link_inertia:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        ur5e_flange:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        ur5e_forearm_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        ur5e_shoulder_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        ur5e_tool0:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        ur5e_upper_arm_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        ur5e_wrist_1_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        ur5e_wrist_2_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        ur5e_wrist_3_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        us_1_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        us_2_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
@@ -282,125 +222,103 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        back_laser_link:
-          Value: true
         base:
-          Value: true
-        base_footprint:
-          Value: true
-        base_link:
-          Value: true
-        bl_caster_rotation_link:
-          Value: true
-        bl_caster_wheel_link:
-          Value: true
-        br_caster_rotation_link:
-          Value: true
-        br_caster_wheel_link:
-          Value: true
-        camera_floor_left_color_optical_frame:
-          Value: true
-        camera_floor_left_depth_optical_frame:
-          Value: true
-        camera_floor_left_infra1_frame:
-          Value: true
-        camera_floor_left_infra1_optical_frame:
-          Value: true
-        camera_floor_left_infra2_frame:
-          Value: true
-        camera_floor_left_infra2_optical_frame:
-          Value: true
-        camera_floor_left_link:
-          Value: true
-        camera_floor_right_color_optical_frame:
-          Value: true
-        camera_floor_right_depth_optical_frame:
-          Value: true
-        camera_floor_right_infra1_frame:
-          Value: true
-        camera_floor_right_infra1_optical_frame:
-          Value: true
-        camera_floor_right_infra2_frame:
-          Value: true
-        camera_floor_right_infra2_optical_frame:
-          Value: true
-        camera_floor_right_link:
-          Value: true
-        fl_caster_rotation_link:
-          Value: true
-        fl_caster_wheel_link:
-          Value: true
-        fr_caster_rotation_link:
-          Value: true
-        fr_caster_wheel_link:
-          Value: true
-        front_laser_link:
-          Value: true
-        imu_frame:
-          Value: true
-        imu_link:
-          Value: true
-        left_inner_finger:
-          Value: true
-        left_inner_finger_pad:
-          Value: true
-        left_inner_knuckle:
-          Value: true
-        left_outer_finger:
-          Value: true
-        left_outer_knuckle:
-          Value: true
-        left_wheel_link:
           Value: true
         map:
           Value: true
-        odom:
+        mir/back_laser_link:
           Value: true
-        right_inner_finger:
+        mir/base_footprint:
           Value: true
-        right_inner_finger_pad:
+        mir/base_link:
           Value: true
-        right_inner_knuckle:
+        mir/bl_caster_rotation_link:
           Value: true
-        right_outer_finger:
+        mir/bl_caster_wheel_link:
           Value: true
-        right_outer_knuckle:
+        mir/br_caster_rotation_link:
           Value: true
-        right_wheel_link:
+        mir/br_caster_wheel_link:
           Value: true
-        robotiq_arg2f_base_link:
+        mir/camera_floor_left_color_optical_frame:
           Value: true
-        surface:
+        mir/camera_floor_left_depth_optical_frame:
           Value: true
-        table_mir:
+        mir/camera_floor_left_infra1_frame:
+          Value: true
+        mir/camera_floor_left_infra1_optical_frame:
+          Value: true
+        mir/camera_floor_left_infra2_frame:
+          Value: true
+        mir/camera_floor_left_infra2_optical_frame:
+          Value: true
+        mir/camera_floor_left_link:
+          Value: true
+        mir/camera_floor_right_color_optical_frame:
+          Value: true
+        mir/camera_floor_right_depth_optical_frame:
+          Value: true
+        mir/camera_floor_right_infra1_frame:
+          Value: true
+        mir/camera_floor_right_infra1_optical_frame:
+          Value: true
+        mir/camera_floor_right_infra2_frame:
+          Value: true
+        mir/camera_floor_right_infra2_optical_frame:
+          Value: true
+        mir/camera_floor_right_link:
+          Value: true
+        mir/fl_caster_rotation_link:
+          Value: true
+        mir/fl_caster_wheel_link:
+          Value: true
+        mir/fr_caster_rotation_link:
+          Value: true
+        mir/fr_caster_wheel_link:
+          Value: true
+        mir/front_laser_link:
+          Value: true
+        mir/imu_frame:
+          Value: true
+        mir/imu_link:
+          Value: true
+        mir/left_wheel_link:
+          Value: true
+        mir/odom:
+          Value: true
+        mir/right_wheel_link:
+          Value: true
+        mir/surface:
+          Value: true
+        mir/us_1_frame:
+          Value: true
+        mir/us_2_frame:
+          Value: true
+        table:
           Value: true
         tool0_controller:
           Value: true
-        ur5e_base:
+        ur/base:
           Value: true
-        ur5e_base_link:
+        ur/base_link:
           Value: true
-        ur5e_base_link_inertia:
+        ur/base_link_inertia:
           Value: true
-        ur5e_flange:
+        ur/flange:
           Value: true
-        ur5e_forearm_link:
+        ur/forearm_link:
           Value: true
-        ur5e_shoulder_link:
+        ur/shoulder_link:
           Value: true
-        ur5e_tool0:
+        ur/tool0:
           Value: true
-        ur5e_upper_arm_link:
+        ur/upper_arm_link:
           Value: true
-        ur5e_wrist_1_link:
+        ur/wrist_1_link:
           Value: true
-        ur5e_wrist_2_link:
+        ur/wrist_2_link:
           Value: true
-        ur5e_wrist_3_link:
-          Value: true
-        us_1_frame:
-          Value: true
-        us_2_frame:
+        ur/wrist_3_link:
           Value: true
       Marker Alpha: 1
       Marker Scale: 1
@@ -410,52 +328,50 @@ Visualization Manager:
       Show Names: false
       Tree:
         map:
-          odom:
-            base_footprint:
-              base_link:
-                back_laser_link:
+          mir/odom:
+            mir/base_footprint:
+              mir/base_link:
+                mir/back_laser_link:
                   {}
-                base:
-                  {}
-                camera_floor_left_link:
-                  camera_floor_left_color_optical_frame:
+                mir/camera_floor_left_link:
+                  mir/camera_floor_left_color_optical_frame:
                     {}
-                  camera_floor_left_depth_optical_frame:
+                  mir/camera_floor_left_depth_optical_frame:
                     {}
-                  camera_floor_left_infra1_frame:
-                    camera_floor_left_infra1_optical_frame:
+                  mir/camera_floor_left_infra1_frame:
+                    mir/camera_floor_left_infra1_optical_frame:
                       {}
-                  camera_floor_left_infra2_frame:
-                    camera_floor_left_infra2_optical_frame:
+                  mir/camera_floor_left_infra2_frame:
+                    mir/camera_floor_left_infra2_optical_frame:
                       {}
-                camera_floor_right_link:
-                  camera_floor_right_color_optical_frame:
+                mir/camera_floor_right_link:
+                  mir/camera_floor_right_color_optical_frame:
                     {}
-                  camera_floor_right_depth_optical_frame:
+                  mir/camera_floor_right_depth_optical_frame:
                     {}
-                  camera_floor_right_infra1_frame:
-                    camera_floor_right_infra1_optical_frame:
+                  mir/camera_floor_right_infra1_frame:
+                    mir/camera_floor_right_infra1_optical_frame:
                       {}
-                  camera_floor_right_infra2_frame:
-                    camera_floor_right_infra2_optical_frame:
+                  mir/camera_floor_right_infra2_frame:
+                    mir/camera_floor_right_infra2_optical_frame:
                       {}
-                front_laser_link:
+                mir/front_laser_link:
                   {}
-                imu_link:
-                  imu_frame:
+                mir/imu_link:
+                  mir/imu_frame:
                     {}
-                surface:
+                mir/surface:
                   {}
-                us_1_frame:
+                mir/us_1_frame:
                   {}
-                us_2_frame:
+                mir/us_2_frame:
                   {}
-              table_mir:
-                ur5e_base_link:
-                  ur5e_base:
-                    {}
-                  ur5e_base_link_inertia:
-                    {}
+                table:
+                  ur/base_link:
+                    ur/base:
+                      {}
+                    ur/base_link_inertia:
+                      {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -713,79 +629,6 @@ Visualization Manager:
           Value: true
       Enabled: true
       Name: Local Map
-    - Alpha: 1
-      Arrow Length: 0.20000000298023224
-      Axes Length: 0.30000001192092896
-      Axes Radius: 0.009999999776482582
-      Class: rviz/PoseArray
-      Color: 0; 192; 0
-      Enabled: true
-      Head Length: 0.07000000029802322
-      Head Radius: 0.029999999329447746
-      Name: Amcl Particle Swarm
-      Queue Size: 10
-      Shaft Length: 0.23000000417232513
-      Shaft Radius: 0.009999999776482582
-      Shape: Arrow (Flat)
-      Topic: particlecloud
-      Unreliable: false
-      Value: true
-    - Alpha: 1
-      Autocompute Intensity Bounds: true
-      Autocompute Value Bounds:
-        Max Value: 10
-        Min Value: -10
-        Value: true
-      Axis: Z
-      Channel Name: intensity
-      Class: rviz/PointCloud2
-      Color: 255; 100; 255
-      Color Transformer: FlatColor
-      Decay Time: 0
-      Enabled: true
-      Invert Rainbow: false
-      Max Color: 255; 0; 255
-      Min Color: 0; 0; 0
-      Name: PointCloud2
-      Position Transformer: XYZ
-      Queue Size: 10
-      Selectable: true
-      Size (Pixels): 3
-      Size (m): 0.009999999776482582
-      Style: Flat Squares
-      Topic: /camera_floor_left/depth/points
-      Unreliable: false
-      Use Fixed Frame: true
-      Use rainbow: true
-      Value: true
-    - Alpha: 1
-      Autocompute Intensity Bounds: true
-      Autocompute Value Bounds:
-        Max Value: 10
-        Min Value: -10
-        Value: true
-      Axis: Z
-      Channel Name: intensity
-      Class: rviz/PointCloud2
-      Color: 100; 255; 255
-      Color Transformer: FlatColor
-      Decay Time: 0
-      Enabled: true
-      Invert Rainbow: false
-      Max Color: 255; 0; 255
-      Min Color: 0; 0; 0
-      Name: PointCloud2
-      Position Transformer: XYZ
-      Queue Size: 10
-      Selectable: true
-      Size (Pixels): 3
-      Size (m): 0.009999999776482582
-      Style: Flat Squares
-      Topic: /camera_floor_right/depth/points
-      Unreliable: false
-      Use Fixed Frame: true
-      Use rainbow: true
-      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
