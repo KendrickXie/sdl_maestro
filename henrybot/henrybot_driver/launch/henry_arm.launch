@@ -17,12 +17,6 @@
   <arg name="kinematics_config" default="$(find ur_description)/config/ur5e/default_kinematics.yaml" doc="Kinematics config file used for calibration correction. This will be used to verify the robot's calibration is matching the robot_description."/>
 
 
-  <param name="robot_description" command="$(find xacro)/xacro '$(find henrybot_description)/urdf/henry.urdf.xacro'" />
-  <!-- load SRDF -->
-  <param name="robot_description_semantic" value="'$(find henrybot_description)/config/henry.srdf'" />
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
-
-
  <include file="$(find ur_robot_driver)/launch/ur_control.launch">
     <arg name="tf_prefix" value=""/>
     <arg name="robot_ip" value="$(arg robot_ip)"/>
@@ -52,11 +46,5 @@
     <arg name="headless_mode" value="$(arg headless_mode)"/>
   </include>
 
-  <arg name="mir_hostname" default="192.168.50.201" />
-
-    <node name="henry_mir_bridge" pkg="henrybot_driver" type="mir_250_bridge.py" output="screen">
-      <param name="hostname" value="$(arg mir_hostname)" />
-      <param name="tf_prefix" value="$(arg tf_prefix)/mir" />
-    </node>
 
 </launch>

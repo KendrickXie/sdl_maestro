@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="tf_prefix" default="" doc="tf_prefix used for the robot."/>
+  <arg name="mir_hostname" default="192.168.50.201" />
+
+    <node name="henry_mir_bridge" pkg="henrybot_driver" type="mir_250_bridge.py" output="screen">
+      <param name="hostname" value="$(arg mir_hostname)" />
+      <param name="tf_prefix" value="$(arg tf_prefix)/mir" />
+    </node>
+
+</launch>

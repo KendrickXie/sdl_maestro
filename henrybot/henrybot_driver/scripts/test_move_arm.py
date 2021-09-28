@@ -1,3 +1,31 @@
+#!/usr/bin/env python3
+
+# -- BEGIN LICENSE BLOCK ----------------------------------------------
+# Copyright 2021 FZI Forschungszentrum Informatik
+# Created on behalf of Universal Robots A/S
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# -- END LICENSE BLOCK ------------------------------------------------
+#
+# ---------------------------------------------------------------------
+# !\file
+#
+# \author  Felix Exner mauch@fzi.de
+# \date    2021-08-05
+#
+#
+# ---------------------------------------------------------------------
+
 import sys
 
 import rospy
@@ -46,13 +74,13 @@ CARTESIAN_TRAJECTORY_CONTROLLERS = [
 CONFLICTING_CONTROLLERS = ["joint_group_vel_controller", "twist_controller"]
 
 
-class ArmClient:
+class TrajectoryClient:
+    """Small trajectory client to test a joint trajectory"""
 
     def __init__(self):
-        rospy.init_node("arm_client")
-        
-        timeout = rospy.Duration(10)
+        rospy.init_node("test_move")
 
+        timeout = rospy.Duration(5)
         self.switch_srv = rospy.ServiceProxy(
             "controller_manager/switch_controller", SwitchController
         )
@@ -66,7 +94,7 @@ class ArmClient:
         self.joint_trajectory_controller = JOINT_TRAJECTORY_CONTROLLERS[0]
         self.cartesian_trajectory_controller = CARTESIAN_TRAJECTORY_CONTROLLERS[0]
 
-    def send_joint_trajectory(self,position_list,duration_list):
+    def send_joint_trajectory(self):
         """Creates a trajectory and sends it using the selected action server"""
 
         # make sure the correct controller is loaded and activated
@@ -80,11 +108,20 @@ class ArmClient:
         goal = FollowJointTrajectoryGoal()
         goal.trajectory.joint_names = JOINT_NAMES
 
+        # The following list are arbitrary positions
+        # Change to your own needs if desired
+        position_list = [[0, -1.57, -1.57, 0, 0, 0]]
+        position_list.append([0.2, -1.57, -1.57, 0, 0, 0])
+        position_list.append([-0.5, -1.57, -1.2, 0, 0, 0])
+        duration_list = [3.0, 7.0, 10.0]
         for i, position in enumerate(position_list):
             point = JointTrajectoryPoint()
             point.positions = position
             point.time_from_start = rospy.Duration(duration_list[i])
             goal.trajectory.points.append(point)
+
+        self.ask_confirmation(position_list)
+        rospy.loginfo("Executing trajectory using the {}".format(self.joint_trajectory_controller))
 
         trajectory_client.send_goal(goal)
         trajectory_client.wait_for_result()
@@ -92,7 +129,7 @@ class ArmClient:
         result = trajectory_client.get_result()
         rospy.loginfo("Trajectory execution finished in state {}".format(result.error_code))
 
-    def send_cartesian_trajectory(self, pose_list, duration_list):
+    def send_cartesian_trajectory(self):
         """Creates a Cartesian trajectory and sends it using the selected action server"""
         self.switch_controller(self.cartesian_trajectory_controller)
 
@@ -103,12 +140,36 @@ class ArmClient:
             FollowCartesianTrajectoryAction,
         )
 
+        # The following list are arbitrary positions
+        # Change to your own needs if desired
+        pose_list = [
+            geometry_msgs.Pose(
+                geometry_msgs.Vector3(0.4, -0.1, 0.4), geometry_msgs.Quaternion(0, 0, 0, 1)
+            ),
+            geometry_msgs.Pose(
+                geometry_msgs.Vector3(0.4, -0.1, 0.6), geometry_msgs.Quaternion(0, 0, 0, 1)
+            ),
+            geometry_msgs.Pose(
+                geometry_msgs.Vector3(0.4, 0.3, 0.6), geometry_msgs.Quaternion(0, 0, 0, 1)
+            ),
+            geometry_msgs.Pose(
+                geometry_msgs.Vector3(0.4, 0.3, 0.4), geometry_msgs.Quaternion(0, 0, 0, 1)
+            ),
+            geometry_msgs.Pose(
+                geometry_msgs.Vector3(0.4, -0.1, 0.4), geometry_msgs.Quaternion(0, 0, 0, 1)
+            ),
+        ]
+        duration_list = [3.0, 4.0, 5.0, 6.0, 7.0]
         for i, pose in enumerate(pose_list):
             point = CartesianTrajectoryPoint()
             point.pose = pose
             point.time_from_start = rospy.Duration(duration_list[i])
             goal.trajectory.points.append(point)
 
+        self.ask_confirmation(pose_list)
+        rospy.loginfo(
+            "Executing trajectory using the {}".format(self.cartesian_trajectory_controller)
+        )
         trajectory_client.send_goal(goal)
         trajectory_client.wait_for_result()
 
@@ -116,6 +177,34 @@ class ArmClient:
 
         rospy.loginfo("Trajectory execution finished in state {}".format(result.error_code))
 
+    ###############################################################################################
+    #                                                                                             #
+    # Methods defined below are for the sake of safety / flexibility of this demo script only.    #
+    # If you just want to copy the relevant parts to make your own motion script you don't have   #
+    # to use / copy all the functions below.                                                       #
+    #                                                                                             #
+    ###############################################################################################
+
+    def ask_confirmation(self, waypoint_list):
+        """Ask the user for confirmation. This function is obviously not necessary, but makes sense
+        in a testing script when you know nothing about the user's setup."""
+        rospy.logwarn("The robot will move to the following waypoints: \n{}".format(waypoint_list))
+        confirmed = False
+        valid = False
+        while not valid:
+            input_str = input(
+                "Please confirm that the robot path is clear of obstacles.\n"
+                "Keep the EM-Stop available at all times. You are executing\n"
+                "the motion at your own risk. Please type 'y' to proceed or 'n' to abort: "
+            )
+            valid = input_str in ["y", "n"]
+            if not valid:
+                print("Please confirm by entering 'y' or abort by entering 'n'")
+            else:
+                confirmed = input_str == "y"
+        if not confirmed:
+            rospy.loginfo("Exiting as requested by user.")
+            sys.exit(0)
 
     def choose_controller(self):
         """Ask the user to select the desired controller from the available list."""
@@ -173,38 +262,18 @@ class ArmClient:
 
 
 if __name__ == "__main__":
-    client = ArmClient()
+    client = TrajectoryClient()
 
+    # The controller choice is obviously not required to move the robot. It is a part of this demo
+    # script in order to show all available trajectory controllers.
     trajectory_type = client.choose_controller()
-
     if trajectory_type == "joint_based":
-        # The following list are arbitrary positions
-        # Change to your own needs if desired
-        position_list = [[0, -1.57, -1.57, 0, 0, 0]]
-        position_list.append([0.2, -1.57, -1.57, 0, 0, 0])
-        position_list.append([-0.5, -1.57, -1.2, 0, 0, 0])
-        duration_list = [3.0, 7.0, 10.0]
-        ##lists should be the same lenght
-        client.send_joint_trajectory(position_list,duration_list)
+        client.send_joint_trajectory()
     elif trajectory_type == "cartesian":
-        # The following list are arbitrary positions
-        # Change to your own needs if desired
-        pose_list = [
-            geometry_msgs.Pose(
-                geometry_msgs.Vector3(0.4, -0.1, 0.4), geometry_msgs.Quaternion(0, 0, 0, 1)
-            ),
-            geometry_msgs.Pose(
-                geometry_msgs.Vector3(0.4, -0.1, 0.6), geometry_msgs.Quaternion(0, 0, 0, 1)
-            ),
-            geometry_msgs.Pose(
-                geometry_msgs.Vector3(0.4, 0.3, 0.6), geometry_msgs.Quaternion(0, 0, 0, 1)
-            ),
-            geometry_msgs.Pose(
-                geometry_msgs.Vector3(0.4, 0.3, 0.4), geometry_msgs.Quaternion(0, 0, 0, 1)
-            ),
-            geometry_msgs.Pose(
-                geometry_msgs.Vector3(0.4, -0.1, 0.4), geometry_msgs.Quaternion(0, 0, 0, 1)
-            ),
-        ]
-        duration_list = [3.0, 4.0, 5.0, 6.0, 7.0]
-        client.send_cartesian_trajectory(pose_list,duration_list)
+        client.send_cartesian_trajectory()
+    else:
+        raise ValueError(
+            "I only understand types 'joint_based' and 'cartesian', but got '{}'".format(
+                trajectory_type
+            )
+        )
