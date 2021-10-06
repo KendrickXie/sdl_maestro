@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>henrybot_control</name>
+  <version>0.0.1</version>
+  <description>Control lib for Henrybot</description>
+
+  <maintainer email="ravescovi@anl.gov">Rafael Vescovi</maintainer>
+  <author email="ravescovi@anl.gov">Rafael Vescovi</author>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>actionlib</depend>
+  <depend>geometry_msgs</depend>
+
+</package>

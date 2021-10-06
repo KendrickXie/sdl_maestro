@@ -1,0 +1,26 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/opt/ros/noetic/include/**",
+        "/home/maestro/maestro_ws/devel/include/**",
+        "/home/maestro/maestro_ws/src/Universal_Robots_ROS_Driver/controller_stopper/include/**",
+        "/home/maestro/maestro_ws/src/mir_robot/mir_dwb_critics/include/**",
+        "/home/maestro/maestro_ws/src/robotiq/robotiq_2f_gripper_action_server/include/**",
+        "/home/maestro/maestro_ws/src/robotiq/robotiq_2f_gripper_control/include/**",
+        "/home/maestro/maestro_ws/src/robotiq/robotiq_ethercat/include/**",
+        "/home/maestro/maestro_ws/src/robotiq/robotiq_ft_sensor/include/**",
+        "/home/maestro/maestro_ws/src/Universal_Robots_ROS_Driver/ur_calibration/include/**",
+        "/home/maestro/maestro_ws/src/universal_robot/ur_kinematics/include/**",
+        "/home/maestro/maestro_ws/src/Universal_Robots_ROS_Driver/ur_robot_driver/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}

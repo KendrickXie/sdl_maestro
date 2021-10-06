@@ -17,16 +17,15 @@ from cartesian_control_msgs.msg import (
 
 # If your robot description is created with a tf_prefix, those would have to be adapted
 JOINT_NAMES = [
-    "shoulder_pan_joint",
+    "elbow_joint", #3
     "shoulder_lift_joint",
-    "elbow_joint",
+    "shoulder_pan_joint", #1
     "wrist_1_joint",
     "wrist_2_joint",
     "wrist_3_joint",
 ]
 
-# All of those controllers can be used to execute joint-based trajectories.
-# The scaled versions should be preferred over the non-scaled versions.
+
 JOINT_TRAJECTORY_CONTROLLERS = [
     "scaled_pos_joint_traj_controller",
     "scaled_vel_joint_traj_controller",
@@ -35,24 +34,19 @@ JOINT_TRAJECTORY_CONTROLLERS = [
     "forward_joint_traj_controller",
 ]
 
-# All of those controllers can be used to execute Cartesian trajectories.
-# The scaled versions should be preferred over the non-scaled versions.
 CARTESIAN_TRAJECTORY_CONTROLLERS = [
     "pose_based_cartesian_traj_controller",
     "joint_based_cartesian_traj_controller",
     "forward_cartesian_traj_controller",
 ]
 
-# We'll have to make sure that none of these controllers are running, as they will
-# be conflicting with the joint trajectory controllers
 CONFLICTING_CONTROLLERS = ["joint_group_vel_controller", "twist_controller"]
 
 
-class TrajectoryClient:
+class ArmClient:
     """Small trajectory client to test a joint trajectory"""
 
     def __init__(self):
-        rospy.init_node("test_move")
 
         timeout = rospy.Duration(5)
         self.switch_srv = rospy.ServiceProxy(
@@ -81,9 +75,6 @@ class TrajectoryClient:
         # Create and fill trajectory goal
         goal = FollowJointTrajectoryGoal()
         goal.trajectory.joint_names = JOINT_NAMES
-
-        # The following list are arbitrary positions
-        # Change to your own needs if desired
 
         for i, position in enumerate(position_list):
             point = JointTrajectoryPoint()
@@ -129,14 +120,6 @@ class TrajectoryClient:
 
         rospy.loginfo("Trajectory execution finished in state {}".format(result.error_code))
 
-    ###############################################################################################
-    #                                                                                             #
-    # Methods defined below are for the sake of safety / flexibility of this demo script only.    #
-    # If you just want to copy the relevant parts to make your own motion script you don't have   #
-    # to use / copy all the functions below.                                                       #
-    #                                                                                             #
-    ###############################################################################################
-
     def choose_controller(self, controller):
         if controller in JOINT_TRAJECTORY_CONTROLLERS:
             self.joint_trajectory_controller = controller
@@ -166,12 +149,27 @@ class TrajectoryClient:
         srv.strictness = SwitchControllerRequest.BEST_EFFORT
         self.switch_srv(srv)
 
+    def move(self, pos_list, duration_list, controller="pose_based_cartesian_traj_controller"):
+        trajectory_type = self.choose_controller(controller)
+
+        if trajectory_type == "joint_based":
+            self.send_joint_trajectory(pos_list, duration_list)
+        elif trajectory_type == "cartesian":
+            self.send_cartesian_trajectory(pos_list, duration_list)
+        else:
+            raise ValueError(
+                "I only understand types 'joint_based' and 'cartesian', but got '{}'".format(trajectory_type)
+    )
+
+
 
 if __name__ == "__main__":
 
+
+    rospy.init_node('UR5e')
     test_controller = "pose_based_cartesian_traj_controller"
     ##
-    client = TrajectoryClient()
+    client = ArmClient()
     ##
     trajectory_type = client.choose_controller(test_controller)
     ##
@@ -199,7 +197,7 @@ if __name__ == "__main__":
             geometry_msgs.Vector3(0.4, -0.1, 0.4), geometry_msgs.Quaternion(0, 0, 0, 1)
         ),
     ]
-    duration_list = [3.0, 4.0, 5.0, 6.0, 7.0]
+    duration_list = [5.0, 7.0, 10.0, 13.0, 16.0]
 
 
     if trajectory_type == "joint_based":

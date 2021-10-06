@@ -321,12 +321,12 @@ PUB_TOPICS = [
     # # # really mir_actions/MirMoveBaseActionResult:
     TopicConfig('move_base/result', move_base_msgs.msg.MoveBaseActionResult, dict_filter=_move_base_result_dict_filter),
     TopicConfig('move_base/status', actionlib_msgs.msg.GoalStatusArray),
-    # TopicConfig('move_base_node/MIRPlannerROS/cost_cloud', sensor_msgs.msg.PointCloud2),
-    # TopicConfig('move_base_node/MIRPlannerROS/global_plan', nav_msgs.msg.Path),
-    # TopicConfig('move_base_node/MIRPlannerROS/len_to_goal', std_msgs.msg.Float64),
+    TopicConfig('move_base_node/MIRPlannerROS/cost_cloud', sensor_msgs.msg.PointCloud2),
+    TopicConfig('move_base_node/MIRPlannerROS/global_plan', nav_msgs.msg.Path),
+    TopicConfig('move_base_node/MIRPlannerROS/len_to_goal', std_msgs.msg.Float64),
     TopicConfig('move_base_node/MIRPlannerROS/local_plan', nav_msgs.msg.Path),
-    # TopicConfig('move_base_node/MIRPlannerROS/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
-    # TopicConfig('move_base_node/MIRPlannerROS/parameter_updates', dynamic_reconfigure.msg.Config),
+    TopicConfig('move_base_node/MIRPlannerROS/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
+    TopicConfig('move_base_node/MIRPlannerROS/parameter_updates', dynamic_reconfigure.msg.Config),
     # # >>>>TopicConfig('move_base_node/MIRPlannerROS/updated_global_plan', mir_msgs.msg.PlanSegments),
     # # TopicConfig('move_base_node/MIRPlannerROS/visualization_marker', visualization_msgs.msg.MarkerArray),
     # TopicConfig('move_base_node/SBPLLatticePlanner/plan', nav_msgs.msg.Path),
@@ -337,13 +337,13 @@ PUB_TOPICS = [
     # TopicConfig('move_base_node/global_costmap/obstacles', nav_msgs.msg.GridCells),
     # TopicConfig('move_base_node/global_costmap/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
     # TopicConfig('move_base_node/global_costmap/parameter_updates', dynamic_reconfigure.msg.Config),
-    # TopicConfig('move_base_node/global_costmap/robot_footprint', geometry_msgs.msg.PolygonStamped),
+    TopicConfig('move_base_node/global_costmap/robot_footprint', geometry_msgs.msg.PolygonStamped),
     # TopicConfig('move_base_node/global_costmap/unknown_space', nav_msgs.msg.GridCells),
     # TopicConfig('move_base_node/global_plan', nav_msgs.msg.Path),
     TopicConfig('move_base_node/local_costmap/inflated_obstacles', nav_msgs.msg.GridCells),
     TopicConfig('move_base_node/local_costmap/obstacles', nav_msgs.msg.GridCells),
-    # TopicConfig('move_base_node/local_costmap/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
-    # TopicConfig('move_base_node/local_costmap/parameter_updates', dynamic_reconfigure.msg.Config),
+    TopicConfig('move_base_node/local_costmap/parameter_descriptions', dynamic_reconfigure.msg.ConfigDescription),
+    TopicConfig('move_base_node/local_costmap/parameter_updates', dynamic_reconfigure.msg.Config),
     TopicConfig('move_base_node/local_costmap/robot_footprint', geometry_msgs.msg.PolygonStamped),
     # TopicConfig('move_base_node/local_costmap/safety_zone', geometry_msgs.msg.PolygonStamped),
     # TopicConfig('move_base_node/local_costmap/unknown_space', nav_msgs.msg.GridCells),
@@ -412,6 +412,7 @@ SUB_TOPICS = [
     TopicConfig('move_base/cancel', actionlib_msgs.msg.GoalID),
     # really mir_actions/MirMoveBaseActionGoal:
     TopicConfig('move_base/goal', move_base_msgs.msg.MoveBaseActionGoal, dict_filter=_move_base_goal_dict_filter),
+    TopicConfig('move_base_simple/goal', geometry_msgs.msg.PoseStamped),
 ]
 
 

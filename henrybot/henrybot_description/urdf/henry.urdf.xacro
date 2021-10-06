@@ -58,7 +58,7 @@
  <joint name="${prefix}ur_to_table" type="fixed">
     <parent link="${prefix}mir/surface"/>
     <child link="${prefix}base_link"/>
-    <origin xyz="0.3 0.0 0.6" rpy="0.0 0.0 0.0"/>
+    <origin xyz="0.3 0.0 0.6" rpy="0.0 0.0 ${pi/2}"/>
   </joint>
 
 
