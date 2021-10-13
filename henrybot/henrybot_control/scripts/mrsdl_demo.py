@@ -16,6 +16,18 @@ import numpy as np
 
 from mrsdl_database import *
 
+def print_xyz(xyz):
+    print(f'{xyz.x:6.3f} {xyz.y:6.3f} {xyz.z:6.3f}')
+
+def print_pose(p):
+    x = p.position.x
+    y = p.position.y
+    z = p.position.z
+    qx = p.orientation.x
+    qy = p.orientation.y
+    qz = p.orientation.z
+    qw = p.orientation.w
+    print(f'{x:6.3f} {y:6.3f} {z:6.3f}    {qx:6.3f} {qy:6.3f} {qz:6.3f} {qw:6.3f}')
 
 # ============================================================================
 #                                           CREATE PROTOCOLS FOR DEMO
@@ -53,7 +65,7 @@ def clyde_crashcup(protocol):
             task_type = 'ArmTask';
             if ('joint' in tsk.action_server):
                 print('Joint based trajectory tasks not implemented yet\n')
-                # FIX # arm.move(tsk.position_list,tsk.duration_list)
+                arm.move(tsk.position_list,tsk.duration_list,"pos_joint_traj_controller")
             elif ('cartesian' in tsk.action_server):
                 if tsk.absolute_pos:
                     absolute_position_list = tsk.position_list
@@ -66,10 +78,13 @@ def clyde_crashcup(protocol):
                 xyz_now = absolute_position_list[-1].position
 
                 # execute absolute cartesian trajectory
-                print(absolute_position_list)
+                #print(absolute_position_list)
+                for p in absolute_position_list:
+                    print_pose(p)
                 arm.move(tsk.position_list,tsk.duration_list);
 
-                print(xyz_now)
+                #print(xyz_now)
+                print_xyz(xyz_now)
        
         if (type(tsk) is GripperTask):
             task_type = 'GripperTask';
@@ -88,7 +103,8 @@ def clyde_crashcup(protocol):
 #                                           TEST DRIVE
 # ============================================================================
 
-clyde_crashcup(['gripper_to_minus_y','gripper_to_minus_x'])
+#clyde_crashcup(['gripper_to_minus_y','gripper_to_minus_x'])
+clyde_crashcup(test_this)
 
 
 

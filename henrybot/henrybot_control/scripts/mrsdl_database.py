@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import numpy as np
 from dataclasses import dataclass
 import geometry_msgs.msg as geometry_msgs
 
@@ -192,17 +193,55 @@ mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory";
 mini_tasks[task_name].position_list = [ nom_plus_x ]
 mini_tasks[task_name].duration_list = [10.0]
 
+task_name = "gripper_p1";          # ---------------------------------
+mini_tasks[task_name] = ArmTask("",[],[],True);
+mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory";
+mini_tasks[task_name].position_list = [
+    geometry_msgs.Pose(geometry_msgs.Vector3(-.100,.240,.665),geometry_msgs.Quaternion(-.707,0,0,.707 )), 
+]
+mini_tasks[task_name].duration_list = [8.0]
+
+task_name = "gripper_fwd";          # ---------------------------------
+mini_tasks[task_name] = ArmTask("",[],[],False);
+mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory";
+mini_tasks[task_name].position_list = [
+    geometry_msgs.Pose(
+        geometry_msgs.Vector3(0, 0,   0.001), geometry_msgs.Quaternion(-.707,0,0,.707)
+    ),
+];
+mini_tasks[task_name].duration_list = [8.0]
+
+
+#               base   shoulder   elbow   wrist_1  wrist_2  wrist_3
+#             -------- -------- -------- -------- -------- --------
+# vicinity 1     220      -27     -137      -14      -39        0
+def deg2rad(lst):
+    radlst = []
+    for j in lst:
+        radlst.append(j*np.pi/180.)
+    return radlst
+
+task_name = "joint_v1";          # ---------------------------------
+mini_tasks[task_name] = ArmTask("",[],[],True);
+mini_tasks[task_name].action_server = "joint_based_trajectory";
+mini_tasks[task_name].position_list = [
+    deg2rad([220,-27,-137,-14,-39,0]),
+]
+mini_tasks[task_name].duration_list = [8.0]
+
+
 # ============================================================================
 #                                           EXAMPLE PROTOCOLS
 # ============================================================================
 demo_protocol_1 = [ "go_to_mixing_station", "gripper_to_front", "open_gripper", "get_clean_beaker", "close_gripper", "beaker_to_fluids", "add_next_reagent", "add_next_reagent", "add_next_reagent","go_to_electrochem_station" ];
-
 test_absolute = [ "gripper_to_home", "gripper_to_front", "gripper_to_home", "gripper_to_front" ];
-
 test_relative = [ "gripper_to_front", "get_clean_beaker", "get_clean_beaker", "beaker_to_fluids" ];
 
 test_py = ["gripper_to_plus_y"]
 test_mx = ["gripper_to_minus_x"]
 test_my = ["gripper_to_minus_y"]
 test_px = ["gripper_to_plus_x"]
+
+#test_this = ["gripper_p1","gripper_fwd"]
+test_this = ["joint_v1"]
 
