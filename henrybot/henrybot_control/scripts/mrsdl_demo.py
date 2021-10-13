@@ -64,8 +64,10 @@ def clyde_crashcup(protocol):
         if (type(tsk) is ArmTask):
             task_type = 'ArmTask';
             if ('joint' in tsk.action_server):
-                print('Joint based trajectory tasks not implemented yet\n')
-                arm.move(tsk.position_list,tsk.duration_list,"pos_joint_traj_controller")
+                #print('Joint based trajectory tasks not implemented yet\n')
+                for p in tsk.position_list:
+                    print(f'{p[0]:8.2f} {p[1]:8.2f} {p[2]:8.2f} {p[3]:8.2f} {p[4]:8.2f} {p[5]:8.2f} ')
+                arm.move(tsk.position_list,tsk.duration_list,"scaled_pos_joint_traj_controller")
             elif ('cartesian' in tsk.action_server):
                 if tsk.absolute_pos:
                     absolute_position_list = tsk.position_list

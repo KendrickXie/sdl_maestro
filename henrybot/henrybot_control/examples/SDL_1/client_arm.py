@@ -17,9 +17,9 @@ from cartesian_control_msgs.msg import (
 
 # If your robot description is created with a tf_prefix, those would have to be adapted
 JOINT_NAMES = [
-    "elbow_joint", #3
-    "shoulder_lift_joint",
     "shoulder_pan_joint", #1
+    "shoulder_lift_joint", #2 
+    "elbow_joint", #3
     "wrist_1_joint",
     "wrist_2_joint",
     "wrist_3_joint",
@@ -82,7 +82,7 @@ class ArmClient:
             point.time_from_start = rospy.Duration(duration_list[i])
             goal.trajectory.points.append(point)
 
-        sleep(2)
+        sleep(5)
         rospy.loginfo("Executing trajectory using the {}".format(self.joint_trajectory_controller))
 
         trajectory_client.send_goal(goal)
