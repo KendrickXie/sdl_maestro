@@ -106,18 +106,18 @@ def xyz_to_joints(model_type, model_params, position, orientation = 0, dock_angl
         # handle effector offset and base rotation -- set up the reduced problem
         R = math.sqrt(x**2 + y**2)
         delta_theta = math.asin(arm_offset/R)
-        theta = math.asin(y/R) - delta_theta
-        r_h = x - wrist3_len
+        theta = math.atan2(y,x) - delta_theta
+        r_h = math.sqrt(R**2-arm_offset**2) - wrist3_len
         z_h = z + wrist2_len
-        base = theta + np.pi
+        base = theta + dock_angle
 
         # the hard part -- compute the shoulder and elbow joint angles
         shoulder, elbow, err = shoulder_and_elbow(r_h, z_h, model_params)
 
         # button it up -- compute remaing joints based on constrained model
         wrist_1 = 0 - (shoulder + elbow)
-        wrist_2 = base - 0
-        wrist_3 = 0
+        wrist_2 = dock_angle + np.pi/2
+        wrist_3 = np.pi
     
         joints = [ base, shoulder, elbow, wrist_1, wrist_2, wrist_3 ]
         err = 0
@@ -151,6 +151,8 @@ def main():
     model = VERT_GRIP
     if "VERT" in args.m:
         model = VERT_GRIP
+    elif "HORZ" in args.m:
+        model = HORZ_GRIP
     pos_X = args.x
     pos_Y = args.y
     pos_Z = args.z
