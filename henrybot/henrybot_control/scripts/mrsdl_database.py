@@ -335,17 +335,20 @@ test_this = [ "joint_v1_sp", "joint_v1_sl", "joint_v1_el", "joint_v1_w1", "joint
 
 
 # ========================== tic-tac-toe calibration
-origin = [ -0.518, -0.244 ]
-twotwo = [ -0.801, +0.101 ]
-z_block = -0.301
+origin_TP = [ -0.518, -0.244 ]
+twotwo_TP = [ -0.801, +0.101 ]
+origin = [-0.15, 0.30]
+twotwo = [ 0.05, 0.50]
+z_block = 0
+da = DOCK_BACK
 
 def ttt(i,j):
     # x =  Y_TD
     # y = -X_TD
-    dx = (twotwo[1]-origin[1])/2.
-    dy = -(twotwo[0]-origin[0])/2.
-    x =  origin[1]+(i+0.5)*dx
-    y = -origin[0]+(j+0.5)*dy
+    dx = (twotwo[0]-origin[0])/2.
+    dy = (twotwo[1]-origin[1])/2.
+    x =  origin[0]+(i+0.5)*dx
+    y =  origin[1]+(j+0.5)*dy
     print(f'{i} {j} {dx:5.3f} {dy:5.3f} {x:5.3f} {y:5.3f} {z_block:5.3f}')
     return [x,y,z_block]
 
@@ -355,87 +358,97 @@ task_name = "ttt_origin"          # ---------------------------------
 mini_tasks[task_name] = ArmTask("",[],[],True)
 mini_tasks[task_name].action_server = "joint_based_trajectory"
 mini_tasks[task_name].position_list = [
-    xyz_to_joints(VERT_GRIP, ur5e_params, [origin[1],-origin[0],z_block],  dock_angle=DOCK_LEFT)[0]
+    xyz_to_joints(VERT_GRIP, ur5e_params, [origin[1],-origin[0],z_block],  dock_angle=da)[0]
 ]
 mini_tasks[task_name].duration_list = [ttt_duration]
 task_name = "ttt_twotwo"          # ---------------------------------
 mini_tasks[task_name] = ArmTask("",[],[],True)
 mini_tasks[task_name].action_server = "joint_based_trajectory"
 mini_tasks[task_name].position_list = [
-    xyz_to_joints(VERT_GRIP, ur5e_params, [twotwo[1],-twotwo[0],z_block],  dock_angle=DOCK_LEFT)[0]
+    xyz_to_joints(VERT_GRIP, ur5e_params, [twotwo[1],-twotwo[0],z_block],  dock_angle=da)[0]
 ]
 mini_tasks[task_name].duration_list = [ttt_duration]
 task_name = "ttt_home"          # ---------------------------------
-ctr = ttt(0,0)
-ctr[2] = 0
+ctr = ttt(1.5,1.5)
+ctr[2] = 0.100
 mini_tasks[task_name] = ArmTask("",[],[],True)
 mini_tasks[task_name].action_server = "joint_based_trajectory"
 mini_tasks[task_name].position_list = [
-    xyz_to_joints(VERT_GRIP, ur5e_params, ctr,  dock_angle=DOCK_LEFT)[0]
+    xyz_to_joints(VERT_GRIP, ur5e_params, ctr,  dock_angle=da)[0]
 ]
 mini_tasks[task_name].duration_list = [ttt_duration]
 task_name = "ttt_00"          # ---------------------------------
 mini_tasks[task_name] = ArmTask("",[],[],True)
 mini_tasks[task_name].action_server = "joint_based_trajectory"
 mini_tasks[task_name].position_list = [
-    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(0,0),  dock_angle=DOCK_LEFT)[0]
+    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(0,0),  dock_angle=da)[0]
 ]
 mini_tasks[task_name].duration_list = [ttt_duration]
 task_name = "ttt_01"          # ---------------------------------
 mini_tasks[task_name] = ArmTask("",[],[],True)
 mini_tasks[task_name].action_server = "joint_based_trajectory"
 mini_tasks[task_name].position_list = [
-    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(0,1),  dock_angle=DOCK_LEFT)[0]
+    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(0,1),  dock_angle=da)[0]
 ]
 mini_tasks[task_name].duration_list = [ttt_duration]
-### task_name = "ttt_02"          # ---------------------------------
-### mini_tasks[task_name] = ArmTask("",[],[],True)
-### mini_tasks[task_name].action_server = "joint_based_trajectory"
-### mini_tasks[task_name].position_list = [
-###     xyz_to_joints(VERT_GRIP, ur5e_params, ttt(0,2),  dock_angle=DOCK_LEFT)[0]
-### ]
-### mini_tasks[task_name].duration_list = [ttt_duration]
+task_name = "ttt_02"          # ---------------------------------
+mini_tasks[task_name] = ArmTask("",[],[],True)
+mini_tasks[task_name].action_server = "joint_based_trajectory"
+mini_tasks[task_name].position_list = [
+    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(0,2),  dock_angle=da)[0]
+]
+mini_tasks[task_name].duration_list = [ttt_duration]
 task_name = "ttt_10"          # ---------------------------------
 mini_tasks[task_name] = ArmTask("",[],[],True)
 mini_tasks[task_name].action_server = "joint_based_trajectory"
 mini_tasks[task_name].position_list = [
-    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(1,0),  dock_angle=DOCK_LEFT)[0]
+    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(1,0),  dock_angle=da)[0]
 ]
 mini_tasks[task_name].duration_list = [ttt_duration]
 task_name = "ttt_11"          # ---------------------------------
 mini_tasks[task_name] = ArmTask("",[],[],True)
 mini_tasks[task_name].action_server = "joint_based_trajectory"
 mini_tasks[task_name].position_list = [
-    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(1,1),  dock_angle=DOCK_LEFT)[0]
+    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(1,1),  dock_angle=da)[0]
 ]
 mini_tasks[task_name].duration_list = [ttt_duration]
-### task_name = "ttt_12"          # ---------------------------------
-### mini_tasks[task_name] = ArmTask("",[],[],True)
-### mini_tasks[task_name].action_server = "joint_based_trajectory"
-### mini_tasks[task_name].position_list = [
-###     xyz_to_joints(VERT_GRIP, ur5e_params, ttt(1,2),  dock_angle=DOCK_LEFT)[0]
-### ]
-### mini_tasks[task_name].duration_list = [ttt_duration]
-### task_name = "ttt_20"          # ---------------------------------
-### mini_tasks[task_name] = ArmTask("",[],[],True)
-### mini_tasks[task_name].action_server = "joint_based_trajectory"
-### mini_tasks[task_name].position_list = [
-###     xyz_to_joints(VERT_GRIP, ur5e_params, ttt(2,0),  dock_angle=DOCK_LEFT)[0]
-### ]
-### mini_tasks[task_name].duration_list = [ttt_duration]
-### task_name = "ttt_21"          # ---------------------------------
-### mini_tasks[task_name] = ArmTask("",[],[],True)
-### mini_tasks[task_name].action_server = "joint_based_trajectory"
-### mini_tasks[task_name].position_list = [
-###     xyz_to_joints(VERT_GRIP, ur5e_params, ttt(2,1),  dock_angle=DOCK_LEFT)[0]
-### ]
-### mini_tasks[task_name].duration_list = [ttt_duration]
-### task_name = "ttt_22"          # ---------------------------------
-### mini_tasks[task_name] = ArmTask("",[],[],True)
-### mini_tasks[task_name].action_server = "joint_based_trajectory"
-### mini_tasks[task_name].position_list = [
-###     xyz_to_joints(VERT_GRIP, ur5e_params, ttt(2,2),  dock_angle=DOCK_LEFT)[0]
-### ]
-### mini_tasks[task_name].duration_list = [ttt_duration]
+task_name = "ttt_12"          # ---------------------------------
+mini_tasks[task_name] = ArmTask("",[],[],True)
+mini_tasks[task_name].action_server = "joint_based_trajectory"
+mini_tasks[task_name].position_list = [
+    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(1,2),  dock_angle=da)[0]
+]
+mini_tasks[task_name].duration_list = [ttt_duration]
+task_name = "ttt_20"          # ---------------------------------
+mini_tasks[task_name] = ArmTask("",[],[],True)
+mini_tasks[task_name].action_server = "joint_based_trajectory"
+mini_tasks[task_name].position_list = [
+    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(2,0),  dock_angle=da)[0]
+]
+mini_tasks[task_name].duration_list = [ttt_duration]
+task_name = "ttt_21"          # ---------------------------------
+mini_tasks[task_name] = ArmTask("",[],[],True)
+mini_tasks[task_name].action_server = "joint_based_trajectory"
+mini_tasks[task_name].position_list = [
+    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(2,1),  dock_angle=da)[0]
+]
+mini_tasks[task_name].duration_list = [ttt_duration]
+task_name = "ttt_22"          # ---------------------------------
+mini_tasks[task_name] = ArmTask("",[],[],True)
+mini_tasks[task_name].action_server = "joint_based_trajectory"
+mini_tasks[task_name].position_list = [
+    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(2,2),  dock_angle=da)[0]
+]
+mini_tasks[task_name].duration_list = [ttt_duration]
 
-
+ttt_tour = [
+    'ttt_home', 'ttt_00',
+    'ttt_home', 'ttt_01',
+    'ttt_home', 'ttt_02',
+    'ttt_home', 'ttt_12',
+    'ttt_home', 'ttt_11',
+    'ttt_home', 'ttt_10',
+    'ttt_home', 'ttt_20',
+    'ttt_home', 'ttt_21',
+    'ttt_home', 'ttt_22',
+]

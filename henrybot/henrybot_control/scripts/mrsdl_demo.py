@@ -33,13 +33,13 @@ def print_pose(p):
 # ============================================================================
 #                                           CREATE PROTOCOLS FOR DEMO
 # ============================================================================
-#demo_protocol_1 = [ "go_to_mixing_station", "gripper_to_front", "open_gripper", "get_clean_beaker", "close_gripper", "beaker_to_fluids", "add_next_reagent", "add_next_reagent", "add_next_reagent","go_to_electrochem_station" ];
-#test_absolute = [ "gripper_to_home", "gripper_to_front", "gripper_to_home", "gripper_to_front" ];
-#test_relative = [ "gripper_to_front", "get_clean_beaker", "get_clean_beaker", "get_clean_beaker" ];
+#demo_protocol_1 = [ "go_to_mixing_station", "gripper_to_front", "open_gripper", "get_clean_beaker", "close_gripper", "beaker_to_fluids", "add_next_reagent", "add_next_reagent", "add_next_reagent","go_to_electrochem_station" ]
+#test_absolute = [ "gripper_to_home", "gripper_to_front", "gripper_to_home", "gripper_to_front" ]
+#test_relative = [ "gripper_to_front", "get_clean_beaker", "get_clean_beaker", "get_clean_beaker" ]
 
-#demo_protocol = demo_protocol_1;
-#demo_protocol = test_absolute;
-#demo_protocol = test_relative;
+#demo_protocol = demo_protocol_1
+#demo_protocol = test_absolute
+#demo_protocol = test_relative
 
 demo_protocol = test_mx
 
@@ -48,9 +48,9 @@ demo_protocol = test_mx
 #                                           PROTOCOL EXECUTION ENGINE
 # ============================================================================
 rospy.init_node('clyde_crashcup')
-base    = BaseClient();
-arm     = ArmClient();
-gripper = RobotiqGripper("192.168.50.82");
+base    = BaseClient()
+arm     = ArmClient()
+gripper = RobotiqGripper("192.168.50.82")
 sleep(2)
 gripper.move(255,255,255)
 
@@ -58,10 +58,10 @@ xyz_now = geometry_msgs.Vector3(0,0,0)                 # initialize absolution p
 def clyde_crashcup(protocol):
     # playback an experimental protocol
     for t in protocol:
-        tsk = mini_tasks[t];
+        tsk = mini_tasks[t]
 
         if (type(tsk) is MiRTask):
-            task_type = 'MiRTask';
+            task_type = 'MiRTask'
             bx = tsk.position[0]
             by = tsk.position[1]
             bth = tsk.position[2]
@@ -69,7 +69,7 @@ def clyde_crashcup(protocol):
             sleep(10.0)
 
         if (type(tsk) is ArmTask):
-            task_type = 'ArmTask';
+            task_type = 'ArmTask'
             if ('joint' in tsk.action_server):
                 #print('Joint based trajectory tasks not implemented yet\n')
                 for p in tsk.position_list:
@@ -90,17 +90,17 @@ def clyde_crashcup(protocol):
                 #print(absolute_position_list)
                 for p in absolute_position_list:
                     print_pose(p)
-                arm.move(tsk.position_list,tsk.duration_list);
+                arm.move(tsk.position_list,tsk.duration_list)
 
                 #print(xyz_now)
                 print_xyz(xyz_now)
        
         if (type(tsk) is GripperTask):
-            task_type = 'GripperTask';
+            task_type = 'GripperTask'
             gripper.move(tsk.gripper_state,255,255)
 
         if (type(tsk) is QueryTask):
-            task_type = 'QueryTask';
+            task_type = 'QueryTask'
             # figure out what to do here for two type of query
             # 1. query to reagent list for next reagent, or done
             # 2. query to AI guiding the experiment for next experiment, or DONE
@@ -147,11 +147,11 @@ def cli_clyde():
     # arm = ArmClient()
     # arm.move([joints],[8.0],"forward_joint_trajectory_controller")
 
-if __name__ == '__main__':
-    try:
-        main()
-    except rospy.ROSInterruptException:
-        pass
+# if __name__ == '__main__':
+#     try:
+#         main()
+#     except rospy.ROSInterruptException:
+#         pass
 
 
 
