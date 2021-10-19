@@ -7,6 +7,7 @@ from time import sleep
 
 import rospy
 import geometry_msgs.msg as geometry_msgs
+from client_base import BaseClient
 from client_arm import ArmClient
 from client_gripper import RobotiqGripper
 from tf.transformations import quaternion_from_euler
@@ -47,11 +48,13 @@ demo_protocol = test_mx
 #                                           PROTOCOL EXECUTION ENGINE
 # ============================================================================
 rospy.init_node('clyde_crashcup')
-# FIX # base    = BaseClient();
+base    = BaseClient();
 arm     = ArmClient();
-# FIX # gripper = GripperClient();
+gripper = RobotiqGripper("192.168.50.82");
+sleep(2)
+gripper.move(255,255,255)
 
-xyz_now = geometry_msgs.Vector3(0,0,0)                            # initialize absolution position accumulator
+xyz_now = geometry_msgs.Vector3(0,0,0)                 # initialize absolution position accumulator
 def clyde_crashcup(protocol):
     # playback an experimental protocol
     for t in protocol:
@@ -59,7 +62,11 @@ def clyde_crashcup(protocol):
 
         if (type(tsk) is MiRTask):
             task_type = 'MiRTask';
-            # FIX # base.move(tsk.position) 
+            bx = tsk.position[0]
+            by = tsk.position[1]
+            bth = tsk.position[2]
+            base.move(bx,by,bth)
+            sleep(10.0)
 
         if (type(tsk) is ArmTask):
             task_type = 'ArmTask';
@@ -67,7 +74,7 @@ def clyde_crashcup(protocol):
                 #print('Joint based trajectory tasks not implemented yet\n')
                 for p in tsk.position_list:
                     print(f'{p[0]:8.2f} {p[1]:8.2f} {p[2]:8.2f} {p[3]:8.2f} {p[4]:8.2f} {p[5]:8.2f} ')
-                arm.move(tsk.position_list,tsk.duration_list,"scaled_pos_joint_traj_controller")
+                arm.move(tsk.position_list,tsk.duration_list,"forward_joint_traj_controller")
             elif ('cartesian' in tsk.action_server):
                 if tsk.absolute_pos:
                     absolute_position_list = tsk.position_list
@@ -90,7 +97,7 @@ def clyde_crashcup(protocol):
        
         if (type(tsk) is GripperTask):
             task_type = 'GripperTask';
-            # FIX # gripper.move(tsk.gripper_state)
+            gripper.move(tsk.gripper_state,255,255)
 
         if (type(tsk) is QueryTask):
             task_type = 'QueryTask';
@@ -100,14 +107,68 @@ def clyde_crashcup(protocol):
 
         print(t, task_type)
 
+def cli_clyde():
+    # args
+    # help
+    # list <fragment>
+    # interactive
+    # exit
+    # info <mini-task>
+    
+    
+    parser = ArgumentParser()
+    parser.add_argument("-m", default=16.0, type=str)
+    parser.add_argument("-x", default=23.0, type=float)
+    parser.add_argument("-y", default=23.0, type=float)
+    parser.add_argument("-z", default=23.0, type=float)
+    parser.add_argument("-d", default="BACK", type=str)
+    args = parser.parse_args()
+
+    # rospy.init_node("arm_python")
+
+    # model = VERT_GRIP
+    # if "VERT" in args.m:
+    #     model = VERT_GRIP
+    # pos_X = args.x
+    # pos_Y = args.y
+    # pos_Z = args.z
+    # dock_dir = DOCK_BACK
+    # if "BACK" in args.d:
+    #     dock_dir = DOCK_BACK
+    # elif "FRONT" in args.d:
+    #     dock_dir = DOCK_FRONT
+    # elif "LEFT" in args.d:
+    #     dock_dir = DOCK_LEFT
+    # elif "RIGHT" in args.d:
+    #     dock_dif = DOCK_RIGHT
+
+    # joints,err = xyz_to_joints(model, ur5e_params, [pos_X,pos_Y,pos_Z], dock_angle=dock_dir)
+
+    # arm = ArmClient()
+    # arm.move([joints],[8.0],"forward_joint_trajectory_controller")
+
+if __name__ == '__main__':
+    try:
+        main()
+    except rospy.ROSInterruptException:
+        pass
+
+
+
+
 
 # ============================================================================
 #                                           TEST DRIVE
 # ============================================================================
 
 #clyde_crashcup(['gripper_to_minus_y','gripper_to_minus_x'])
-clyde_crashcup(test_this)
+#clyde_crashcup(test_this)
 
+#clyde_crashcup(['gripper_to_home','open_gripper','gripper_to_table_center','grab_block','gripper_to_front','open_gripper'])
 
+#clyde_crashcup([ 'go_to_mixing_offramp', 'go_to_mixing_nearby', 'go_to_mixing_runway', 'go_to_mixing_station' ])
+
+#clyde_crashcup(['close_gripper', 'ttt_home', 'ttt_00', 'ttt_11', 'ttt_01', 'ttt_10'])
+clyde_crashcup(['close_gripper', 'ttt_home', 'ttt_origin'])
 
 

@@ -9,6 +9,6 @@
       <param name="tf_prefix" value="$(arg tf_prefix)/mir" />
     </node>
 
-  <node name="base_rviz" pkg="rviz" type="rviz" respawn="false" output="screen" args="-d $(find henrybot_description)/rviz/henry_base.rviz"/>
+  <!-- <node name="base_rviz" pkg="rviz" type="rviz" respawn="false" output="screen" args="-d $(find henrybot_description)/rviz/henry_base.rviz"/> -->
 
 </launch>

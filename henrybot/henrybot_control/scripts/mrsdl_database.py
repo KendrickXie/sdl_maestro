@@ -3,6 +3,7 @@
 import numpy as np
 from dataclasses import dataclass
 import geometry_msgs.msg as geometry_msgs
+from mrsdl_joint_models import *
 
 # ============================================================================
 #                                           CREATE DATABASE OF MINI-TASKS
@@ -17,7 +18,7 @@ class ArmTask:
 
 @dataclass
 class MiRTask:
-    target_position: []    # Pose2D:   x, y, theta
+    position: []    # Pose2D:   x, y, theta
 
 @dataclass
 class QueryTask:
@@ -29,124 +30,133 @@ class GripperTask:
 
 
 # initialize database
-mini_tasks = dict();
+mini_tasks = dict()
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> GRIPPER
-task_name = "open_gripper";      # ----------------------------------
-mini_tasks[task_name] = GripperTask(255);
-
-task_name = "close_gripper";      # ----------------------------------
-mini_tasks[task_name] = GripperTask(0);
+mini_tasks["open_gripper"]  = GripperTask(0)
+mini_tasks["close_gripper"] = GripperTask(255)
+mini_tasks["grab_block"]    = GripperTask(186)
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> BASE
-task_name = "go_to_mixing_station";      # ---------------------------------
-mini_tasks[task_name] = MiRTask([17,18,0]);
-
-task_name = "go_to_electrochem_station";  # ---------------------------------
-mini_tasks[task_name] = MiRTask([16,11,0]);
+mini_tasks["go_to_mixing_station"]       = MiRTask([ 15.3, 24.5, 90])
+mini_tasks["go_to_mixing_nearby"]        = MiRTask([ 15.3, 22.5,  0])
+mini_tasks["go_to_mixing_runway"]        = MiRTask([ 15.3, 22.5, 90])
+mini_tasks["go_to_mixing_offramp"]       = MiRTask([ 15.3, 26.0, 90])
+mini_tasks["go_around_a180"]             = MiRTask([ 15.3, 26.0, 180])
+mini_tasks["go_around_b180"]             = MiRTask([ 12.3, 26.0, 180])
+mini_tasks["go_around_b-90"]             = MiRTask([ 12.3, 26.0, -90])
+mini_tasks["go_around_b-90"]             = MiRTask([ 12.3, 22.5, -90])
+mini_tasks["go_around_c000"]             = MiRTask([ 12.3, 22.5,   0])
+mini_tasks["go_around_d000"]             = MiRTask([ 15.3, 22.5,   0])
+mini_tasks["go_to_electrochem_station"]  = MiRTask([16,11,0])
+mini_tasks["go_to_electrochem_nearby"]   = MiRTask([16,11,0])
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ARM ABSOLUTE
-task_name = "gripper_to_front";          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],True);
-mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory";
+task_name = "gripper_to_home"          # ---------------------------------
+mini_tasks[task_name] = ArmTask("",[],[],True)
+mini_tasks[task_name].action_server = "joint_based_trajectory"
 mini_tasks[task_name].position_list = [
-    geometry_msgs.Pose(
-        geometry_msgs.Vector3(0, 0.2, 0.3), geometry_msgs.Quaternion(0, 0, 0, 1)
-    ),
+    xyz_to_joints(VERT_GRIP, ur5e_params, [0,0.5,0.3], dock_angle=DOCK_BACK)[0]
+]
+mini_tasks[task_name].duration_list = [8.0]
+
+task_name = "gripper_to_front"          # ---------------------------------
+mini_tasks[task_name] = ArmTask("",[],[],True)
+mini_tasks[task_name].action_server = "joint_based_trajectory"
+mini_tasks[task_name].position_list = [
+    xyz_to_joints(VERT_GRIP, ur5e_params, [0,0.5,0.0],  dock_angle=DOCK_BACK)[0]
 ]
 mini_tasks[task_name].duration_list = [5.0]
 
-
-task_name = "gripper_to_home";          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],True);
-mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory";
+task_name = "gripper_to_table_center"          # ---------------------------------
+mini_tasks[task_name] = ArmTask("",[],[],True)
+mini_tasks[task_name].action_server = "joint_based_trajectory"
 mini_tasks[task_name].position_list = [
-    geometry_msgs.Pose(
-        geometry_msgs.Vector3(0.0, -0.3, 0.4), geometry_msgs.Quaternion(0, 0, 0, 1)
-    )
+    xyz_to_joints(VERT_GRIP, ur5e_params, [0,0.350,-0.190],  dock_angle=DOCK_BACK)[0]
 ]
 mini_tasks[task_name].duration_list = [5.0]
+
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ARM RELATIVE
-task_name = "get_clean_beaker";          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],False);
-mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory";
-mini_tasks[task_name].position_list = [
-    geometry_msgs.Pose(
-        geometry_msgs.Vector3(0, 0,   0.1), geometry_msgs.Quaternion(0, 0, 0, 1)
-    ),
-    geometry_msgs.Pose(
-        geometry_msgs.Vector3(0, 0.4, 0  ), geometry_msgs.Quaternion(0, 0, 0, 1)
-    )
-];
-mini_tasks[task_name].duration_list = [2.0, 3.0];
-
-task_name = "beaker_to_fluids";          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],False);
-mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory";
-mini_tasks[task_name].position_list = [
-    geometry_msgs.Pose(
-        geometry_msgs.Vector3(0, 0,   0.1), geometry_msgs.Quaternion(0, 0, 0, 1)
-    )
-];
-mini_tasks[task_name].duration_list = [2.0];
-
-task_name = "add_next_reagent";          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],False);
-mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory";
-mini_tasks[task_name].position_list = [
-    geometry_msgs.Pose(
-        geometry_msgs.Vector3(0,  0.2, 0), geometry_msgs.Quaternion(0, 0, 0, 1)
-    ),
-    geometry_msgs.Pose(
-        geometry_msgs.Vector3(0,  0,   0.1), geometry_msgs.Quaternion(0, 0, 0, 1)
-    ),
-    geometry_msgs.Pose(
-        geometry_msgs.Vector3(0,  0,  -0.1), geometry_msgs.Quaternion(0, 0, 0, 1)
-    ),
-    geometry_msgs.Pose(
-        geometry_msgs.Vector3(0, -0.2, 0), geometry_msgs.Quaternion(0, 0, 0, 1)
-    )
-];
-mini_tasks[task_name].duration_list = [2.0, 3.0, 3.0, 2.0];
+## task_name = "get_clean_beaker"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],False)
+## mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory"
+## mini_tasks[task_name].position_list = [
+##     geometry_msgs.Pose(
+##         geometry_msgs.Vector3(0, 0,   0.1), geometry_msgs.Quaternion(0, 0, 0, 1)
+##     ),
+##     geometry_msgs.Pose(
+##         geometry_msgs.Vector3(0, 0.4, 0  ), geometry_msgs.Quaternion(0, 0, 0, 1)
+##     )
+## ]
+## mini_tasks[task_name].duration_list = [2.0, 3.0]
+## 
+## task_name = "beaker_to_fluids"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],False)
+## mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory"
+## mini_tasks[task_name].position_list = [
+##     geometry_msgs.Pose(
+##         geometry_msgs.Vector3(0, 0,   0.1), geometry_msgs.Quaternion(0, 0, 0, 1)
+##     )
+## ]
+## mini_tasks[task_name].duration_list = [2.0]
+## 
+## task_name = "add_next_reagent"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],False)
+## mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory"
+## mini_tasks[task_name].position_list = [
+##     geometry_msgs.Pose(
+##         geometry_msgs.Vector3(0,  0.2, 0), geometry_msgs.Quaternion(0, 0, 0, 1)
+##     ),
+##     geometry_msgs.Pose(
+##         geometry_msgs.Vector3(0,  0,   0.1), geometry_msgs.Quaternion(0, 0, 0, 1)
+##     ),
+##     geometry_msgs.Pose(
+##         geometry_msgs.Vector3(0,  0,  -0.1), geometry_msgs.Quaternion(0, 0, 0, 1)
+##     ),
+##     geometry_msgs.Pose(
+##         geometry_msgs.Vector3(0, -0.2, 0), geometry_msgs.Quaternion(0, 0, 0, 1)
+##     )
+## ]
+## mini_tasks[task_name].duration_list = [2.0, 3.0, 3.0, 2.0]
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NOT READY
-task_name = "put_beaker_on_table";       # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],False);
-
-task_name = "put_wp_in_beaker";          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],False);
-
-task_name = "put_aux_in_beaker";         # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],False);
-
-task_name = "make_measurements";         # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],False);
-
-task_name = "rinse_aux";                 # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],False);
-
-task_name = "dispose_used_wp";           # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],False);
-
-task_name = "dispose_used_beaker";       # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],False);
-
-task_name = "grab_mic";                  # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],False);
-
-task_name = "lift_mic";                  # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],False);
-
-task_name = "drop_mic";                  # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],False);
+## task_name = "put_beaker_on_table"       # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],False)
+## 
+## task_name = "put_wp_in_beaker"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],False)
+## 
+## task_name = "put_aux_in_beaker"         # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],False)
+## 
+## task_name = "make_measurements"         # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],False)
+## 
+## task_name = "rinse_aux"                 # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],False)
+## 
+## task_name = "dispose_used_wp"           # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],False)
+## 
+## task_name = "dispose_used_beaker"       # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],False)
+## 
+## task_name = "grab_mic"                  # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],False)
+## 
+## task_name = "lift_mic"                  # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],False)
+## 
+## task_name = "drop_mic"                  # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],False)
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> QUERY
-task_name = "more_reagents_query";       # ---------------------------------
-mini_tasks[task_name] = QueryTask("");
+task_name = "more_reagents_query"       # ---------------------------------
+mini_tasks[task_name] = QueryTask("")
 
-task_name = "more_tests_query";          # ---------------------------------
-mini_tasks[task_name] = QueryTask("");
+task_name = "more_tests_query"          # ---------------------------------
+mini_tasks[task_name] = QueryTask("")
 
 
 
@@ -154,88 +164,161 @@ mini_tasks[task_name] = QueryTask("");
 #                                           CARDINAL POSITIONS
 # ============================================================================
 
-# https://www.andre-gaschler.com/rotationconverter/
-#     enter Rx,Ry,Rz in radians into "axis with angle magnitude" on left side
-#     pull quaternion values [x,y,z,w] from right side of page
-#
-#          X      Y     Z       Rx     Ry     Rz        raw_Qx      raw_Qy      raw_Qz      raw_Qw                 Qx      Qy      Qz      Qw
-# +y       0    365  -333     4.72   0.02  -0.02     [ 0.704368,   0.0029846, -0.0029846, -0.7098224 ]          0.707   0.000   0.000  -0.707
-# -x    -365      0  -333     2.40   2.42  -2.43     [ 0.4969667,  0.5011081, -0.5031788, -0.4987242 ]          0.500   0.500  -0.500  -0.500
-# -y       0   -365  -333     0.01  -2.22   2.23     [ 0.003178,  -0.7055102,  0.7086882, -0.0025282 ]          0.000  -0.707   0.707   0.000
-# +x     365      0  -333     2.43  -2.41   2.43     [ 0.5001256, -0.4960093,  0.5001256, -0.5037098 ]          0.500  -0.500   0.500  -0.500
-nom_plus_y  = geometry_msgs.Pose(geometry_msgs.Vector3(    0,  365, -100 ), geometry_msgs.Quaternion(-0.707,  0.000,  0.000,  0.707 ))
-nom_minus_x = geometry_msgs.Pose(geometry_msgs.Vector3( -365,    0, -100 ), geometry_msgs.Quaternion(-0.500, -0.500,  0.500,  0.500 ))
-nom_minus_y = geometry_msgs.Pose(geometry_msgs.Vector3(    0, -365, -100 ), geometry_msgs.Quaternion( 0.000,  0.707, -0.707,  0.000 ))
-nom_plus_x  = geometry_msgs.Pose(geometry_msgs.Vector3(  365,    0, -100 ), geometry_msgs.Quaternion(-0.500,  0.500, -0.500,  0.500 ))
-
-
-task_name = "gripper_to_plus_y";          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],True);
-mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory";
-mini_tasks[task_name].position_list = [ nom_plus_y ]
-mini_tasks[task_name].duration_list = [10.0]
-
-task_name = "gripper_to_minus_x";          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],True);
-mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory";
-mini_tasks[task_name].position_list = [ nom_minus_x ]
-mini_tasks[task_name].duration_list = [10.0]
-
-task_name = "gripper_to_minus_y";          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],True);
-mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory";
-mini_tasks[task_name].position_list = [ nom_minus_y ]
-mini_tasks[task_name].duration_list = [10.0]
-
-task_name = "gripper_to_plus_x";          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],True);
-mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory";
-mini_tasks[task_name].position_list = [ nom_plus_x ]
-mini_tasks[task_name].duration_list = [10.0]
-
-task_name = "gripper_p1";          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],True);
-mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory";
-mini_tasks[task_name].position_list = [
-    geometry_msgs.Pose(geometry_msgs.Vector3(-.100,.240,.665),geometry_msgs.Quaternion(-.707,0,0,.707 )), 
-]
-mini_tasks[task_name].duration_list = [8.0]
-
-task_name = "gripper_fwd";          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],False);
-mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory";
-mini_tasks[task_name].position_list = [
-    geometry_msgs.Pose(
-        geometry_msgs.Vector3(0, 0,   0.001), geometry_msgs.Quaternion(-.707,0,0,.707)
-    ),
-];
-mini_tasks[task_name].duration_list = [8.0]
-
-
-#               base   shoulder   elbow   wrist_1  wrist_2  wrist_3
-#             -------- -------- -------- -------- -------- --------
-# vicinity 1     220      -27     -137      -14      -39        0
-def deg2rad(lst):
-    radlst = []
-    for j in lst:
-        radlst.append(j*np.pi/180.)
-    return radlst
-
-task_name = "joint_v1";          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],True);
-mini_tasks[task_name].action_server = "joint_based_trajectory";
-mini_tasks[task_name].position_list = [
-    deg2rad([220,-27,-137,-14,-39,0]),
-]
-mini_tasks[task_name].duration_list = [8.0]
+## # https://www.andre-gaschler.com/rotationconverter/
+## #     enter Rx,Ry,Rz in radians into "axis with angle magnitude" on left side
+## #     pull quaternion values [x,y,z,w] from right side of page
+## #
+## #          X      Y     Z       Rx     Ry     Rz        raw_Qx      raw_Qy      raw_Qz      raw_Qw                 Qx      Qy      Qz      Qw
+## # +y       0    365  -333     4.72   0.02  -0.02     [ 0.704368,   0.0029846, -0.0029846, -0.7098224 ]          0.707   0.000   0.000  -0.707
+## # -x    -365      0  -333     2.40   2.42  -2.43     [ 0.4969667,  0.5011081, -0.5031788, -0.4987242 ]          0.500   0.500  -0.500  -0.500
+## # -y       0   -365  -333     0.01  -2.22   2.23     [ 0.003178,  -0.7055102,  0.7086882, -0.0025282 ]          0.000  -0.707   0.707   0.000
+## # +x     365      0  -333     2.43  -2.41   2.43     [ 0.5001256, -0.4960093,  0.5001256, -0.5037098 ]          0.500  -0.500   0.500  -0.500
+## nom_plus_y  = geometry_msgs.Pose(geometry_msgs.Vector3(    0,  365, -100 ), geometry_msgs.Quaternion(-0.707,  0.000,  0.000,  0.707 ))
+## nom_minus_x = geometry_msgs.Pose(geometry_msgs.Vector3( -365,    0, -100 ), geometry_msgs.Quaternion(-0.500, -0.500,  0.500,  0.500 ))
+## nom_minus_y = geometry_msgs.Pose(geometry_msgs.Vector3(    0, -365, -100 ), geometry_msgs.Quaternion( 0.000,  0.707, -0.707,  0.000 ))
+## nom_plus_x  = geometry_msgs.Pose(geometry_msgs.Vector3(  365,    0, -100 ), geometry_msgs.Quaternion(-0.500,  0.500, -0.500,  0.500 ))
+## 
+## 
+## task_name = "gripper_to_plus_y"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],True)
+## mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory"
+## mini_tasks[task_name].position_list = [ nom_plus_y ]
+## mini_tasks[task_name].duration_list = [10.0]
+## 
+## task_name = "gripper_to_minus_x"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],True)
+## mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory"
+## mini_tasks[task_name].position_list = [ nom_minus_x ]
+## mini_tasks[task_name].duration_list = [10.0]
+## 
+## task_name = "gripper_to_minus_y"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],True)
+## mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory"
+## mini_tasks[task_name].position_list = [ nom_minus_y ]
+## mini_tasks[task_name].duration_list = [10.0]
+## 
+## task_name = "gripper_to_plus_x"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],True)
+## mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory"
+## mini_tasks[task_name].position_list = [ nom_plus_x ]
+## mini_tasks[task_name].duration_list = [10.0]
+## 
+## task_name = "gripper_p1"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],True)
+## mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory"
+## mini_tasks[task_name].position_list = [
+##     geometry_msgs.Pose(geometry_msgs.Vector3(-.100,.240,.665),geometry_msgs.Quaternion(-.707,0,0,.707 )), 
+## ]
+## mini_tasks[task_name].duration_list = [8.0]
+## 
+## task_name = "gripper_fwd"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],False)
+## mini_tasks[task_name].action_server = "pose_based_cartesian_trajectory"
+## mini_tasks[task_name].position_list = [
+##     geometry_msgs.Pose(
+##         geometry_msgs.Vector3(0, 0,   0.001), geometry_msgs.Quaternion(-.707,0,0,.707)
+##     ),
+## ]
+## mini_tasks[task_name].duration_list = [8.0]
+## 
+## 
+## #               base   shoulder   elbow   wrist_1  wrist_2  wrist_3
+## #             -------- -------- -------- -------- -------- --------
+## # vicinity 1     220      -27     -137      -14      -39        0
+## def deg2rad(lst):
+##     radlst = []
+##     for j in lst:
+##         radlst.append(j*np.pi/180.)
+##     return radlst
+## 
+## task_name = "joint_v1"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],True)
+## mini_tasks[task_name].action_server = "joint_based_trajectory"
+## mini_tasks[task_name].position_list = [
+##     deg2rad([220,-27,-137,-14,-39,0]),
+##     deg2rad([225,-27,-137,-14,-39,0]),
+##     deg2rad([220,-27,-137,-14,-39,0]),
+##     deg2rad([220,-22,-137,-14,-39,0]),
+##     deg2rad([220,-27,-137,-14,-39,0]),
+##     deg2rad([220,-27,-132,-14,-39,0]),
+##     deg2rad([220,-27,-137,-14,-39,0]),
+##     deg2rad([220,-27,-137,-19,-39,0]),
+##     deg2rad([220,-27,-137,-14,-39,0]),
+##     deg2rad([220,-27,-137,-14,-34,0]),
+##     deg2rad([220,-27,-137,-14,-39,0]),
+##     deg2rad([220,-27,-137,-14,-34,5]),
+## ]
+## mini_tasks[task_name].duration_list = [8.0,12.0,16.0,20.0,24.0,28.0,32.0,36.0,40.0,44.0,48.0,52.0,56.0]
+## 
+## task_name = "joint_v1_sp"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],True)
+## mini_tasks[task_name].action_server = "joint_based_trajectory"
+## mini_tasks[task_name].position_list = [
+##     deg2rad([220,-27,-137,-14,-39,0]),
+##     deg2rad([210,-27,-137,-14,-39,0]),
+## ]
+## mini_tasks[task_name].duration_list = [6.0,4.0]
+## 
+## task_name = "joint_v1_sl"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],True)
+## mini_tasks[task_name].action_server = "joint_based_trajectory"
+## mini_tasks[task_name].position_list = [
+##     deg2rad([200,-17,-137,-14,-39,0]),
+##     deg2rad([200,-27,-137,-14,-39,0]),
+## ]
+## mini_tasks[task_name].duration_list = [6.0,4.0]
+## 
+## task_name = "joint_v1_el"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],True)
+## mini_tasks[task_name].action_server = "joint_based_trajectory"
+## mini_tasks[task_name].position_list = [
+##     deg2rad([190,-27,-122,-14,-39,0]),
+##     deg2rad([190,-27,-132,-14,-39,0]),
+## ]
+## mini_tasks[task_name].duration_list = [2.0,4.0]
+## 
+## task_name = "joint_v1_w1"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],True)
+## mini_tasks[task_name].action_server = "joint_based_trajectory"
+## mini_tasks[task_name].position_list = [
+##     deg2rad([180,-27,-137,-4,-39,0]),
+##     deg2rad([180,-27,-137,-14,-39,0]),
+## ]
+## mini_tasks[task_name].duration_list = [2.0,4.0]
+## 
+## task_name = "joint_v1_w2"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],True)
+## mini_tasks[task_name].action_server = "joint_based_trajectory"
+## mini_tasks[task_name].position_list = [
+##     deg2rad([170,-27,-137,-14,-29,0]),
+##     deg2rad([170,-27,-137,-14,-39,0]),
+## ]
+## mini_tasks[task_name].duration_list = [2.0,4.0]
+## 
+## task_name = "joint_v1_w3"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],True)
+## mini_tasks[task_name].action_server = "joint_based_trajectory"
+## mini_tasks[task_name].position_list = [
+##     deg2rad([160,-27,-137,-14,-39,10]),
+##     deg2rad([160,-27,-137,-14,-39,0]),
+## ]
+## mini_tasks[task_name].duration_list = [2.0,4.0]
+## 
+## task_name = "joint_v1_home"          # ---------------------------------
+## mini_tasks[task_name] = ArmTask("",[],[],True)
+## mini_tasks[task_name].action_server = "joint_based_trajectory"
+## mini_tasks[task_name].position_list = [
+##     deg2rad([220,-27,-137,-14,-34,0]),
+## ]
+## mini_tasks[task_name].duration_list = [8.0]
 
 
 # ============================================================================
 #                                           EXAMPLE PROTOCOLS
 # ============================================================================
-demo_protocol_1 = [ "go_to_mixing_station", "gripper_to_front", "open_gripper", "get_clean_beaker", "close_gripper", "beaker_to_fluids", "add_next_reagent", "add_next_reagent", "add_next_reagent","go_to_electrochem_station" ];
-test_absolute = [ "gripper_to_home", "gripper_to_front", "gripper_to_home", "gripper_to_front" ];
-test_relative = [ "gripper_to_front", "get_clean_beaker", "get_clean_beaker", "beaker_to_fluids" ];
+demo_protocol_1 = [ "go_to_mixing_station", "gripper_to_front", "open_gripper", "get_clean_beaker", "close_gripper", "beaker_to_fluids", "add_next_reagent", "add_next_reagent", "add_next_reagent","go_to_electrochem_station" ]
+test_absolute = [ "gripper_to_home", "gripper_to_front", "gripper_to_home", "gripper_to_front" ]
+test_relative = [ "gripper_to_front", "get_clean_beaker", "get_clean_beaker", "beaker_to_fluids" ]
 
 test_py = ["gripper_to_plus_y"]
 test_mx = ["gripper_to_minus_x"]
@@ -243,5 +326,116 @@ test_my = ["gripper_to_minus_y"]
 test_px = ["gripper_to_plus_x"]
 
 #test_this = ["gripper_p1","gripper_fwd"]
-test_this = ["joint_v1"]
+#test_this = ["joint_v1"]
+test_this = [ "joint_v1_sp", "joint_v1_sl", "joint_v1_el", "joint_v1_w1", "joint_v1_w2", "joint_v1_w3" ]
+#test_this = [ "joint_v1_w3" ]
+
+
+
+
+
+# ========================== tic-tac-toe calibration
+origin = [ -0.518, -0.244 ]
+twotwo = [ -0.801, +0.101 ]
+z_block = -0.301
+
+def ttt(i,j):
+    # x =  Y_TD
+    # y = -X_TD
+    dx = (twotwo[1]-origin[1])/2.
+    dy = -(twotwo[0]-origin[0])/2.
+    x =  origin[1]+(i+0.5)*dx
+    y = -origin[0]+(j+0.5)*dy
+    print(f'{i} {j} {dx:5.3f} {dy:5.3f} {x:5.3f} {y:5.3f} {z_block:5.3f}')
+    return [x,y,z_block]
+
+
+ttt_duration = 2.0
+task_name = "ttt_origin"          # ---------------------------------
+mini_tasks[task_name] = ArmTask("",[],[],True)
+mini_tasks[task_name].action_server = "joint_based_trajectory"
+mini_tasks[task_name].position_list = [
+    xyz_to_joints(VERT_GRIP, ur5e_params, [origin[1],-origin[0],z_block],  dock_angle=DOCK_LEFT)[0]
+]
+mini_tasks[task_name].duration_list = [ttt_duration]
+task_name = "ttt_twotwo"          # ---------------------------------
+mini_tasks[task_name] = ArmTask("",[],[],True)
+mini_tasks[task_name].action_server = "joint_based_trajectory"
+mini_tasks[task_name].position_list = [
+    xyz_to_joints(VERT_GRIP, ur5e_params, [twotwo[1],-twotwo[0],z_block],  dock_angle=DOCK_LEFT)[0]
+]
+mini_tasks[task_name].duration_list = [ttt_duration]
+task_name = "ttt_home"          # ---------------------------------
+ctr = ttt(0,0)
+ctr[2] = 0
+mini_tasks[task_name] = ArmTask("",[],[],True)
+mini_tasks[task_name].action_server = "joint_based_trajectory"
+mini_tasks[task_name].position_list = [
+    xyz_to_joints(VERT_GRIP, ur5e_params, ctr,  dock_angle=DOCK_LEFT)[0]
+]
+mini_tasks[task_name].duration_list = [ttt_duration]
+task_name = "ttt_00"          # ---------------------------------
+mini_tasks[task_name] = ArmTask("",[],[],True)
+mini_tasks[task_name].action_server = "joint_based_trajectory"
+mini_tasks[task_name].position_list = [
+    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(0,0),  dock_angle=DOCK_LEFT)[0]
+]
+mini_tasks[task_name].duration_list = [ttt_duration]
+task_name = "ttt_01"          # ---------------------------------
+mini_tasks[task_name] = ArmTask("",[],[],True)
+mini_tasks[task_name].action_server = "joint_based_trajectory"
+mini_tasks[task_name].position_list = [
+    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(0,1),  dock_angle=DOCK_LEFT)[0]
+]
+mini_tasks[task_name].duration_list = [ttt_duration]
+### task_name = "ttt_02"          # ---------------------------------
+### mini_tasks[task_name] = ArmTask("",[],[],True)
+### mini_tasks[task_name].action_server = "joint_based_trajectory"
+### mini_tasks[task_name].position_list = [
+###     xyz_to_joints(VERT_GRIP, ur5e_params, ttt(0,2),  dock_angle=DOCK_LEFT)[0]
+### ]
+### mini_tasks[task_name].duration_list = [ttt_duration]
+task_name = "ttt_10"          # ---------------------------------
+mini_tasks[task_name] = ArmTask("",[],[],True)
+mini_tasks[task_name].action_server = "joint_based_trajectory"
+mini_tasks[task_name].position_list = [
+    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(1,0),  dock_angle=DOCK_LEFT)[0]
+]
+mini_tasks[task_name].duration_list = [ttt_duration]
+task_name = "ttt_11"          # ---------------------------------
+mini_tasks[task_name] = ArmTask("",[],[],True)
+mini_tasks[task_name].action_server = "joint_based_trajectory"
+mini_tasks[task_name].position_list = [
+    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(1,1),  dock_angle=DOCK_LEFT)[0]
+]
+mini_tasks[task_name].duration_list = [ttt_duration]
+### task_name = "ttt_12"          # ---------------------------------
+### mini_tasks[task_name] = ArmTask("",[],[],True)
+### mini_tasks[task_name].action_server = "joint_based_trajectory"
+### mini_tasks[task_name].position_list = [
+###     xyz_to_joints(VERT_GRIP, ur5e_params, ttt(1,2),  dock_angle=DOCK_LEFT)[0]
+### ]
+### mini_tasks[task_name].duration_list = [ttt_duration]
+### task_name = "ttt_20"          # ---------------------------------
+### mini_tasks[task_name] = ArmTask("",[],[],True)
+### mini_tasks[task_name].action_server = "joint_based_trajectory"
+### mini_tasks[task_name].position_list = [
+###     xyz_to_joints(VERT_GRIP, ur5e_params, ttt(2,0),  dock_angle=DOCK_LEFT)[0]
+### ]
+### mini_tasks[task_name].duration_list = [ttt_duration]
+### task_name = "ttt_21"          # ---------------------------------
+### mini_tasks[task_name] = ArmTask("",[],[],True)
+### mini_tasks[task_name].action_server = "joint_based_trajectory"
+### mini_tasks[task_name].position_list = [
+###     xyz_to_joints(VERT_GRIP, ur5e_params, ttt(2,1),  dock_angle=DOCK_LEFT)[0]
+### ]
+### mini_tasks[task_name].duration_list = [ttt_duration]
+### task_name = "ttt_22"          # ---------------------------------
+### mini_tasks[task_name] = ArmTask("",[],[],True)
+### mini_tasks[task_name].action_server = "joint_based_trajectory"
+### mini_tasks[task_name].position_list = [
+###     xyz_to_joints(VERT_GRIP, ur5e_params, ttt(2,2),  dock_angle=DOCK_LEFT)[0]
+### ]
+### mini_tasks[task_name].duration_list = [ttt_duration]
+
 

@@ -59,14 +59,16 @@ class ArmClient:
             rospy.logerr("Could not reach controller switch service. Msg: {}".format(err))
             sys.exit(-1)
 
-        self.joint_trajectory_controller = JOINT_TRAJECTORY_CONTROLLERS[0]
+#FORWARD_JOINT_ONLY#        self.joint_trajectory_controller = JOINT_TRAJECTORY_CONTROLLERS[0]
+        self.joint_trajectory_controller = JOINT_TRAJECTORY_CONTROLLERS[4]
+        self.switch_controller(self.joint_trajectory_controller)
         self.cartesian_trajectory_controller = CARTESIAN_TRAJECTORY_CONTROLLERS[0]
 
     def send_joint_trajectory(self, position_list, duration_list):
         """Creates a trajectory and sends it using the selected action server"""
 
         # make sure the correct controller is loaded and activated
-        self.switch_controller(self.joint_trajectory_controller)
+#FORWARD_JOINT_ONLY#        self.switch_controller(self.joint_trajectory_controller)
         trajectory_client = actionlib.SimpleActionClient(
             "{}/follow_joint_trajectory".format(self.joint_trajectory_controller),
             FollowJointTrajectoryAction,
@@ -82,7 +84,7 @@ class ArmClient:
             point.time_from_start = rospy.Duration(duration_list[i])
             goal.trajectory.points.append(point)
 
-        sleep(5)
+        sleep(2)
         rospy.loginfo("Executing trajectory using the {}".format(self.joint_trajectory_controller))
 
         trajectory_client.send_goal(goal)
@@ -91,34 +93,34 @@ class ArmClient:
         result = trajectory_client.get_result()
         rospy.loginfo("Trajectory execution finished in state {}".format(result.error_code))
 
-    def send_cartesian_trajectory(self, pose_list, duration_list):
-        """Creates a Cartesian trajectory and sends it using the selected action server"""
-        self.switch_controller(self.cartesian_trajectory_controller)
-
-        # make sure the correct controller is loaded and activated
-        goal = FollowCartesianTrajectoryGoal()
-        trajectory_client = actionlib.SimpleActionClient(
-            "{}/follow_cartesian_trajectory".format(self.cartesian_trajectory_controller),
-            FollowCartesianTrajectoryAction,
-        )
-
-
-        for i, pose in enumerate(pose_list):
-            point = CartesianTrajectoryPoint()
-            point.pose = pose
-            point.time_from_start = rospy.Duration(duration_list[i])
-            goal.trajectory.points.append(point)
-
-        sleep(2)
-        rospy.loginfo(
-            "Executing trajectory using the {}".format(self.cartesian_trajectory_controller)
-        )
-        trajectory_client.send_goal(goal)
-        trajectory_client.wait_for_result()
-
-        result = trajectory_client.get_result()
-
-        rospy.loginfo("Trajectory execution finished in state {}".format(result.error_code))
+#FORWARD_JOINT_ONLY#     def send_cartesian_trajectory(self, pose_list, duration_list):
+#FORWARD_JOINT_ONLY#         """Creates a Cartesian trajectory and sends it using the selected action server"""
+#FORWARD_JOINT_ONLY#         self.switch_controller(self.cartesian_trajectory_controller)
+#FORWARD_JOINT_ONLY# 
+#FORWARD_JOINT_ONLY#         # make sure the correct controller is loaded and activated
+#FORWARD_JOINT_ONLY#         goal = FollowCartesianTrajectoryGoal()
+#FORWARD_JOINT_ONLY#         trajectory_client = actionlib.SimpleActionClient(
+#FORWARD_JOINT_ONLY#             "{}/follow_cartesian_trajectory".format(self.cartesian_trajectory_controller),
+#FORWARD_JOINT_ONLY#             FollowCartesianTrajectoryAction,
+#FORWARD_JOINT_ONLY#         )
+#FORWARD_JOINT_ONLY# 
+#FORWARD_JOINT_ONLY# 
+#FORWARD_JOINT_ONLY#         for i, pose in enumerate(pose_list):
+#FORWARD_JOINT_ONLY#             point = CartesianTrajectoryPoint()
+#FORWARD_JOINT_ONLY#             point.pose = pose
+#FORWARD_JOINT_ONLY#             point.time_from_start = rospy.Duration(duration_list[i])
+#FORWARD_JOINT_ONLY#             goal.trajectory.points.append(point)
+#FORWARD_JOINT_ONLY# 
+#FORWARD_JOINT_ONLY#         sleep(2)
+#FORWARD_JOINT_ONLY#         rospy.loginfo(
+#FORWARD_JOINT_ONLY#             "Executing trajectory using the {}".format(self.cartesian_trajectory_controller)
+#FORWARD_JOINT_ONLY#         )
+#FORWARD_JOINT_ONLY#         trajectory_client.send_goal(goal)
+#FORWARD_JOINT_ONLY#         trajectory_client.wait_for_result()
+#FORWARD_JOINT_ONLY# 
+#FORWARD_JOINT_ONLY#         result = trajectory_client.get_result()
+#FORWARD_JOINT_ONLY# 
+#FORWARD_JOINT_ONLY#         rospy.loginfo("Trajectory execution finished in state {}".format(result.error_code))
 
     def choose_controller(self, controller):
         if controller in JOINT_TRAJECTORY_CONTROLLERS:
@@ -150,16 +152,16 @@ class ArmClient:
         self.switch_srv(srv)
 
     def move(self, pos_list, duration_list, controller="pose_based_cartesian_traj_controller"):
-        trajectory_type = self.choose_controller(controller)
+#FORWARD_JOINT_ONLY#        trajectory_type = self.choose_controller(controller)
 
-        if trajectory_type == "joint_based":
+#FORWARD_JOINT_ONLY#        if trajectory_type == "joint_based":
             self.send_joint_trajectory(pos_list, duration_list)
-        elif trajectory_type == "cartesian":
-            self.send_cartesian_trajectory(pos_list, duration_list)
-        else:
-            raise ValueError(
-                "I only understand types 'joint_based' and 'cartesian', but got '{}'".format(trajectory_type)
-    )
+#FORWARD_JOINT_ONLY#        elif trajectory_type == "cartesian":
+#FORWARD_JOINT_ONLY#            self.send_cartesian_trajectory(pos_list, duration_list)
+#FORWARD_JOINT_ONLY#        else:
+#FORWARD_JOINT_ONLY#            raise ValueError(
+#FORWARD_JOINT_ONLY#                "I only understand types 'joint_based' and 'cartesian', but got '{}'".format(trajectory_type)
+#FORWARD_JOINT_ONLY#    )
 
 
 
