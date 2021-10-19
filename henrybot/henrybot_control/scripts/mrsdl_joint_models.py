@@ -26,6 +26,9 @@ z_block = -0.301
 
 # ==========================
 HORZ_GRIP = 0              # model_type
+HORZ_YPOS_GRIP = 2
+HORZ_XPOS_GRIP = 3
+HORZ_XNEG_GRIP = 4
 VERT_GRIP = 1
 
 DOCK_FRONT = -2*np.pi/2    # dock_angle
@@ -122,6 +125,66 @@ def xyz_to_joints(model_type, model_params, position, orientation = 0, dock_angl
         joints = [ base, shoulder, elbow, wrist_1, wrist_2, wrist_3 ]
         err = 0
     
+    elif model_type == HORZ_YPOS_GRIP: # --------------------------- HORZ model
+        # handle effector offset and base rotation -- set up the reduced problem
+        R = math.sqrt(x**2 + (y-wrist3_len)**2)
+        delta_theta = math.asin(arm_offset/R)
+        theta = math.atan2(y-wrist3_len,x) - delta_theta
+        r_h = math.sqrt(R**2-arm_offset**2)
+        z_h = z + wrist2_len
+        base = theta + dock_angle
+
+        # the hard part -- compute the shoulder and elbow joint angles
+        shoulder, elbow, err = shoulder_and_elbow(r_h, z_h, model_params)
+
+        # button it up -- compute remaing joints based on constrained model
+        wrist_1 = 0 - (shoulder + elbow)
+        wrist_2 = theta
+        wrist_3 = np.pi
+    
+        joints = [ base, shoulder, elbow, wrist_1, wrist_2, wrist_3 ]
+        err = 0
+    
+    elif model_type == HORZ_XPOS_GRIP: # --------------------------- HORZ model
+        # handle effector offset and base rotation -- set up the reduced problem
+        R = math.sqrt((x-wrist3_len)**2 + y**2)
+        delta_theta = math.asin(arm_offset/R)
+        theta = math.atan2(y,x-wrist3_len) - delta_theta
+        r_h = math.sqrt(R**2-arm_offset**2)
+        z_h = z + wrist2_len
+        base = theta + dock_angle
+
+        # the hard part -- compute the shoulder and elbow joint angles
+        shoulder, elbow, err = shoulder_and_elbow(r_h, z_h, model_params)
+
+        # button it up -- compute remaing joints based on constrained model
+        wrist_1 = 0 - (shoulder + elbow)
+        wrist_2 = theta + np.pi/2
+        wrist_3 = np.pi
+    
+        joints = [ base, shoulder, elbow, wrist_1, wrist_2, wrist_3 ]
+        err = 0
+    
+    elif model_type == HORZ_XNEG_GRIP: # --------------------------- HORZ model
+        # handle effector offset and base rotation -- set up the reduced problem
+        R = math.sqrt((x+wrist3_len)**2 + y**2)
+        delta_theta = math.asin(arm_offset/R)
+        theta = math.atan2(y,x+wrist3_len) - delta_theta
+        r_h = math.sqrt(R**2-arm_offset**2)
+        z_h = z + wrist2_len
+        base = theta + dock_angle
+
+        # the hard part -- compute the shoulder and elbow joint angles
+        shoulder, elbow, err = shoulder_and_elbow(r_h, z_h, model_params)
+
+        # button it up -- compute remaing joints based on constrained model
+        wrist_1 = 0 - (shoulder + elbow)
+        wrist_2 = theta - np.pi/2
+        wrist_3 = np.pi
+    
+        joints = [ base, shoulder, elbow, wrist_1, wrist_2, wrist_3 ]
+        err = 0
+    
     else: # --------------------------------------------------- BOOM
         err = -2
         print('VERT ({VERT_GRIP}) or HORZ ({HORZ_GRIP}) are only model_types accepted: {model_type}.')
@@ -151,6 +214,12 @@ def main():
     model = VERT_GRIP
     if "VERT" in args.m:
         model = VERT_GRIP
+    elif "YPOS" in args.m:
+        model = HORZ_YPOS_GRIP
+    elif "XPOS" in args.m:
+        model = HORZ_XPOS_GRIP
+    elif "XNEG" in args.m:
+        model = HORZ_XNEG_GRIP
     elif "HORZ" in args.m:
         model = HORZ_GRIP
     pos_X = args.x
