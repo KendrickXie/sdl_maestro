@@ -335,12 +335,17 @@ test_this = [ "joint_v1_sp", "joint_v1_sl", "joint_v1_el", "joint_v1_w1", "joint
 
 
 # ========================== tic-tac-toe calibration
-origin_TP = [ -0.518, -0.244 ]
-twotwo_TP = [ -0.801, +0.101 ]
-origin = [-0.15, 0.30]
-twotwo = [ 0.05, 0.50]
-z_block = 0
-da = DOCK_BACK
+da = DOCK_LEFT
+origin_TP = [ -0.387, -0.164 ]
+twotwo_TP = [ -0.664, +0.184 ]
+origin = [ origin_TP[1]-0.010, -origin_TP[0]+0.020]
+twotwo = [ twotwo_TP[1]-0.010, -twotwo_TP[0]+0.020]
+z_block = -0.315
+# da = DOCK_BACK
+# origin = [-0.15, 0.30]
+# twotwo = [ 0.05, 0.50]
+# z_block = 0
+print(f'ORIGIN: {origin[0]:5.3f} {origin[1]:5.3f}    TWOTWO: {twotwo[0]:5.3f} {twotwo[1]:5.3f}')
 
 def ttt(i,j):
     # x =  Y_TD
@@ -358,19 +363,19 @@ task_name = "ttt_origin"          # ---------------------------------
 mini_tasks[task_name] = ArmTask("",[],[],True)
 mini_tasks[task_name].action_server = "joint_based_trajectory"
 mini_tasks[task_name].position_list = [
-    xyz_to_joints(VERT_GRIP, ur5e_params, [origin[1],-origin[0],z_block],  dock_angle=da)[0]
+    xyz_to_joints(VERT_GRIP, ur5e_params, [origin[0],origin[1],z_block],  dock_angle=da)[0]
 ]
 mini_tasks[task_name].duration_list = [ttt_duration]
 task_name = "ttt_twotwo"          # ---------------------------------
 mini_tasks[task_name] = ArmTask("",[],[],True)
 mini_tasks[task_name].action_server = "joint_based_trajectory"
 mini_tasks[task_name].position_list = [
-    xyz_to_joints(VERT_GRIP, ur5e_params, [twotwo[1],-twotwo[0],z_block],  dock_angle=da)[0]
+    xyz_to_joints(VERT_GRIP, ur5e_params, [twotwo[0],twotwo[1],z_block],  dock_angle=da)[0]
 ]
 mini_tasks[task_name].duration_list = [ttt_duration]
 task_name = "ttt_home"          # ---------------------------------
-ctr = ttt(1.5,1.5)
-ctr[2] = 0.100
+ctr = ttt(0.5,0.5)
+ctr[2] = 0.000
 mini_tasks[task_name] = ArmTask("",[],[],True)
 mini_tasks[task_name].action_server = "joint_based_trajectory"
 mini_tasks[task_name].position_list = [
@@ -391,13 +396,6 @@ mini_tasks[task_name].position_list = [
     xyz_to_joints(VERT_GRIP, ur5e_params, ttt(0,1),  dock_angle=da)[0]
 ]
 mini_tasks[task_name].duration_list = [ttt_duration]
-task_name = "ttt_02"          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],True)
-mini_tasks[task_name].action_server = "joint_based_trajectory"
-mini_tasks[task_name].position_list = [
-    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(0,2),  dock_angle=da)[0]
-]
-mini_tasks[task_name].duration_list = [ttt_duration]
 task_name = "ttt_10"          # ---------------------------------
 mini_tasks[task_name] = ArmTask("",[],[],True)
 mini_tasks[task_name].action_server = "joint_based_trajectory"
@@ -412,43 +410,56 @@ mini_tasks[task_name].position_list = [
     xyz_to_joints(VERT_GRIP, ur5e_params, ttt(1,1),  dock_angle=da)[0]
 ]
 mini_tasks[task_name].duration_list = [ttt_duration]
-task_name = "ttt_12"          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],True)
-mini_tasks[task_name].action_server = "joint_based_trajectory"
-mini_tasks[task_name].position_list = [
-    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(1,2),  dock_angle=da)[0]
-]
-mini_tasks[task_name].duration_list = [ttt_duration]
-task_name = "ttt_20"          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],True)
-mini_tasks[task_name].action_server = "joint_based_trajectory"
-mini_tasks[task_name].position_list = [
-    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(2,0),  dock_angle=da)[0]
-]
-mini_tasks[task_name].duration_list = [ttt_duration]
-task_name = "ttt_21"          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],True)
-mini_tasks[task_name].action_server = "joint_based_trajectory"
-mini_tasks[task_name].position_list = [
-    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(2,1),  dock_angle=da)[0]
-]
-mini_tasks[task_name].duration_list = [ttt_duration]
-task_name = "ttt_22"          # ---------------------------------
-mini_tasks[task_name] = ArmTask("",[],[],True)
-mini_tasks[task_name].action_server = "joint_based_trajectory"
-mini_tasks[task_name].position_list = [
-    xyz_to_joints(VERT_GRIP, ur5e_params, ttt(2,2),  dock_angle=da)[0]
-]
-mini_tasks[task_name].duration_list = [ttt_duration]
+# task_name = "ttt_02"          # ---------------------------------
+# mini_tasks[task_name] = ArmTask("",[],[],True)
+# mini_tasks[task_name].action_server = "joint_based_trajectory"
+# mini_tasks[task_name].position_list = [
+#     xyz_to_joints(VERT_GRIP, ur5e_params, ttt(0,2),  dock_angle=da)[0]
+# ]
+# mini_tasks[task_name].duration_list = [ttt_duration]
+# task_name = "ttt_12"          # ---------------------------------
+# mini_tasks[task_name] = ArmTask("",[],[],True)
+# mini_tasks[task_name].action_server = "joint_based_trajectory"
+# mini_tasks[task_name].position_list = [
+#     xyz_to_joints(VERT_GRIP, ur5e_params, ttt(1,2),  dock_angle=da)[0]
+# ]
+# mini_tasks[task_name].duration_list = [ttt_duration]
+# task_name = "ttt_20"          # ---------------------------------
+# mini_tasks[task_name] = ArmTask("",[],[],True)
+# mini_tasks[task_name].action_server = "joint_based_trajectory"
+# mini_tasks[task_name].position_list = [
+#     xyz_to_joints(VERT_GRIP, ur5e_params, ttt(2,0),  dock_angle=da)[0]
+# ]
+# mini_tasks[task_name].duration_list = [ttt_duration]
+# task_name = "ttt_21"          # ---------------------------------
+# mini_tasks[task_name] = ArmTask("",[],[],True)
+# mini_tasks[task_name].action_server = "joint_based_trajectory"
+# mini_tasks[task_name].position_list = [
+#     xyz_to_joints(VERT_GRIP, ur5e_params, ttt(2,1),  dock_angle=da)[0]
+# ]
+# mini_tasks[task_name].duration_list = [ttt_duration]
+# task_name = "ttt_22"          # ---------------------------------
+# mini_tasks[task_name] = ArmTask("",[],[],True)
+# mini_tasks[task_name].action_server = "joint_based_trajectory"
+# mini_tasks[task_name].position_list = [
+#     xyz_to_joints(VERT_GRIP, ur5e_params, ttt(2,2),  dock_angle=da)[0]
+# ]
+# mini_tasks[task_name].duration_list = [ttt_duration]
 
+# ttt_tour = [
+#     'ttt_home', 'ttt_00',
+#     'ttt_home', 'ttt_01',
+#     'ttt_home', 'ttt_02',
+#     'ttt_home', 'ttt_12',
+#     'ttt_home', 'ttt_11',
+#     'ttt_home', 'ttt_10',
+#     'ttt_home', 'ttt_20',
+#     'ttt_home', 'ttt_21',
+#     'ttt_home', 'ttt_22',
+# ]
 ttt_tour = [
     'ttt_home', 'ttt_00',
     'ttt_home', 'ttt_01',
-    'ttt_home', 'ttt_02',
-    'ttt_home', 'ttt_12',
     'ttt_home', 'ttt_11',
     'ttt_home', 'ttt_10',
-    'ttt_home', 'ttt_20',
-    'ttt_home', 'ttt_21',
-    'ttt_home', 'ttt_22',
 ]

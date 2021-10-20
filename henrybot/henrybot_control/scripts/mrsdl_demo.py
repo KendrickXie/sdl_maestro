@@ -169,6 +169,8 @@ def cli_clyde():
 #clyde_crashcup([ 'go_to_mixing_offramp', 'go_to_mixing_nearby', 'go_to_mixing_runway', 'go_to_mixing_station' ])
 
 #clyde_crashcup(['close_gripper', 'ttt_home', 'ttt_00', 'ttt_11', 'ttt_01', 'ttt_10'])
-clyde_crashcup(['close_gripper', 'ttt_home', 'ttt_origin'])
+#clyde_crashcup(['close_gripper', 'ttt_home', 'ttt_origin'])
+#clyde_crashcup(ttt_tour)
+clyde_crashcup(['ttt_home', 'open_gripper', 'ttt_00', 'grab_block', 'ttt_home', 'ttt_11', 'open_gripper', 'ttt_home', 'close_gripper'])
 
 
