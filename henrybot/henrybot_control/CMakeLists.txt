@@ -30,5 +30,4 @@ catkin_package(
 
 
 catkin_install_python(PROGRAMS
-  scripts/
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
