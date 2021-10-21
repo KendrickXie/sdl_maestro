@@ -1,6 +1,6 @@
 moveit_setup_assistant_config:
   URDF:
-    package: henrybot_description
+    package: henrybot_moveit
     relative_path: urdf/henry.urdf.xacro
     xacro_args: ""
   SRDF:
