@@ -84,7 +84,7 @@ class ArmClient:
             point.time_from_start = rospy.Duration(duration_list[i])
             goal.trajectory.points.append(point)
 
-        sleep(2)
+        sleep(0.5)
         rospy.loginfo("Executing trajectory using the {}".format(self.joint_trajectory_controller))
 
         trajectory_client.send_goal(goal)
@@ -202,13 +202,13 @@ if __name__ == "__main__":
     duration_list = [5.0, 7.0, 10.0, 13.0, 16.0]
 
 
-    if trajectory_type == "joint_based":
-        client.send_joint_trajectory(position_list, duration_list)
-    elif trajectory_type == "cartesian":
-        client.send_cartesian_trajectory(pose_list, duration_list)
-    else:
-        raise ValueError(
-            "I only understand types 'joint_based' and 'cartesian', but got '{}'".format(
-                trajectory_type
-            )
-        )
+    # if trajectory_type == "joint_based":
+    #     client.send_joint_trajectory(position_list, duration_list)
+    # elif trajectory_type == "cartesian":
+    #     client.send_cartesian_trajectory(pose_list, duration_list)
+    # else:
+    #     raise ValueError(
+    #         "I only understand types 'joint_based' and 'cartesian', but got '{}'".format(
+    #             trajectory_type
+    #         )
+    #     )
