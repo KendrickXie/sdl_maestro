@@ -100,7 +100,7 @@ def xyz_to_joints(model_type, model_params, position, orientation = 0, dock_angl
         # button it up -- compute remaing joints based on constrained model
         wrist_1 = -np.pi/2 - (shoulder + elbow)
         wrist_2 = -np.pi/2
-        wrist_3 = theta - np.pi/2
+        wrist_3 = theta - np.pi/2 + orientation*np.pi/180.0
     
         joints = [ base, shoulder, elbow, wrist_1, wrist_2, wrist_3 ]
         err = 0
@@ -206,6 +206,7 @@ def main():
     parser.add_argument("-x", default=23.0, type=float)
     parser.add_argument("-y", default=23.0, type=float)
     parser.add_argument("-z", default=23.0, type=float)
+    parser.add_argument("-o", default=0,    type=float)
     parser.add_argument("-d", default="BACK", type=str)
     args = parser.parse_args()
 
@@ -235,7 +236,7 @@ def main():
     elif "RIGHT" in args.d:
         dock_dif = DOCK_RIGHT
 
-    joints,err = xyz_to_joints(model, ur5e_params, [pos_X,pos_Y,pos_Z], dock_angle=dock_dir)
+    joints,err = xyz_to_joints(model, ur5e_params, [pos_X,pos_Y,pos_Z], orientation=args.o, dock_angle=dock_dir)
 
     arm = ArmClient()
     arm.move([joints],[8.0],"forward_joint_trajectory_controller")

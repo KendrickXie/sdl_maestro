@@ -66,7 +66,7 @@ def clyde_crashcup(protocol):
             by = tsk.position[1]
             bth = tsk.position[2]
             base.move(bx,by,bth)
-            sleep(10.0)
+            sleep(20.0)
 
         if (type(tsk) is ArmTask):
             task_type = 'ArmTask'
@@ -124,28 +124,7 @@ def cli_clyde():
     parser.add_argument("-d", default="BACK", type=str)
     args = parser.parse_args()
 
-    # rospy.init_node("arm_python")
 
-    # model = VERT_GRIP
-    # if "VERT" in args.m:
-    #     model = VERT_GRIP
-    # pos_X = args.x
-    # pos_Y = args.y
-    # pos_Z = args.z
-    # dock_dir = DOCK_BACK
-    # if "BACK" in args.d:
-    #     dock_dir = DOCK_BACK
-    # elif "FRONT" in args.d:
-    #     dock_dir = DOCK_FRONT
-    # elif "LEFT" in args.d:
-    #     dock_dir = DOCK_LEFT
-    # elif "RIGHT" in args.d:
-    #     dock_dif = DOCK_RIGHT
-
-    # joints,err = xyz_to_joints(model, ur5e_params, [pos_X,pos_Y,pos_Z], dock_angle=dock_dir)
-
-    # arm = ArmClient()
-    # arm.move([joints],[8.0],"forward_joint_trajectory_controller")
 
 # if __name__ == '__main__':
 #     try:
@@ -169,6 +148,33 @@ def cli_clyde():
 #clyde_crashcup([ 'go_to_mixing_offramp', 'go_to_mixing_nearby', 'go_to_mixing_runway', 'go_to_mixing_station' ])
 
 #clyde_crashcup(['close_gripper', 'ttt_home', 'ttt_00', 'ttt_11', 'ttt_01', 'ttt_10'])
-clyde_crashcup(['close_gripper', 'ttt_home', 'ttt_origin'])
+#clyde_crashcup(['close_gripper', 'ttt_home', 'ttt_origin'])
+#clyde_crashcup(ttt_tour)
+#clyde_crashcup(['ttt_home', 'open_gripper', 'ttt_00', 'grab_block', 'ttt_home', 'ttt_11', 'open_gripper', 'ttt_home', 'close_gripper'])
+
+move_to_mix_station = [ 'gripper_to_home', 'go_to_bottom_down', 'go_to_bottom_up', 'go_to_center_up']
+# clyde_crashcup(move_to_mix_station)
+ 
+get_all_samples = [ 'ttt_home', 'close_gripper', 
+    'open_gripper', 'ttt_11', 'grab_block', 'above_beaker', 'open_gripper', 'ttt_home',
+    'open_gripper', 'ttt_10', 'grab_block', 'above_beaker', 'open_gripper', 'ttt_home',
+    'open_gripper', 'ttt_01', 'grab_block', 'above_beaker', 'open_gripper', 'ttt_home',
+    'open_gripper', 'ttt_00', 'grab_block', 'above_beaker', 'open_gripper', 'ttt_home',
+    'over_beaker', 'near_beaker', 'open_gripper', 'at_beaker', 'grab_beaker', 'over_beaker', 
+    'over_tray', 'near_tray', 'at_tray', 'open_gripper', 'over_tray', 'gripper_to_home', 'close_gripper']
+# clyde_crashcup(get_all_samples)
+
+move_to_electrochem = ['go_to_top_up', 'go_to_center_down']
+
+deliver_samples = ['over_tray', 'open_gripper', 'near_tray', 'at_tray', 'close_gripper', 'over_tray', 
+   'over_ttt', 'near_ttt', 'at_ttt', 'open_gripper', 'near_ttt', 'over_ttt', 'close_gripper',
+   'gripper_to_home']
+# clyde_crashcup(deliver_samples)
+
+mic_drop = ['lift_mic','open_mic','at_mic','close_gripper','lift_mic','extend_mic','open_gripper']
 
 
+#clyde_crashcup( move_to_mix_station + get_all_samples + move_to_electrochem + deliver_samples + mic_drop )
+#clyde_crashcup(circle)
+clyde_crashcup(get_all_samples + mic_drop )
+#clyde_crashcup(['ttt_home','close_gripper','ttt_00','ttt_01','ttt_11','ttt_10'])

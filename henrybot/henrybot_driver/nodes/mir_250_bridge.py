@@ -569,7 +569,9 @@ class MiR250Bridge(object):
         goal = move_base_msgs.msg.MoveBaseGoal()
         goal.target_pose.header = copy.deepcopy(msg.header)
         goal.target_pose.pose = copy.deepcopy(msg.pose)
-        self._move_base_client.send_goal(goal)
+        self._move_base_client.send_goal_and_wait(goal)
+        wait = self._move_base_client.wait_for_result()
+        self._move_base_client.get_result()
 
 
 def main():
