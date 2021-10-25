@@ -1,25 +1,22 @@
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+
+sudo apt update
+
+
+sudo apt install -y build-essential
+sudo apt install -y python3-pip
 sudo apt install -y ros-noetic-desktop-full 
 
 source /opt/ros/noetic/setup.bash
 echo "source /opt/ros/noetic/setup.bash" > ~/.bashrc
 
 
-sudo apt install -y ros-noetic-rtabmap-ros
-sudo apt install -y ros-noetic-catkin*
 sudo pip install -U catkin_tools
+
 sudo -H pip3 install modern_robotics
+
 sudo apt install -y python3-rosdep
-sudo apt install -y python3-rosinstall
-sudo apt install -y python3-rosinstall-generator
-sudo apt install -y python3-wstool
-sudo apt install -y build-essential
-sudo apt install -y ros-noetic-moveit
-sudo apt install -y python3-matplotlib
-sudo apt install -y ros-noetic-soem
-sudo apt install -y ros-noetic-socketcan-interface
-sudo apt install -y ros-noetic-costmap-queue
-sudo apt install -y ros-noetic-mir-robot 
-sudo apt install -y python3-pymodbus 
 sudo apt install -y ros-noetic-realsense2-camera
 
 sudo rosdep init
@@ -43,10 +40,13 @@ git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git
 git clone -b calibration_devel https://github.com/fmauch/universal_robot.git
 rm -rf universal_robot/ur3*
 rm -rf universal_robot/ur1*
+rm -rf universal_robot/ur5_*
+
 ##MIR
 git clone https://github.com/dfki-ric/mir_robot
 
 ##GRIPPER
+sudo apt install -y python3-pymodbus ##or maybe change TCP / RTU to have the correct dependencies
 git clone https://github.com/ros-industrial/robotiq
 rm -rf robotiq/robotiq_3f*
 
