@@ -1,6 +1,6 @@
 <package>
 
-  <name>henrybot_description</name>
+  <name>henrybot_moveit</name>
   <version>0.3.0</version>
   <description>
      An automatically generated package with all the configuration and launch files for using the henry with the MoveIt Motion Planning Framework

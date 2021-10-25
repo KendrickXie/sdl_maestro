@@ -172,9 +172,9 @@ deliver_samples = ['over_tray', 'open_gripper', 'near_tray', 'at_tray', 'close_g
 # clyde_crashcup(deliver_samples)
 
 mic_drop = ['lift_mic','open_mic','at_mic','close_gripper','lift_mic','extend_mic','open_gripper']
-
+move_to_tv = ['gripper_to_home']
 
 #clyde_crashcup( move_to_mix_station + get_all_samples + move_to_electrochem + deliver_samples + mic_drop )
 #clyde_crashcup(circle)
-clyde_crashcup(get_all_samples + mic_drop )
+clyde_crashcup(move_to_tv)
 #clyde_crashcup(['ttt_home','close_gripper','ttt_00','ttt_01','ttt_11','ttt_10'])

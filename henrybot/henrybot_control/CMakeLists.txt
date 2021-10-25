@@ -27,8 +27,3 @@ catkin_package(
     actionlib
     geometry_msgs
 )
-
-
-catkin_install_python(PROGRAMS
-  scripts/
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})

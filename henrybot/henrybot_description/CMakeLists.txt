@@ -1,10 +1,25 @@
-cmake_minimum_required(VERSION 3.1.3)
-project(henrybot_moveit)
+cmake_minimum_required(VERSION 3.5.1)
+project(henrybot_description)
 
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+  roslaunch
+)
 
+###################################
+## catkin specific configuration ##
+###################################
 catkin_package()
 
-install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-  PATTERN "setup_assistant.launch" EXCLUDE)
-install(DIRECTORY config DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+#############
+## Install ##
+#############
+
+# Mark other files for installation (e.g. launch and bag files, etc.)
+install(DIRECTORY
+  config
+  launch
+  meshes
+  urdf
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+
