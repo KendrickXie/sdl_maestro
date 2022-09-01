@@ -25,6 +25,8 @@ setup(
         "console_scripts": [
             "rpl_publisher_joint_trajectory_controller = \
                 ur_publisher.rpl_publisher_joint_trajectory_controller:main",
+            "rpl_ur_move = \
+                ur_publisher.rpl_ur_move:main",
         ],
     },
 )
